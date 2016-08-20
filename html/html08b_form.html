@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>表单练习</title>
+	</head>
+	<body>
+		<h3>修改个人信息</h3>
+		<form action="#" method="get">
+			<table border="1px" cellpadding="5px">
+				<tr>
+					<td>姓名:</td>
+					<td>
+						<input type="text" name="name" />
+					</td>
+					<td rowspan="6" valign="top">
+						<details>
+							<summary>各项<mark>技能</mark>指数</summary>
+							<ul type="none">
+								<li>
+									HTML:<meter max="100" value="100" title="100%"></meter>
+								</li>	
+								<li>
+									CSS3:<meter max="100" value="90"></meter>
+								</li>
+								<li>
+									AJAX:<meter max="100" value="50"></meter>
+								</li>
+							</ul>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>性别:</td>
+					<td>
+						<input type="radio" id="male" checked name="gender" value="male">
+						<label for="male">男士</label>
+						<input type="radio" id="female" name="gender" value="female">
+						<laber for="female">女士</laber>
+					</td>
+				</tr>
+				<tr>
+					<td>意向工作城市</td>
+					<td>
+						<select name="city" size="5">
+							<option value="bj">北京</option>
+							<option value="sh">上海</option>
+							<option value="nj">南京</option>
+							<option value="sz">深圳</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>个人描述:</td>
+					<td>
+						<textarea name="info" cols="50" rows="5"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input type="checkbox" name="privice" />不要公开我的个人信息
+					</td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td>
+						<input type="submit" value="保存"/>
+						<input type="reset" value="重置" />
+					</td>
+				</tr>
+				
+			</table>	
+		</form>
+	</body>
+</html>
