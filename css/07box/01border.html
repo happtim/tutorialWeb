@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div{
+				width:200px;
+				height: 200px;
+			}
+				
+			#div1{
+				border: 1px dotted black;
+			}
+		
+			/*单边属性*/
+			#div2{
+				border-width: 4px;
+				border-color: aqua;
+				border-style: double;
+				
+				border-right: 2px solid red;
+				border-bottom-color:blue;
+				border-bottom-style: dashed;
+			}
+			
+			/*倒角*/
+			#div3{
+				border: 5px solid black;
+				border-radius:50%;
+			}
+			/*阴影*/
+			#div4{
+				border: 1px solid #000;
+				/*box-shadow: 5px 5px 0px 0px #000 inset;*/
+				box-shadow: 0px 0px 5px red;
+			}
+			#div5{
+				border-width: 10px;
+				border-image: url(images/border.png) 26 round;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+		<div id="div4"></div>
+		<div id="div5"></div>
+	</body>
+</html>

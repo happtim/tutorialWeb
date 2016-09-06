@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div{
+				width: 500px;
+				border: 1px solid black;
+				overflow-x: scroll;
+			}	
+			p{
+				width: 800px;
+			}
+			
+			/*这个部分看完边框再看*/
+			.current{
+				border: 2px solid #f00;	
+				border-radius:5px;
+			}
+			p>img:hover{
+				border: 2px solid #f00;	
+				border-radius:5px;	
+			}
+			/* 添加透明边框防止抖动 */
+			p>img{
+				border: 2px solid transparent;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<p>
+				<img src="images/p_small_001.jpg"/>
+				<img src="images/p_small_002.jpg"/>
+				<img src="images/p_small_003.jpg"/>
+				<img src="images/p_small_004.jpg"/>
+				<img src="images/p_small_005.jpg"/>
+				<img src="images/p_small_006.jpg"/>
+				<img src="images/p_small_007.jpg"/>
+			</p>
+		</div>	
+		<div style="width:50px">
+			aaaa/
+			aaaa/
+			aaaa/
+		</div>
+	</body>
+</html>

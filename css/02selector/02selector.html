@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			/*1.通用将页面所有文本内容改为雅黑,12px*/
+			*{
+				font-family: "微软雅黑";	
+			}
+			
+			/*2.元素选择器*/
+			p{
+				color: red;
+			}
+			
+			/*类元素选择器*/
+			.important{
+				font-size: 30px;
+			}
+			.warning{
+				color:red;
+			}
+			
+			/*分类选择器*/
+			span.important{
+				font-size: 30px;
+			}
+			span.warning{
+				color: aqua;
+			}
+			
+			/* id选择器 */
+			#main{
+				background-color: #000;
+				color:yellow;
+			}
+			
+			/*子代选择器*/
+			h1>span{
+				color: orange;
+			}
+			
+			/*后代选择器*/
+			h1 span{
+				font-size: 20px;
+			}
+			/* 群组选择器 */
+			div,p,h1,span.content{
+				/*color:yellow;*/
+			}
+			
+			/*伪类选择器*/
+			a:link{
+				text-decoration: none;
+			}
+			a:visited{
+				color: #000;
+			}
+			a:hover{
+				color: red;
+				text-decoration: underline;
+			}
+			a:active{
+				font-size: 20px;
+			}
+			
+			#link:hover{
+				text-decoration: underline;
+				color: blue;
+				cursor: pointer;
+			}
+			#name{
+				color:#999;	
+				font-style: italic;
+			}
+			#name:focus{
+				color: black;
+				font-style: normal;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>通用选择器</h3>
+		<hr/>
+		<div>这是一个普通的div</div>
+		这是普通的文本内容
+		<section>
+			网页中的正文内容
+		</section>
+		
+		<h3>类选择器</h3>
+		<hr/>
+		<p class="important">important</p>
+		<p class="warning">warning</p>
+		<p class="important warning">important warning</p>
+		
+		<h3>分类选择器</h3>
+		<span class="important"> class为important的span元素</span>
+		<span class="warning"> class为warning的span元素</span>
+		
+		<h3>id选择器</h3>
+		<hr/>
+		<section id="main">页面主要内容</section>
+		
+		<h3>子代选择器</h3>
+		<hr/>
+		<h1>
+			这是一个
+			<b>
+				<span>span元素</span>
+			</b>
+			元素
+			<span>h1中的子元素</span>
+		</h1>
+		<span>标准的span元素</span><br/>
+		
+		<h3>群组选择器</h3>
+		<hr/>
+		<div>div元素</div>
+		<p>p元素</p>
+		<h1>这是h1元素</h1>
+		<span class="content">span标签</span>
+		
+		<h3>伪类</h3>
+		<hr/>
+		<a id="anchor" target="_blank" href="http://baidu.com">百度</a>
+		
+		<div id="link">我是一个超链接</div>
+		用户名称:<input id="name" type="text" value="请输入用户名称"/>
+	</body>
+</html>

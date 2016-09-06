@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			/* 浮动对父层的影响,
+			如果一个元素包含了浮动元素,那么该元素的高度可能为0*/
+			#son{
+				width: 100px;
+				height: 100px;
+				border: 1px solid red;
+				float: left;
+			}
+			
+			#parent{
+				border: 1px solid black;
+				/*overflow: hidden;*/
+				height: 80px;
+			}
+			
+			#new{
+				border: 1px solid blue;
+				float: left;
+			}
+			
+		</style>	
+	</head>
+	<body>
+		<div id="parent">
+			<div id="son"></div>
+		</div>	
+		<div id="new">我是应该个新div</div>
+	</body>
+</html>

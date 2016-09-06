@@ -1,0 +1,18 @@
+/* 修改文件编码为utf-8 */
+@charset "utf-8";
+
+/* css 层叠性,可以有多个div标签*/
+div{
+	color:aqua;
+	background-color: bisque;
+}
+
+div{
+	font-size: 26px;
+}
+
+/* 两个定义div的样式中出现重复,后面的会遮住前面的.*/
+div{
+	border: 2px solid red;
+	color: black;
+}

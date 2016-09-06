@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<body>
+	<head>
+		<style>
+			#div1{
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				text-align: center;
+				vertical-align:middle;/* 失效在tb中有用 */
+				/* 垂直居中 */
+				line-height: 100px;/* 行高和容器高度设置成一致*/
+			}
+			
+			#div2{
+				width: 100px;
+				border: 1px solid red;
+				text-align: center;
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+			
+			#div3{
+				font-size: 12px;
+				width: 100px;
+				border: 1px solid red;
+				text-align: center;
+				/* 经过计算 顶成100px; */
+				padding-top: 38px;
+				padding-bottom: 38px;
+			}
+			
+			#div4{
+				border: 1px solid red;
+				text-indent: 24px;
+				text-shadow: 5px 5px 5px blue;
+				
+			}
+			
+			#div5{
+				width: 100px;
+				border: 1px solid red;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow:ellipsis;
+			}
+			
+			#div6{
+				width: 100px;
+				border: 1px solid red;
+				word-break: break-all;
+				word-break: keep-all;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">hello web</div>
+		<div id="div2">hellooooooo worlddddddd!</div>
+		<div id="div3">hellooooooo worlddddddd!</div>
+		<div id="div4">溢出后的处理方式,若是想隐藏溢出的内容，
+			可以考虑使用该属性。</div>
+		<div id="div5">溢出后的处理方式,若是想隐藏溢出的内容，
+			可以考虑使用该属性。</div>
+		
+		<div id="div6">this is a long story,the conetnt is nicarnicarnicar.....</div>
+	</body>
+</body>

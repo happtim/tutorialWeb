@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body{
+				font-size: 15px;	
+			}
+			#content{
+				background-color: #DD5302;
+				//color:rgba(255,0,0,0.5);
+				
+				//width:100px;
+				//height: 100px;
+				
+				max-width: 600px;//最大600px
+				min-width: 200px;//最小200px就不能缩
+			}
+			#spanContent{
+				background-color: #9e43c1;
+				width:200px;
+				height:200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			普通文本
+		</div>
+		<!--------行内元素不能修改宽高------------>
+		<span id="spanContent">span文本</span>
+	</body>
+</html>
