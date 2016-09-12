@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: 100px;
+				left: 100px;
+			}
+			
+			#d1{
+				border: 1px solid black;
+			}
+			
+			#d2{
+				border: 1px solid black;
+				background: rgba(0,0,255,0.3);
+			}
+			
+			#d2{
+				/*位移*/
+				transform: translate(50px);
+				/*缩放*/
+				transform: scale(2);
+				/*旋转后坐标轴也变了*/
+				transform: rotate(42deg) translate(100px);
+				
+				/* 改变原点 */
+				/*
+				transform-origin: left top;
+				transform: rotate(45deg) ;
+				*/
+				
+				/* 倾斜 */
+				transform: skewX(45deg);
+				transform: skewY(45deg);
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">原始位置</div>
+		<div id="d2">待转换元素</div>
+	</body>
+</html>

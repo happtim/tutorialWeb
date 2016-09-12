@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#imgList{
+				margin-top: 200px;
+				padding-top: 50px;
+			}
+			
+			#imgList img{
+				display: none;
+			}
+			
+			#imgList img:target{
+				display: block;
+			}
+			
+			#img1:target{
+				transform: scale(2,1);
+			}
+			
+			#img2:target{
+				transform: scale(0.5);
+			}
+			
+			#img3:target{
+				transform: rotate(-90deg);
+			}
+			
+			#img4:target{
+				transform: rotate(90deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<a href="#img1">放大</a>
+			<a href="#img2">缩小</a>
+			<a href="#img3">左转</a>
+			<a href="#img4">右转</a>
+		</div>
+		
+		<div id="imgList">
+			<img id="img1" src="images/p001.jpg"/>	
+			<img id="img2" src="images/p001.jpg"/>	
+			<img id="img3" src="images/p001.jpg"/>	
+			<img id="img4" src="images/p001.jpg"/>	
+		</div>
+	</body>
+</html>

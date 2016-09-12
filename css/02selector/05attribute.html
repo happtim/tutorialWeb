@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+			}
+			div[id]{
+				background: #f00;
+			}
+			
+			div[class]{
+				background: #0f0;
+			}
+			div[class~=border]{
+				width: 200px;
+			}
+			div[class^=my]{
+				background: #00f;
+			}
+			div[class*=border]{
+				background: yellow;
+			}
+			div[class$=er]{
+				background: pink;
+			}
+			div[cc]{
+				background-color: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<div cc="aaa"></div>
+		<div class="border"></div>
+		<div id="d1"></div>
+		<div class="border content important"></div>
+		<div class="myborder"></div>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYP html>
+<html>
+	<head>
+		<style>
+			#d1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				animation: changeDiv 5s linear 0s;
+				/* 之前之后 动画是否保持最终状态 */
+				animation-fill-mode: none;
+				animation-direction: reverse;
+			}
+			
+			@keyframes changeDiv{
+				from{
+					background:red;	
+				}
+				25%{
+					transform: translateX(50px);
+					background:green;
+				}
+				50%{
+					transform: translateY(50px);
+					background: yellow;
+				}
+				75%{
+					transform: translate(50px,-50px);
+					background: pink;
+				}
+				to{
+					transform: translateX(0px);
+					border-radius: 50%;
+					background: blue;
+				}
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1"></div>
+	</body>
+</html>

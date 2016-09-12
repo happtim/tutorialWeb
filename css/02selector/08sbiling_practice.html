@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			p{
+				border: 1px solid black;
+			}
+			
+			div~p{
+				background-color: darkgray;
+			}
+			
+			div+p{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<p>段落1</p>
+		<div>指定元素</div>
+		<p>段落3</p>
+		<p>段落4</p>
+	</body>
+</html>

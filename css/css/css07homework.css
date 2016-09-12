@@ -1,0 +1,44 @@
+@charset "utf-8";
+body{
+	background-color: #f2f2f2;
+	color: #999;
+}
+
+#login{
+	background-color: #fff;
+	border:1px solid #ddd;
+	width:999px;
+}
+
+#login td.text_info{
+	width:190px;	
+}
+
+#login td.data_info{
+	width: 310px;
+}
+
+/* 输入框样式 */
+#login input{
+	border:1px solid #ccc;
+	width: 290px;
+	height: 40px;
+}
+
+#login .width100{
+	width: 100px;
+}
+
+#login #readed{
+	width: 15px;
+	height: 15px;
+}
+
+#login input.register{
+	width:270px;
+	height: 35px;
+	background-color: #e4393c;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+}

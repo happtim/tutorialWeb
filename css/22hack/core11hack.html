@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#d1{
+				width: 100px;
+				height: 100px;
+				
+				background: red;
+				
+				/* ie7:* + # */
+				*background:green;/*ie7中显示绿色背景*/
+				
+				/* ie6:* + - _*/
+				_background:black;/*ie6 中显示北京黑色*/
+				
+				/* ie8 \0*/
+				background:yellow\0
+			}
+			
+			/*选择器hack*/
+			/*ie6 中对div的样式定义*/
+			*div{
+				
+			}
+			
+			/*ie7中对div样式定义*/
+			*+div{
+				
+			}
+			
+			div{
+				/*判断是否为 ie6*/
+				<!--[if IE 6]>
+					background:red;
+				<![endif]-->
+				/*判断是否为 ie7*/
+				<!--[if IE 7]>
+					background:yellow;
+				<![endif]-->
+				/*....*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1"></div>
+		<!--[if IE]>
+	  	这段文本只在ie中显示
+  		<![endif]-->
+  		<!--[if gte IE 6]>
+		这段文本只在ie6以上的浏览器显示
+ 		<![endif]-->
+  		所有浏览器都支持的文本！
+	</body>
+</html>

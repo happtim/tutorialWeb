@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			p[id]{
+				border: 1px solid red;
+			}
+			p[id=summary]{
+				background-color: darksalmon;
+			}
+			p[class~=warning]{
+				color: red;
+			}
+			p[language]{
+				background-color: grey;
+			}
+			p[title^=fi]{
+				font-size: 2em;
+			}
+			p[title*=on]{
+				font-size: 3em;
+			}
+			p[title^=th]{
+				font-size: 4em;
+			}
+		</style>	
+	</head>
+	<body>
+		<p id="intro">带有 id 属性的段落</p>
+        <p id="summary">id 属性的值为 summary 的段落</p>
+        <p class="important warning">class 属性的值为单词列表，且其中有 warning 的段落</p>
+        <p language="en-us">语言为 en-us 的段落</p>
+        <p title="first">title 属性的值为 first 的段落</p>
+        <p title="second">title 属性的值为 second 的段落</p>
+        <p title="third">title 属性的值为 third 的段落</p>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#father{
+				
+				perspective: 100px;
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+				position: relative;
+			}	
+			
+			#div1{
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				background: #ddd;
+				
+				left: 50px;
+				top: 50px;
+				
+				
+				/* x轴旋转 */
+				transform: rotateX(45deg);
+				/* y轴旋转 */
+				transform: rotateY(45deg);
+				/* z轴旋转 */
+				transform: rotateZ(90deg);
+				
+				/* z轴位移 */
+				transform: translateZ(40px);
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="father">
+			<div id="div1">Rotate Div</div>
+		</div>
+	</body>
+</html>

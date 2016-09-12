@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			div.empty{
+				height: 800px;
+			}
+			
+			a:target{
+				background:red;
+			}
+			div:target{
+				background: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<p><a href="#China">跳转到中国</a></p>
+		<p><a href="#America">跳转到美国</a></p>
+		<p><a href="#Japan">跳转到日本</a></p>
+		
+		<div class="empty"></div>
+		<a name="China">中国</a>
+		<div class="empty"></div>
+		<a name="America">美国</a>
+		<div class="empty"></div>
+		<div id="Japan">日本</div>
+		<div class="empty"></div>
+	</body>
+</html>

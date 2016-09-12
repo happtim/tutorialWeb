@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body{
+				counter-reset:chp 0;
+			}
+			p{
+				/* 不要在这里添加计数器
+				counter-reset:chp 0;
+				*/
+				counter-increment:chp 1;
+			}
+			p:before{
+				content:"第" counter(chp) "章";
+				padding: 10px;
+			}
+			div:before{
+				content:"第" counter(chp) "章";
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>张无忌出生</p><!-- 第1章 张无忌出生 -->
+	  	<p>张无忌成长</p><!-- 第2章 张无忌成长 -->
+	  	<p>张无忌长大</p>
+	  	<p>张无忌娶媳妇</p>
+	  	<p>张无忌生孩子</p>
+		<div>div1</div>
+		<div>div2</div>
+		<div>div3</div>
+	</body>
+</html>

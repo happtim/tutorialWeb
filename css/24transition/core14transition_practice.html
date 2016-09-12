@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			img:hover{
+				transition: transform 2s linear 0s;
+				transform: rotate(360deg);
+			}
+			div{
+				width: 200px;
+				height: 50px;
+				border: 1px solid black;
+				background-color: gray;
+			}
+			
+			div:hover{
+				width: 300px;
+			}
+			
+			#div1{ transition: width 2s linear 0s; }
+			#div2{ transition: width 2s ease 0s; }
+			#div3{ transition: width 2s ease-in 0s; }
+			#div4{ transition: width 2s ease-out 0s; }
+			#div5{ transition: width 2s ease-in-out 0s; }
+			
+			#watch{
+				width: 200px;
+				height: 200px;
+				background-color: white;
+				border: 2px solid blue;
+				border-radius: 50%;
+				position: relative;
+				transform: rotateX(180deg);
+			}
+			
+			#hour{
+				width: 6px;
+				height: 50px;
+				background-color: darkmagenta;
+				position: absolute;
+				top: 100px;
+				left: 100px;
+			}
+			
+			#minute{
+				width: 4px;
+				height: 80px;
+				background-color: blue;
+				
+				position: absolute;
+				top: 100px;
+				left: 100px;
+				transition: transform 36s linear 0s;
+				transform-origin: top center;
+			}
+			
+			#minute:hover{
+				transform: rotate(-360deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<img src="images/star.jpg"/>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		
+		<div id="div1">linear</div>
+		<div id="div2">ease</div>
+		<div id="div3">ease-in</div>
+		<div id="div4">ease-out</div>
+		<div id="div5">ease-in-out</div>
+		
+		<br/>
+		<br/>
+		<div id="watch">
+			<div id="hour"></div>
+			<div id="minute"></div>
+		</div>
+	</body>
+</html>
