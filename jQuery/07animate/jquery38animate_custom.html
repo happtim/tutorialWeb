@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06_简单自定义动画一</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 60px
+        }
+
+        #panel {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #0050D0;
+            background: #96E555;
+            cursor: pointer
+        }
+    </style>
+</head>
+<body>
+<div id="panel"></div>
+
+<script>
+    // 当鼠标点击div时,div向右移动200px
+	$("#panel").click(function(){
+		/*
+		 * animate(param)
+		 * * param - 格式是{key:value}
+		 * * duration - 设置时长
+		 */
+		$("#panel").animate({
+			left : 200
+		},3000).animate({
+			top : 200
+		},3000).fadeOut(3000);
+	});
+</script>
+</body>
+</html>

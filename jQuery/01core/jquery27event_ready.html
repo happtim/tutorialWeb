@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ready可以编写多个</title>
+	<script src="../jquery-1.11.3.js"></script>
+</head>
+<script type="text/javascript">
+	/*
+		$(document).ready(function(){});
+		$().ready(function(){});
+		$(function(){});
+	*/
+    function one(){
+		console.log("this is one.");
+	}
+	function two(){
+		console.log("this is two.");
+	}
+	$(document).ready(function(){
+		one();
+	});
+	$(document).ready(function(){
+		two();
+	});
+</script>
+<body>
+
+</body>
+</html>

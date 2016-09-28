@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>27_单事件绑定</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+    <div id="panel">
+        <h5 class="head">什么是jQuery?</h5>
+        <div class="content">
+            jQuery是继Prototype之后又一个优秀的JavaScript库，它是一个由 John Resig 创建于2006年1月的开源项目。jQuery凭借简洁的语法和跨平台的兼容性，极大地简化了JavaScript开发人员遍历HTML文档、操作DOM、处理事件、执行动画和开发Ajax。它独特而又优雅的代码风格改变了JavaScript程序员的设计思路和编写程序的方式。
+        </div>
+    </div>
+
+    <script>
+        /* 鼠标点击h5元素时,显示或隐藏div
+		$("h5").click(function(){
+			var div = $(this).next();
+			if(div.is(":hidden")){
+				div.show();
+			}else{
+				div.hide();
+			}
+		});
+		*/
+
+		/*
+		 * bind(type,callback)绑定事件
+		 * * type - 设置当前绑定的事件名称
+		 *
+		 * * 类似于DOM中的addEventListener()方法
+		 */
+		$("h5").bind("click",function(){
+			var div = $(this).next();
+			if(div.is(":hidden")){
+				div.show();
+			}else{
+				div.hide();
+			}
+		});
+    </script>
+</body>
+</html>

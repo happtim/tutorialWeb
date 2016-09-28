@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15_实现多页签切换效果</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tab li {
+            float: left;
+            list-style: none;
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #container {
+            position: relative;
+        }
+
+        #content1, #content2, #content3 {
+            width: 300px;
+            height: 100px;
+            padding: 30px;
+            position: absolute;
+            top: 40px;
+            left: 0;
+        }
+
+        #tab1, #content1 {
+            background-color: #ffcc00;
+        }
+
+        #tab2, #content2 {
+            background-color: #ff00cc;
+        }
+
+        #tab3, #content3 {
+            background-color: #00ccff;
+        }
+
+        .foreground {
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+	<h2>实现多标签页效果</h2>
+	<ul id="tab">
+		<li id="tab1" value="1">10元套餐</li>
+		<li id="tab2" value="2">30元套餐</li>
+		<li id="tab3" value="3">50元包月</li>
+	</ul>
+    <div id="container">
+        <!--<div id="content1" class="foreground">-->
+        <!--强调：使用style.设置的属性，默认格式都是:
+            "属性: 值;"-->
+        <div id="content1" style="z-index: 1;">
+            10元套餐详情：<br />&nbsp;每月套餐内拨打100分钟，超出部分2毛/分钟
+        </div>
+        <div id="content2">
+            30元套餐详情：<br />&nbsp;每月套餐内拨打300分钟，超出部分1.5毛/分钟
+        </div>
+        <div id="content3">
+            50元包月详情：<br />&nbsp;每月无限量随心打
+        </div>
+    </div>
+
+    <script>
+        // 1. 获取所有的li元素,并且绑定click事件
+		$("#tab>li").click(function(){
+		// 2. 事件处理函数
+			// a. 获取绑定事件的目标元素
+			// 问题 - this指代目标元素(DOM对象)
+			// b. 得到目标元素的value属性值(1,2,3)
+			//var index = this.value;
+			// c. 获取对应的id的div元素
+			//var $div = $("#content"+index);
+			// e. 将其他2个div的style="z-index: 1;"属性删除    removeAttr(name)
+			$("div[style]").removeAttr("style");
+			// d. 将style="z-index: 1;"属性设置给获取的div元素  attr(name,value)
+			$("#content"+this.value).attr("style","z-index: 1;");
+		});
+		
+    </script>
+</body>
+</html>

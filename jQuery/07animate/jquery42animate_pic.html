@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11_动态放大或缩小相册中的图片</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <style>
+        body {font-size:13px}
+        /*图片外框样式*/
+        .p_Lst {
+            position: relative;
+            float: left;
+            width: 90px;
+            height: 98px;
+            padding: 8px;
+            border: 1px solid #666;
+            margin: 10px 8px 20px 8px;
+        }
+        /*图片最近外框样式*/
+        .p_Img {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 5px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="p_Lst">
+        <img width="500" height="302" alt=""src="https://placehold.it/500x300" />
+    </div>
+    <div class="p_Lst">
+        <img width="478" height="271" alt=""src="https://placehold.it/500x300"/>
+    </div>
+    <div class="p_Lst">
+        <img width="269" height="365" alt=""src="https://placehold.it/500x300"/>
+    </div>
+    <div class="p_Lst">
+        <img width="420" height="280" alt=""src="https://placehold.it/500x300"/>
+    </div>
+
+    <script>
+        // 1. 如何将不同大小的图片,正确显示在相同大小的div中
+		// 遍历4张图片
+		$("img").each(function(index,domEle){
+			// 得到每一张图片
+			var $img = $(domEle);
+			// 得到最外层的div
+			var $parent = $img.parent();
+			// 添加中间层div
+			var $div = $("<div class='p_Img'></div>");
+			$div.append($img);
+			$parent.append($div);
+
+			// 获取图片的宽度和高度
+			var imgWidth = $img.width();
+			var imgHeight = $img.height();
+			var minWidth = $(".p_Img").width();
+			var minHeight = $(".p_Img").height();
+
+			// 2. 点击每张图片时,放大最大,缩小为初始化
+			$img.click(function(){
+				var $div = $(this).parent();
+				if($div.width() == 90 && $div.height() == 90){
+					$(this).parent().animate({
+						width : imgWidth,
+						height : imgHeight
+					},3000);
+					$(this).parent().parent().animate({
+						width : imgWidth,
+						height : imgHeight
+					},3000);
+				}else{
+					$(this).parent().animate({
+						width : minWidth,
+						height : minHeight
+					},3000);
+					$(this).parent().parent().animate({
+						width : minWidth,
+						height : minHeight+8
+					},3000);
+				}
+			});
+		});
+    </script>
+</body>
+</html>

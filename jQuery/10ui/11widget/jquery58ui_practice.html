@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>33_JQUERYUI网盘案例</title>
+    <script src="../../jquery-1.11.3.js"></script>
+    <script src="../jquery-ui.js"></script>
+    <link rel="stylesheet" href="../jquery-ui.css">
+    <style>
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+        #doc {
+            min-width: 900px;
+            font: 12px/1.5 tahoma,arial;
+            color: #333;
+        }
+        #topPanel {
+            background: #f6a828;
+            border-bottom: 1px solid #e78f08;
+            height: 56px;
+            position: relative;
+            z-index: 3;
+        }
+        #logo {
+            background: url(img/logo.png) no-repeat 0 0;
+            float: left;
+            height: 27px;
+            margin: 14px 40px 0 20px;
+            overflow: hidden;
+            text-indent: 100%;
+            white-space: nowrap;
+            width: 140px;
+        }
+        a {
+            color: #0068b7;
+            outline: none;
+            text-decoration: none;
+        }
+        #user {
+            float: right;
+            height: 36px;
+            padding: 15px 30px 0 0;
+            position: relative;
+            z-index: 2;
+            zoom: 1;
+        }
+        #leftPanel {
+            height: auto!important;
+            background-color: #ffe45c;
+            border-right : 1px solid #fed22f;
+            bottom : 0;
+            font-family : "Microsoft Yahei";
+            left : 0;
+            position: absolute;
+            top: 57px;
+            width: 199px;
+            z-index: 11;
+        }
+        #mainTabs {
+            margin-left: 200px;
+            position: relative;
+            z-index: 1;
+        }
+        #search-bar {
+            background: #fff;
+            height: 30px;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 210px;
+            z-index: 11;
+        }
+        #search-text {
+            width: 200px;
+            height: 25px;
+            border: 0 none;
+            outline: medium none;
+            font-size: 12px;
+            font-family : "Microsoft Yahei";
+            padding-left: 8px;
+        }
+        #toolbar {
+            background: #fff;
+            border-bottom: 1px solid #e5ebf1;
+            height: 50px;
+            position: relative;
+            z-index: 10;
+            zoom: 1;
+        }
+        .ui-accordion .ui-accordion-content {
+            padding: 0;
+        }
+        .btn {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .btn li {
+            margin: 0 3px 3px 3px;
+            padding: 0.4em;
+            padding-left: 1.5em;
+            font-size: 1.4em;
+            height: 18px;
+        }
+        #btn-group {
+            float : left;
+            padding: 10px 24px;
+            overflow: hidden;
+            clear: both;
+            zoom: 1;
+        }
+        #space-box {
+            left: 0;
+            position: absolute;
+            width: 90%;
+            bottom: 34px;
+            padding: 10px;
+        }
+        #space-content span {
+            font-size: 16px;
+            font-family : "Microsoft Yahei";
+        }
+        #filelist {
+            padding: 20px 0 0 24px;
+        }
+
+        #sortable {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 90%;
+        }
+
+        #sortable li {
+            margin: 3px 10px 10px 0;
+            padding: 1px;
+            float: left;
+            width: 100px;
+            height: 100px;
+            font-size: 4em;
+            text-align: center;
+        }
+
+        #trash {
+            float: right;
+            width: 32%;
+            min-height: 20em;
+            padding: 1%;
+            margin-right: 30px;
+            margin-top: 80px;
+            list-style-type: none;
+        }
+
+        #trash li {
+            margin: 3px 10px 10px 0;
+            padding: 1px;
+            float: left;
+            width: 100px;
+            height: 100px;
+            font-size: 4em;
+            text-align: center;
+        }
+
+        #trash h4 {
+            line-height: 16px;
+            margin: 0 0 0.4em;
+        }
+
+        #trash h4 .ui-icon {
+            float: left;
+        }
+
+        .ui-menu {
+            width: 150px;
+        }
+
+        #menu {
+            position: absolute;
+        }
+
+        #menu a {
+            font-size: 12px;
+            font-family : "Microsoft Yahei";
+        }
+    </style>
+</head>
+<body>
+    <div id="doc">
+        <div id="topPanel">
+            <a id="logo" href="#" title="网盘首页"></a>
+            <div id="user">
+                <button>登录</button>
+                <button>注册</button>
+            </div>
+        </div>
+        <div id="leftPanel">
+            <div id="nav">
+                <h3>视频</h3>
+                <div>
+                    <ul class="btn">
+                        <li class="ui-state-default"><a href="#">HTML</a></li>
+                        <li class="ui-state-default"><a href="#">CSS</a></li>
+                        <li class="ui-state-default"><a href="#">JAVASCRIPT</a></li>
+                        <li class="ui-state-default"><a href="#">JQUERY</a></li>
+                        <li class="ui-state-default"><a href="#">AJAX</a></li>
+                        <li class="ui-state-default"><a href="#">SERVER</a></li>
+                        <li class="ui-state-default"><a href="#">WEBAPP</a></li>
+                    </ul>
+                </div>
+                <h3>文档</h3>
+                <div>
+                    <ul class="btn">
+                        <li class="ui-state-default"><a href="#">HTML</a></li>
+                        <li class="ui-state-default"><a href="#">CSS</a></li>
+                        <li class="ui-state-default"><a href="#">JAVASCRIPT</a></li>
+                        <li class="ui-state-default"><a href="#">JQUERY</a></li>
+                        <li class="ui-state-default"><a href="#">AJAX</a></li>
+                        <li class="ui-state-default"><a href="#">SERVER</a></li>
+                        <li class="ui-state-default"><a href="#">WEBAPP</a></li>
+                    </ul>
+                </div>
+                <h3>案例</h3>
+                <div>
+                    <ul class="btn">
+                        <li class="ui-state-default"><a href="#">HTML</a></li>
+                        <li class="ui-state-default"><a href="#">CSS</a></li>
+                        <li class="ui-state-default"><a href="#">JAVASCRIPT</a></li>
+                        <li class="ui-state-default"><a href="#">JQUERY</a></li>
+                        <li class="ui-state-default"><a href="#">AJAX</a></li>
+                        <li class="ui-state-default"><a href="#">SERVER</a></li>
+                        <li class="ui-state-default"><a href="#">WEBAPP</a></li>
+                    </ul>
+                </div>
+                <h3>资源</h3>
+                <div>
+                    <ul class="btn">
+                        <li class="ui-state-default"><a href="#">HTML</a></li>
+                        <li class="ui-state-default"><a href="#">CSS</a></li>
+                        <li class="ui-state-default"><a href="#">JAVASCRIPT</a></li>
+                        <li class="ui-state-default"><a href="#">JQUERY</a></li>
+                        <li class="ui-state-default"><a href="#">AJAX</a></li>
+                        <li class="ui-state-default"><a href="#">SERVER</a></li>
+                        <li class="ui-state-default"><a href="#">WEBAPP</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="space-box">
+                <div id="progressbar"></div>
+                <div id="space-content">
+                    <span>200GB/1000GB</span>
+                </div>
+            </div>
+            <div></div>
+        </div>
+        <div id="mainTabs">
+            <div id="search-bar" class="ui-state-default ui-corner-all">
+                <input id="search-text" placeholder="搜索我的文件">
+            </div>
+            <div id="toolbar">
+                <div id="btn-group">
+                    <button>上传</button>
+                    <button>新建文件夹</button>
+                    <button>下载</button>
+                    <button>删除</button>
+                    <button>分享</button>
+                    <button>重命名</button>
+                </div>
+            </div>
+            <div id="filelist">
+                <ul id="sortable">
+                    <li class="ui-state-default">1</li>
+                    <li class="ui-state-default">2</li>
+                    <li class="ui-state-default">3</li>
+                    <li class="ui-state-default">4</li>
+                    <li class="ui-state-default">5</li>
+                    <li class="ui-state-default">6</li>
+                    <li class="ui-state-default">7</li>
+                    <li class="ui-state-default">8</li>
+                    <li class="ui-state-default">9</li>
+                    <li class="ui-state-default">10</li>
+                    <li class="ui-state-default">11</li>
+                    <li class="ui-state-default">12</li>
+                </ul>
+                <ul id="trash" class="ui-widget-content ui-state-default">
+                    <h4 class="ui-widget-header"><span class="ui-icon ui-icon-trash">回收站</span> 回收站</h4>
+                </ul>
+            </div>
+        </div>
+        <div id="userLogin" title="用户登录">
+            <form>
+                <table>
+                    <tr>
+                        <td>用户名:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>密码:</td>
+                        <td><input type="password"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="userRegist" title="用户注册">
+            <form>
+                <table>
+                    <tr>
+                        <td>用户名:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>密码:</td>
+                        <td><input type="password"></td>
+                    </tr>
+                    <tr>
+                        <td>确认密码:</td>
+                        <td><input type="password"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <ul id="menu" style="display: none">
+            <li><a href="#">文件上传</a></li>
+            <li><a href="#">新建文件夹</a></li>
+            <li><a href="#">刷新</a></li>
+        </ul>
+    </div>
+    <script>
+        // 登录、注册按钮样式
+        $("button:lt(2)").button();
+        // 工具栏按钮样式
+        $("button:eq(2)").button({
+            icons : {
+                primary: "ui-icon ui-icon-arrowthick-1-n"
+            }
+        }).next().button({
+            icons : {
+                primary: "ui-icon ui-icon-folder-collapsed"
+            }
+        }).next().button({
+            icons : {
+                primary: "ui-icon ui-icon-arrowthick-1-s"
+            }
+        }).next().button({
+            icons : {
+                primary: "ui-icon ui-icon-trash"
+            }
+        }).next().button({
+            icons : {
+                primary: "ui-icon ui-icon-extlink"
+            }
+        }).next().button({
+            icons : {
+                primary: "ui-icon ui-icon-pencil"
+            }
+        });
+        // 左侧菜单样式
+        var icons = {
+            header: "ui-icon-circle-arrow-e",
+            activeHeader: "ui-icon-circle-arrow-s"
+        };
+        $( "#nav" ).accordion({
+            icons: icons
+        });
+        $( "#toggle" ).button().click(function() {
+            if ( $( "#nav" ).accordion( "option", "icons" ) ) {
+                $( "#nav" ).accordion( "option", "icons", null );
+            } else {
+                $( "#nav" ).accordion( "option", "icons", icons );
+            }
+        });
+        // 使用进度
+        $("#progressbar").progressbar({
+            value : 20
+        });
+        // 拖动文件
+		$("#sortable li").draggable({
+            revert: "invalid",
+            cursor: "move",
+            helper: "clone",
+            cursorAt: { top: 56, left: 56 }
+        });
+        // 回收站
+        $( "#trash" ).droppable({
+            accept: "#sortable > li",
+            activeClass: "ui-state-hover",
+            drop: function( event, ui ) {
+                deleteImage(ui.draggable);
+            }
+        });
+        function deleteImage($item){
+            $item.fadeOut(function(){
+                $item.appendTo($("#trash")).fadeIn(function(){
+                    $item.animate({
+                       width : 100
+                    });
+                });
+            });
+        }
+        // 自动提示
+        var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+        ];
+        $( "#search-text" ).autocomplete({
+            source: availableTags
+        });
+        // 登录和注册功能
+        $("#userLogin").dialog({
+            autoOpen : false,
+            modal : true,
+            width : 350,
+            buttons : {
+                "登录" : function(){
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("button:eq(0)").click(function(){
+            $("#userLogin").dialog("open");
+        });
+        $("#userRegist").dialog({
+            autoOpen : false,
+            modal : true,
+            width : 350,
+            buttons : {
+                "注册" : function(){
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("button:eq(1)").click(function(){
+            $("#userRegist").dialog("open");
+        });
+        // 自定义右键菜单
+        $(document).contextmenu(function (event) {
+            event.preventDefault();
+        });
+        $(document).mousedown(function (event) {
+            if(event.button == 2){
+                $( "#menu").removeAttr("style").menu().position({
+                    my: "left top",
+                    at: "left top",
+                    of : event,
+                    collision: "fit"
+                });
+            }else if(event.button == 0){
+                $("#menu").attr("style","display:none");
+            }
+        });
+    </script>
+</body>
+</html>

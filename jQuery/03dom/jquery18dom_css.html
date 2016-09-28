@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06_样式操作</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <style type="text/css">
+        .one{
+            width: 200px;
+            height: 140px;
+            margin: 40px;
+            background: red;
+            border: #000 1px solid;
+            float:left;
+            font-size: 17px;
+            font-family:Roman;
+        }
+
+        div,span{
+            width: 140px;
+            height: 140px;
+            margin: 20px;
+            background: #9999CC;
+            border: #000 1px solid;
+            float:left;
+            font-size: 17px;
+            font-family:Roman;
+        }
+
+        div.mini{
+            width: 30px;
+            height: 30px;
+            background: #CC66FF;
+            border: #000 1px solid;
+            font-size: 12px;
+            font-family:Roman;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="采用属性增加样式"  id="b1"/>
+    <input type="button" value=" addClass"  id="b2"/>
+    <input type="button" value="removeClass"  id="b3"/>
+    <input type="button" value=" 切换样式"  id="b4"/>
+    <input type="button" value=" hasClass"  id="b5"/>
+	<input type="button" value=" css()"  id="b6"/>
+    <br>
+    <div id="mover">
+        动画
+    </div>
+    <br>
+    <span class="spanone">span</span>
+
+    <script>
+        $("#b1").click(function(){
+			/*
+			 * attr("class",className)
+			 * * 设置样式 - 会覆盖原有的所有样式
+			 */
+			$("#mover").attr("class","one");
+		});
+		$("#b2").click(function(){
+			/*
+			 * 先利用attr()设置one样式,再利用addClass()设置mini样式
+			 * 问题 - 当前只有mini样式,还是也包含one样式?
+			 *  * A 只有mini样式
+			 *  * B 包含one和mini样式(答案)
+			 *
+			 * addClass() - 追加样式
+			 * * 表示在原有基础上,累加一个样式
+			 */
+			$("#mover").addClass("mini");
+		});
+		$("#b3").click(function(){
+			/*
+			 * removeClass() - 删除样式
+			 * * 不传递参数 - 删除所有样式
+			 * * 需要传参数 - 删除指定样式
+			 *   * 指定多个样式,之间使用空格隔开
+			 */
+			$("#mover").removeClass("one mini");
+		});
+		$("#b4").click(function(){
+			/*
+			 * toggleClass(className)
+			 * * 表示在没有样式与指定样式之间切换
+			 */
+			$("#mover").toggleClass("one");
+		});
+		$("#b5").click(function(){
+			// hasClass(className) - 判断是否包含某个指定样式
+			console.log($("#mover").hasClass("one"));
+		});
+		$("#b6").click(function(){
+			$("#mover").css({
+				"background" : "green",
+				"width" : 400
+			});
+		});
+    </script>
+</body>
+</html>

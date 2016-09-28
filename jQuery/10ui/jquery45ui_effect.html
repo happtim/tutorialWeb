@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14_effect方法效果</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+        }
+        .toggler {
+            width: 500px;
+            height: 200px;
+            position: relative;
+        }
+
+        #button {
+            padding: .5em 1em;
+            text-decoration: none;
+        }
+
+        #effect {
+            width: 240px;
+            height: 135px;
+            padding: 0.4em;
+            position: relative;
+        }
+
+        #effect h3 {
+            margin: 0;
+            padding: 0.4em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggler">
+        <div id="effect" class="ui-widget-content ui-corner-all">
+            <h3 class="ui-widget-header ui-corner-all">Effect</h3>
+            <p>
+                Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
+            </p>
+        </div>
+    </div>
+
+    <select name="effects" id="effectTypes">
+        <option value="blind">Blind</option>
+        <option value="bounce">Bounce</option>
+        <option value="clip">Clip</option>
+        <option value="drop">Drop</option>
+        <option value="explode">Explode</option>
+        <option value="fade">Fade</option>
+        <option value="fold">Fold</option>
+        <option value="highlight">Highlight</option>
+        <option value="puff">Puff</option>
+        <option value="pulsate">Pulsate</option>
+        <option value="scale">Scale</option>
+        <option value="shake">Shake</option>
+        <option value="size">Size</option>
+        <option value="slide">Slide</option>
+        <option value="transfer">Transfer</option>
+    </select>
+
+    <a href="#" id="button" class="ui-state-default ui-corner-all">Run Effect</a>
+
+    <script>
+        $("#button").click(function(){
+			// 1. 获取用户选择的效果名称
+			var effect = $("#effectTypes>option:selected").val();
+			// 2. 利用effect()方法进行测试
+			$("#effect").effect(effect);
+		});
+    </script>
+</body>
+</html>

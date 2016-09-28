@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21_解决冲突方式一</title>
+    <script src="../prototype-1.6.0.3.js"></script>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <p id="pp">test---prototype</p>
+    <p >test---jQuery</p>
+
+    <script type="text/javascript">
+        /*
+		 * 先引入其他JS库,后引入jQuery
+		 * * "$"符号属于其他JS库
+		 * 解决冲突
+		 * * jQuery中 - "$"符号指代jQuery
+		 * * jQuery中不再使用"$"符号
+		 */
+		jQuery(document).ready(function(){
+			console.log("this is ready.");
+		});
+    </script>
+</body>
+</html>

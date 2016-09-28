@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09_并发效果</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 60px
+        }
+
+        #panel {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #0050D0;
+            background: #96E555;
+            cursor: pointer
+        }
+    </style>
+</head>
+<body>
+    <div id="panel"></div>
+
+    <script>
+        /* 并发效果一
+		$("#panel").click(function(){
+			$(this).animate({
+				width : 300,
+				height : 300
+			},3000);
+		});
+		*/
+		// 并发效果二
+		$("#panel").click(function(){
+			$(this).animate({
+				width : 300
+			},{
+				duration : 3000
+			}).animate({
+				height : 300
+			},{
+				duration : 3000,
+				queue : false //并发
+			});
+		});
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery具有完善的处理机制</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <input type="text" value="请输入你的用户名" id="username">
+    <script>
+        // DOM - 获取错误,直接报错
+		//var user = document.getElementById("username");
+		/*
+		 * 问题 - 结果如何?
+		 * * 报错 - 17行:Cannot read property 'value' of null
+		 * 解决
+		 * * 如果id属性值传递错误,错误提示内容
+		 * * 如果id属性值传递正确,打印value属性值
+		 */
+		/*if(user){//正确
+			console.log(user.value);
+		}else{//错误
+			console.log("id不存在.");
+		}*/
+
+		// jQuery
+		var $user = $("#username111");
+		// 结果如何?并不报错
+		console.log($user.val());
+		
+    </script>
+</body>
+</html>

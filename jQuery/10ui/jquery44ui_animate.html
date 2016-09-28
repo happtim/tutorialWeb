@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13_扩展animate方法</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+        }
+        .toggler {
+            width: 500px;
+            height: 200px;
+            position: relative;
+        }
+
+        #button {
+            padding: .5em 1em;
+            text-decoration: none;
+        }
+
+        #effect {
+            width: 240px;
+            height: 135px;
+            padding: 0.4em;
+            position: relative;
+            background: #fff;
+        }
+
+        #effect h3 {
+            margin: 0;
+            padding: 0.4em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggler">
+        <div id="effect" class="ui-widget-content ui-corner-all">
+            <h3 class="ui-widget-header ui-corner-all">Animate</h3>
+            <p>
+                Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
+            </p>
+        </div>
+    </div>
+
+    <a href="#" id="button" class="ui-state-default ui-corner-all">Toggle Effect</a>
+
+    <script>
+        $("#button").click(function(){
+			//扩展了animate方法,可以更改颜色了
+			$("#effect").animate({
+				width : 480,
+				height : 270,
+				//背景颜色必须指定属性名称background不行
+				backgroundColor : "green"
+			});
+		});
+    </script>
+</body>
+</html>

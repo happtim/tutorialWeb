@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02_jQuery简单案例</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <button>demo</button>
+    <script type="text/javascript">
+        // 需求 - 获取button按钮,绑定click事件
+		/* DOM
+		// 1. 获取button按钮
+		var button = document.getElementsByTagName("button")[0];
+		// 2. 为button按钮绑定click事件
+		button.onclick = function(){
+		// 3. 事件的处理函数中完成需求
+			alert("this is demo.");
+		}*/
+		
+		//jQuery
+		// $() - jQuery的工厂函数
+		//  参数--选择器内容
+		//	返回--jQuery对象(不是DOM)
+		// 约定 - 使用jQuery返回的变量
+		//	在前面增加$符号
+		
+		// 1. 获取button
+		//var $button = $("button");
+		// 2. 绑定click事件
+		$("button").click(function(){
+		// 3. 完成需求
+			alert("this is demo.");
+		});
+		
+    </script>
+</body>
+</html>

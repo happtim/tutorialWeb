@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20_动态列表效果</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        a {
+            color: #04D;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #F50;
+            text-decoration: underline;
+        }
+
+        .SubCategoryBox {
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .SubCategoryBox ul {
+            list-style: none;
+        }
+
+        .SubCategoryBox ul li {
+            display: block;
+            float: left;
+            width: 200px;
+            line-height: 20px;
+        }
+
+        .showmore {
+            clear: both;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .showmore a {
+            display: block;
+            width: 120px;
+            margin: 0 auto;
+            line-height: 24px;
+            border: 1px solid #AAA;
+        }
+
+        .showmore a span {
+            padding-left: 15px;
+            background: url(img/down.gif) no-repeat 0 0;
+        }
+
+        .promoted a {
+            color: #F50;
+        }
+    </style>
+</head>
+<body>
+    <div class="SubCategoryBox">
+        <ul>
+            <li ><a href="#">佳能</a><i>(30440) </i></li>
+            <li ><a href="#">索尼</a><i>(27220) </i></li>
+            <li ><a href="#">三星</a><i>(20808) </i></li>
+            <li ><a href="#">尼康</a><i>(17821) </i></li>
+            <li ><a href="#">松下</a><i>(12289) </i></li>
+            <li ><a href="#">卡西欧</a><i>(8242) </i></li>
+            <li ><a href="#">富士</a><i>(14894) </i></li>
+            <li ><a href="#">柯达</a><i>(9520) </i></li>
+            <li ><a href="#">宾得</a><i>(2195) </i></li>
+            <li ><a href="#">理光</a><i>(4114) </i></li>
+            <li ><a href="#">奥林巴斯</a><i>(12205) </i></li>
+            <li ><a href="#">明基</a><i>(1466) </i></li>
+            <li ><a href="#">爱国者</a><i>(3091) </i></li>
+            <li ><a href="#">其它品牌相机</a><i>(7275) </i></li>
+        </ul>
+        <div class="showmore">
+            <a href="#"><span>显示全部品牌</span></a>
+        </div>
+    </div>
+
+    <script>
+        /*
+		 * 需求
+		 * * 页面加载完毕后,列表中 富士-爱国者 隐藏
+		 * * 点击"显示全部品牌"按钮
+		 *   * 将隐藏列表显示
+		 *   * 将按钮的文本内容修改为"精简显示品牌"
+		 * * 点击"精简显示品牌"按钮
+		 *   * 将显示列表隐藏
+		 *   * 将按钮的文本内容修改为"显示全部品牌"
+		 */
+		// 1. 获取 富士-爱国者 li元素
+		var $li = $("ul>li:gt(5):not(:last)");
+		// 2. 隐藏 - hide()
+		$li.hide()
+		// 3. 为按钮绑定click事件
+		$("a>span").click(function(){
+			/*
+			 * is(expr)方法
+			 * * 判断当前元素是否匹配expr的内容
+			 * * 返回值为Boolean值
+			 *   * true - 匹配
+			 */
+			if($li.is(":hidden")){
+				// 将隐藏列表显示
+				$li.show();
+				// 将按钮的文本内容修改为"精简显示品牌"
+				$("a>span").text("精简显示品牌");
+			}else{
+				// 将显示列表隐藏
+				$li.hide();
+				// 将按钮的文本内容修改为"显示全部品牌"
+				$("a>span").text("显示全部品牌");
+			}
+			// 阻止<a>元素的默认行为(页面跳转)
+			return false;
+		});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12_masonry添加元素</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="masonry/masonry.pkgd.js"></script>
+    <link rel="stylesheet" href="masonry/sandbox.css">
+</head>
+<body>
+<p>
+    <button class="append-button">Append new items</button>
+    <button class="prepend-button">Prepend new items</button>
+</p>
+<div id="basic" class="container">
+    <div class="item"></div>
+    <div class="item h2"></div>
+    <div class="item"></div>
+    <div class="item h3"></div>
+    <div class="item h5"></div>
+</div>
+<script>
+    //$("#basic").masonry();
+	/*
+	 * 通过对象方式创建瀑布流布局
+	 * new Masonry(容器div,选项)
+	 */
+	var masonry = new Masonry("#basic");
+
+	// 点击append按钮,向布局元素中添加3个div元素
+	$(".append-button").click(function(){
+		// 创建3个元素
+		var divs = [createElem(),createElem(),createElem()];
+		
+		//console.log(masonry.$element);
+		
+		// 不能再使用jQuery添加元素
+		$.each(divs,function(index,result){
+			// masonry.$element - jQuery对象
+			masonry.$element.append(result);
+			// 插件对象调用appended
+			masonry.appended(result);
+		});
+		
+	});
+
+	$("#basic").on("layoutComplete",function(){
+		console.log("已经布局完成....");
+	});
+
+	// 创建div元素的函数
+	function createElem(){
+		var $div = $("<div class='item'></div>");
+		var rand = Math.random();//0-1
+		if(rand < 0.5){
+			$div.addClass("h2");
+		}else if(rand < 0.75){
+			$div.addClass("h3");
+		}else{
+			$div.addClass("h5");
+		}
+		return $div;
+	}
+</script>
+</body>
+</html>

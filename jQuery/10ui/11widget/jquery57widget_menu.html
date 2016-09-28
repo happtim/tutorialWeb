@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>32_自定义右键菜单</title>
+    <script src="../../jquery-1.11.3.js"></script>
+    <script src="../jquery-ui.js"></script>
+    <link rel="stylesheet" href="../jquery-ui.css">
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+        }
+
+        .ui-menu {
+            width: 150px;
+        }
+
+        #menu {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<ul id="menu" style="display:none;">
+    <li class="ui-state-disabled"><a href="#">Aberdeen</a></li>
+    <li><a href="#">Ada</a></li>
+    <li><a href="#">Adamsville</a></li>
+    <li><a href="#">Addyston</a></li>
+    <li>
+        <a href="#">Delphi</a>
+        <ul>
+            <li class="ui-state-disabled"><a href="#">Ada</a></li>
+            <li><a href="#">Saarland</a></li>
+            <li><a href="#">Salzburg</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Saarland</a></li>
+    <li>
+        <a href="#">Salzburg</a>
+        <ul>
+            <li>
+                <a href="#">Delphi</a>
+                <ul>
+                    <li><a href="#">Ada</a></li>
+                    <li><a href="#">Saarland</a></li>
+                    <li><a href="#">Salzburg</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Delphi</a>
+                <ul>
+                    <li><a href="#">Ada</a></li>
+                    <li><a href="#">Saarland</a></li>
+                    <li><a href="#">Salzburg</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Perch</a></li>
+        </ul>
+    </li>
+    <li class="ui-state-disabled"><a href="#">Amesville</a></li>
+</ul>
+<script>
+    // 禁止鼠标右键功能 - document|window对象绑定contextmenu事件
+	$(document).contextmenu(function(event){
+		event.preventDefault();
+	});
+
+	$(document).mousedown(function(event){
+		if(event.button == 2){
+			// 鼠标右键
+			$("#menu").removeAttr("style")
+					  .menu()
+					  .position({
+					      my: "left top",
+					      at: "left top",
+					      of : event,
+					      collision: "fit"
+					  });
+		}else if(event.button == 0){
+			$("#menu").attr("style","display:none;");
+		}
+	});
+
+</script>
+</body>
+</html>

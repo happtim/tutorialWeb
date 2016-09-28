@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18_多选框选中的个数</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <input type="checkbox" value="1" name="check" checked/>
+    <input type="checkbox" value="2" name="check" />
+    <input type="checkbox" value="3" name="check" checked/>
+    <input type="button" value="测试选中的个数" id="btn"/>
+
+    <script>
+		// 1. 获取button按钮,绑定click事件
+		$("#btn").click(function(){
+		// 2. 处理函数中,输出多选框被选中的个数
+			alert($("input[name=check]:checked").length);
+		});
+		
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14_删除节点</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <p title="选择你最喜欢的水果." >你最喜欢的水果是?</p>
+    <ul>
+        <li title='苹果'>苹果</li>
+        <li title='橘子'>橘子</li>
+        <li title='菠萝'>菠萝</li>
+    </ul>
+
+    <script>
+        // remove()删除苹果节点,删除整个节点,以及后代节点
+		$("ul>li:first").remove();
+		// empty()删除橘子节点,删除后代节点,保留自身节点
+		$("ul>li:first").empty();
+    </script>
+</body>
+</html>

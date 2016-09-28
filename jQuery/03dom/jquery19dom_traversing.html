@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08_遍历节点</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <p title="选择你最喜欢的水果." >你最喜欢的水果是?</p>
+    <ul title="this is parent.">
+        <li title='苹果'>苹果
+			<ul>
+				<li>水果</li>
+				<li>手机</li>
+			</ul>
+		</li>
+        <li title='橘子'>橘子</li>
+        <li title='菠萝'>菠萝</li>
+    </ul>
+
+    <script>
+        // 1. 获取橘子的父元素
+		console.log($("li:eq(1)").parent().attr("title"));
+		// 2. 获取ul下所有子元素的个数
+		console.log($("ul").children().length);
+		console.log($("ul").children(":eq(1)").attr("title"));
+		// 3. 获取橘子的上一个和下一个兄弟
+		console.log($("li:eq(1)").prev().attr("title"));
+		console.log($("li:eq(1)").next().attr("title"));
+		// 4. 获取橘子的所有兄弟元素的个数
+		console.log($("li:eq(1)").siblings().length);
+		// 5. 利用find()获取ul所有li元素的个数
+		console.log($("ul").find("li").length);
+    </script>
+</body>
+</html>

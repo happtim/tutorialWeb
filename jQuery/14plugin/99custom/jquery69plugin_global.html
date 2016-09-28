@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8" />
+  <!-- 引入jQuery文件 -->
+  <script src="../../jquery-1.11.3.js"></script>
+  <!-- 引入自定义插件文件 -->
+  <script src="plugins/myplugin.js"></script>
+ </head>
+
+ <body>
+  <button>测试全局函数插件</button>
+  <script>
+	$("button").click(function(){
+		
+		console.log($.minValue(5,8));
+		console.log($.maxValue(5,8));
+		console.log($.getName("gexiang"));
+	});
+  </script>
+ </body>
+</html>

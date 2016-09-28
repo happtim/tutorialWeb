@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>26_加载时间对比</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<script>
+    var startTime = new Date().getTime();
+	function test1(){
+		var endTime1 = new Date().getTime();
+		console.log("ready : "+(endTime1 - startTime)+"毫秒")
+	}
+	function test2(){
+		var endTime2 = new Date().getTime();
+		console.log("onload : "+(endTime2 - startTime)+"毫秒")
+	}
+	$(document).ready(function(){
+		test1();
+	});
+	window.onload = function(){
+		test2();
+	};
+</script>
+<body>
+	<img src="https://placehold.it/200x200" style="width:200px;height:200px;"/>
+</body>
+</html>

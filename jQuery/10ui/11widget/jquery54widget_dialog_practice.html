@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>29_用户登录注册案例</title>
+    <script src="../../jquery-1.11.3.js"></script>
+    <script src="../jquery-ui.js"></script>
+    <link rel="stylesheet" href="../jquery-ui.css">
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="user">
+    <form id="userLogin">
+        <table>
+            <tr>
+                <td>用户名:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td><input type="password"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a id="gotoRegist" href="#">请先去注册>>></a></td>
+            </tr>
+        </table>
+    </form>
+    <form id="userRegist" class="hide">
+        <table>
+            <tr>
+                <td>用户名:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td><input type="password"></td>
+            </tr>
+            <tr>
+                <td>确认密码:</td>
+                <td><input type="password"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a id="gotoLogin" href="#">已有账户，去登录>>></a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    $("#user").dialog({
+		title : "用户登录",
+		width : 500
+	});
+</script>
+</body>
+</html>

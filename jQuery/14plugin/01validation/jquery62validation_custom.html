@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07_validation插件案例</title>
+    <link rel="stylesheet" href="validation/css/screen.css">
+    <script src="jquery-1.11.3.js"></script>
+    <script src="validation/scripts/jquery.validate.js"></script>
+    <script src="validation/scripts/messages_zh.js"></script>
+</head>
+<body>
+<fieldset>
+    <legend>用户注册验证</legend>
+    <form id="myform" name="myform" action="#" method="post">
+        <table>
+            <tr>
+                <td>用户名:</td>
+                <td><input type="text" id="user" name="user"></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td><input type="password" id="pwd" name="pwd"></td>
+            </tr>
+            <tr>
+                <td>确认密码:</td>
+                <td><input type="password" id="repwd" name="repwd"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" id="mail" name="mail"></td>
+            </tr>
+            <tr>
+                <td>手机号:</td>
+                <td><input type="text" id="phone" name="phone"></td>
+            </tr>
+			<tr>
+                <td>性别:</td>
+                <td>
+				<input type="radio" id="male" name="gender">男
+				<input type="radio" id="female" name="gender">女
+				<label class="error" for="gender"></label>
+				</td>
+            </tr>
+			<tr>
+                <td>学历:</td>
+                <td>
+				<select id="edu" name="edu">
+					<option value="">选择</option>
+					<option value="a">小学</option>
+					<option value="b">初中</option>
+					<option value="c">高中</option>
+					<option value="d">大学</option>
+					<option value="e">超人</option>
+				</select>
+				</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit"></td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
+<script>
+	/*
+	 * validation插件自定义验证规则
+	 * $.validator.addMethod(name,method,message)方法
+	 * * name - 设置自定义验证方法的名称
+	 * * method - 是一个函数,编写具体的验证逻辑
+	 *   function(value,element,params){}
+	 *   * value - 验证元素的value属性值
+	 *   * element - 验证的元素(DOM对象)
+	 *   * params - 调用自定义验证规则的value值
+	 * * message - 自定义错误提示信息
+	 */
+	$.validator.addMethod("checkUser",function(value,element,params){
+		// 使用正则验证user必须是英文+数字
+		var regExp = /^[a-zA-Z0-9]+$/;
+		return regExp.test(value);
+	});
+
+	$.validator.addMethod("checkPwd",function(value,element,params){
+		console.log("value:"+value);
+		console.log("element:"+element.value);//DOM对象
+		console.log("params:"+params);
+		var regExp = /^[a-zA-Z]+$/;
+		return regExp.test(value);
+	});
+
+	$.validator.addMethod("phoneCN",function(value,element,params){
+		var regExp = /^1[0-9]{12}$/;
+		return regExp.test(value);
+	});
+
+	$.validator.addMethod("regExp",function(value,element,params){
+		//var regExp = params;
+		return params.test(value);
+	});
+	
+	/*
+	 * 需求
+	 * * 用户名 - 不能为空,6-12之间英文+数字
+	 * * 密码 - 不能为空,6-8之间英文
+	 * * 确认密码 - 两次密码输入一致
+	 * * email - 不能为空,格式正确
+	 * * 手机号 - 不能为空,格式正确
+	 * 
+	 * validate(options)方法
+	 * * rules - 设置元素的验证规则
+	 *   * key - 指定验证元素的name属性值
+	 *   * value - 设置元素的验证规则
+	 *     * 一种验证规则 - 定义验证规则名称
+	 *     * 多种验证规则 - {key:value}
+	 *       * key - 验证规则名称
+	 *       * value - 规则内容
+	 * * messages - 设置错误提示信息
+	 *   * key - 指定验证元素的name属性值
+	 *   * value - 设置错误提示信息
+	 *     * 一种验证规则,直接定义错误提示信息
+	 *     * 多种验证规则,使用{key:value}
+	 *       * key - 验证规则名称
+	 *       * value - 错误提示信息
+	 */
+    $("#myform").validate({
+		rules : {
+			user : {
+				"required" : true,
+				"rangelength" : [6,12],
+				//"checkUser" : true
+				"regExp" : /^[a-zA-Z0-9]+$/
+			},
+			pwd : {
+				"required" : true,
+				"rangelength" : [6,8],
+				"checkPwd" : true
+			},
+			repwd : {
+				"required" : true,
+				"rangelength" : [6,8],
+				"checkPwd" : true,
+				"equalTo" : "#pwd"
+			},
+			mail : {
+				"required" : true,
+				"email" : true
+			},
+			phone : {
+				"required" : true,
+				"phoneCN" : true
+			},
+			/*
+			 * 单选框或多选框的验证
+			 * * 验证规则只需要使用"required"
+			 * * 使用messages定义错误信息显示位置出现问题
+			 *   * 在HTML元素对应正确的位置上定义<label>
+			 *     * class="error"
+			 *     * for=验证元素的name属性值
+			 *     * <label>元素内不能包含任何内容
+			 */
+			gender : "required",
+			edu : "required"
+		},
+		messages : {
+			user : {
+				"required" : "请输入你的用户名.",
+				"rangelength" : "用户名长度不正确.",
+				"regExp" : "用户名输入不正确."
+			},
+			pwd : {
+				"required" : "请输入你的密码",
+				"rangelength" : "密码的长度不正确",
+				"checkPwd" : "密码输入不正确"
+			},
+			repwd : {
+				"required" : "请输入你的密码",
+				"rangelength" : "密码的长度不正确",
+				"checkPwd" : "密码输入不正确",
+				"equalTo" : "两次密码输入不一致"
+			},
+			mail : {
+				"required" : "请输入你的Email",
+				"email" : "输入的Email格式不正确"
+			},
+			phone : {
+				"required" : "请输入你的手机号",
+				"phoneCN" : "手机号输入不正确"
+			},
+			gender : "请选择你的性别",
+			edu : "请选择你的学历"
+		}
+	});
+</script>
+</body>
+</html>

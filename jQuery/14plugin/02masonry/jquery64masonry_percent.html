@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09_masonry百分值效果</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="masonry/masonry.pkgd.js"></script>
+    <link rel="stylesheet" href="masonry/sandbox.css">
+</head>
+<body>
+<div id="basic" class="container">
+    <div class="item item-sizer"></div>
+    <div class="item item-sizer h2"></div>
+    <div class="item item-sizer"></div>
+    <div class="item item-sizer h3"></div>
+    <div class="item item-sizer h5"></div>
+    <div class="item item-sizer h2"></div>
+    <div class="item item-sizer"></div>
+    <div class="item item-sizer h4"></div>
+    <div class="item item-sizer"></div>
+    <div class="item item-sizer h3"></div>
+    <div class="item item-sizer"></div>
+    <div class="item item-sizer h5"></div>
+    <div class="item item-sizer"></div>
+    <div class="item item-sizer h3"></div>
+    <div class="item item-sizer h4"></div>
+    <div class="item item-sizer h4"></div>
+    <div class="item item-sizer"></div>
+    <div class="item item-sizer h3"></div>
+    <div class="item item-sizer h4"></div>
+    <div class="item item-sizer h4"></div>
+    <div class="item item-sizer h5"></div>
+</div>
+<script>
+	/*
+	 * Masonry插件的核心masonry()的选项
+	 * * 推荐
+	 *   * itemSelector - 指定使用哪些页面元素进行布局
+	 *   * columnWidth - 设置每列的宽度(默认单位为px)
+	 *   * percentPosition - 设置每列是否使用百分值
+	 *     * Boolean值,如果为true表示使用百分值
+	 */
+    $("#basic").masonry({
+		itemSelector : ".item",
+		//columnWidth : 60,
+		percentPosition : true,
+		
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>21_动态缩放相册中的图片</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <style>
+        body {font-size:13px}
+        /*图片外框样式*/
+        .p_Lst {
+            position: relative;
+            float: left;
+            width: 90px;
+            height: 98px;
+            padding: 8px;
+            border: 1px solid #666;
+            margin: 10px 8px 20px 8px;
+        }
+        /*图片最近外框样式*/
+        .p_Img {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 5px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="p_Lst">
+    <div class="p_Img">
+        <img width="500" height="302" alt="" src="img/list_1.jpg" />
+    </div>
+</div>
+<script>
+    $(".p_Lst").resizable({
+		// 设置缩放当前元素时,哪个元素同时进行
+		alsoResize : ".p_Img",
+		maxWidth : 500,
+		maxHeight : 302,
+		minWidth : 90,
+		minHeight : 98
+	});
+	$(".p_Img").resizable();
+</script>
+</body>
+</html>

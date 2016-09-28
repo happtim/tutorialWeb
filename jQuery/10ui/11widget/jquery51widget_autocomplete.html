@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>24_自动提示</title>
+    <script src="../../jquery-1.11.3.js"></script>
+    <script src="../jquery-ui.js"></script>
+    <link rel="stylesheet" href="../jquery-ui.css">
+</head>
+<body>
+<div class="ui-widget">
+    <label for="tags">Tags: </label>
+    <input id="tags">
+</div>
+<script>
+    var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+    ];
+    $("#tags").autocomplete({
+		// 提示备选内容
+		source : availableTags
+	});
+</script>
+</body>
+</html>

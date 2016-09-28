@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12_类数组操作</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <input type="text" value="user1">
+    <input type="text" value="user2">
+    <input type="text" value="user3">
+    <input type="text" value="user4">
+    <input type="text" value="user5">
+    <script>
+        /* 获取5个input元素,遍历后输出value属性值
+		var $inputs = $("input");
+		for(var i=0;i<$inputs.length;i++){
+			// 返回的是DOM对象
+			var input = $inputs[i];
+			console.log(input.value);
+		}*/
+
+		/*
+		 * $(selector).each(callback)迭代
+		 * * callback - 回调函数
+		 *   function(index,domEle){}
+		 *   * index - 索引值
+		 *   * domEle - DOM对象
+		 * 
+		 * $().each()迭代用于遍历jQuery对象
+		 */
+		/*
+		$("input").each(function(index,domEle){
+			console.log(domEle.value);
+		});
+		*/
+
+		/*
+		 * $.each(object,callback)
+		 * * object - 当前需要遍历的对象或数组
+		 * * callback - 回调函数
+		 *   function(index,domEle){}
+		 *   * index - 索引值
+		 *   * domEle - 遍历后的DOM对象
+		 */
+		/*
+		$.each($("input"),function(index,domEle){
+			//console.log(domEle.value);
+			//console.log($(domEle).val());
+			// this指代domEle - DOM对象
+			//console.log(this.value);
+			console.log($(this).val());
+		});
+		*/
+		/*
+		$.each($("input"),function(){
+			console.log($(this).val());
+		});
+		*/
+
+		var arr = [1,2,3,4,5];
+		$.each(arr,function(index,result){
+			console.log(result);
+		});
+    </script>
+</body>
+</html>

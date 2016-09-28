@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10_masonry固定元素</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="masonry/masonry.pkgd.js"></script>
+    <link rel="stylesheet" href="masonry/sandbox.css">
+</head>
+<body>
+<div id="basic" class="container">
+    <div class="stamp stamp1"></div>
+    <div class="stamp stamp2"></div>
+    <div class="item"></div>
+    <div class="item h2"></div>
+    <div class="item"></div>
+    <div class="item h3"></div>
+    <div class="item h5"></div>
+    <div class="item h2"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
+    <div class="item h3"></div>
+    <div class="item"></div>
+    <div class="item h5"></div>
+    <div class="item"></div>
+    <div class="item h3"></div>
+    <div class="item h4"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
+    <div class="item h3"></div>
+    <div class="item h4"></div>
+    <div class="item h4"></div>
+    <div class="item h5"></div>
+	
+</div>
+<script>
+    // stamp - 标记元素(固定在某个具体的位置)
+	$("#basic").masonry({
+		itemSelector : ".item",
+		stamp : ".stamp"
+	});
+</script>
+</body>
+</html>

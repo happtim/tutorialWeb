@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18_鼠标拖放元素</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+        }
+
+        #draggable, #draggable-nonvalid {
+            width: 100px;
+            height: 100px;
+            padding: 0.5em;
+            float: left;
+            margin: 10px 10px 10px 0;
+        }
+
+        #droppable {
+            width: 150px;
+            height: 150px;
+            padding: 0.5em;
+            float: left;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="draggable-nonvalid" class="ui-widget-content">
+    <p>I'm draggable but can't be dropped</p>
+</div>
+
+<div id="draggable" class="ui-widget-content">
+    <p>Drag me to my target</p>
+</div>
+
+<div id="droppable" class="ui-widget-header">
+    <p>Drop here</p>
+</div>
+<script>
+    $("#draggable,#draggable-nonvalid").draggable({
+		revert : true
+	});
+
+	$("#droppable").droppable({
+		// accept选项 - 设置当前元素允许接收拖放的元素
+		accept : "#draggable",
+		// drop事件 - 拖放事件(必要事件)
+		drop : function(event,ui){
+			$(this).children("p").text("已经拖放.");
+			$(this).append(ui.draggable);
+		}
+	});
+</script>
+</body>
+</html>

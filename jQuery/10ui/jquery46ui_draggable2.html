@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>16_鼠标移动元素的选项</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+        }
+
+        .draggable {
+            width: 90px;
+            height: 90px;
+            padding: 0.5em;
+            float: left;
+            margin: 0 10px 10px 0;
+        }
+
+        #draggable1, #draggable2 {
+            margin-bottom: 20px;
+        }
+
+        #draggable1 {
+            cursor: n-resize;
+        }
+
+        #draggable2 {
+            cursor: e-resize;
+        }
+
+        #containment-wrapper {
+            width: 95%;
+            height: 150px;
+            border: 2px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="draggable1" class="draggable ui-widget-content">
+    <p>I can be dragged only vertically</p>
+</div>
+
+<div id="draggable2" class="draggable ui-widget-content">
+    <p>I can be dragged only horizontally</p>
+</div>
+
+<div id="draggable4" class="draggable ui-widget-content">
+    <p>I will always stick to the center (relative to the mouse)</p>
+</div>
+
+<div id="draggable5" class="draggable ui-widget-content">
+    <p class="ui-widget-header">I can be dragged only by this handle</p>
+</div>
+
+<div id="draggable6" class="draggable ui-widget-content">
+    <p>You can drag me around&hellip;</p>
+    <p class="ui-widget-header">&hellip;but you can't drag me by this handle.</p>
+</div>
+
+<div id="draggable7" class="draggable ui-widget-content">
+    <p>Revert the original</p>
+</div>
+
+<div id="draggable8" class="draggable ui-widget-content">
+    <p>Default (snap: true), snaps to all other draggable elements</p>
+</div>
+
+<div id="draggable9" class="draggable ui-widget-content">
+    <p>I only snap to the outer edges of the big box</p>
+</div>
+
+<div id="containment-wrapper" class="draggable">
+    <div id="draggable3" class="draggable ui-widget-content">
+        <p>I'm contained within the box</p>
+    </div>
+</div>
+
+<script>
+    /*
+	 * draggable(options)
+	 * * options - 格式为 {key:value}
+	 * * 选项
+	 *   * axis - 设置当前元素只能向x轴或y轴拖动
+	 *   * containment - 设置当前元素在指定区域中拖动
+	 *     * 'parent' - 指当前元素的父元素
+	 *     * 'document'或'window' - 指当前页面
+	 *     * 数组
+	 *       * 格式 - [x1,y1,x2,y2]
+	 *       * 绘制矩形,左上角(x1,y1),右下角(x2,y2)
+	 *     * 选择器
+	 *   * cursor - 设置拖动当前元素时,鼠标的样式
+	 *     * 参考CSS中的cursor属性的值
+	 *   * revert - 当拖动结束时,当前元素是否回到初始位置
+	 *     * 默认值为false,如果设置为true,回到初始位置.
+	 *   * snap - 设置拖动当前元素是否吸附到指定元素
+	 *     * Boolean - 设置为true,吸附到所有其他元素
+	 *     * 选择器 - 设置当前元素吸附到指定元素
+	 *   * snapMode - 设置吸附的方式
+	 *     * inner - 吸附到指定元素的内部
+	 *     * outer - 吸附到指定元素的外部
+	 *     * 注意 - 该选项必须配合snap选项一起使用
+	 *   * handle和helper - 实现复制当前元素,拖动的是复制后的元素
+	 *   * grid - 设置当前元素每次拖动的距离
+	 *     * Array - [x,y]
+	 */
+	$("#draggable1").draggable({
+		axis : "y"
+	});
+	$("#draggable2").draggable({
+		axis : "x"
+	})
+	$("#draggable3").draggable({
+		containment : "#containment-wrapper"
+	})
+	$("#draggable4").draggable({
+		cursor : "pointer"
+	});
+	$("#draggable5").draggable({
+		revert : true
+	});
+	$("#draggable6").draggable({
+		snap : "#containment-wrapper"
+	});
+	$("#draggable7").draggable({
+		snap : "#containment-wrapper",
+		snapMode : "both"
+	})
+	$("#draggable8").draggable({
+		handle : "p",
+		helper : "clone"
+	})
+	$("#draggable9").draggable({
+		grid : [50,50]
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<script src="../jquery-1.11.3.js"></script>
+	</head>
+	<body>
+		<input type="text" value="请输入用户名" id="username"/>
+		<script>
+			var $username = $("#username");	
+			console.log($username);
+			
+			//jQuery对象是数组对象-jQuery对象[索引值]
+			var user1 = $username[0];
+			console.log(user1.value);
+			
+			//get(index)方法
+			var user2 = $username.get(0);
+			console.log(user2.value);
+			
+			//DOM对象转化为jQuery对象
+			var username = document.getElementById("username");
+			var $user = $(username);
+			console.log($user.val());
+			
+		</script>
+	</body>
+</html>

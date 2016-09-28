@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_值操作</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <input type="button" value="获取按钮的value值"/>
+    <input type="button" value="设置按钮的value值"/>
+
+    <p title="选择你最喜欢的水果." ><strong>你最喜欢的水果是?</strong></p>
+    <ul>
+        <li title='苹果'>苹果</li>
+        <li title='橘子'>橘子</li>
+        <li title='菠萝'>菠萝</li>
+    </ul>
+
+    <script>
+        $("input:first").click(function(){
+			//console.log($("input:first").val());
+			// this是DOM对象
+			console.log(this.value);
+		});
+		$("input:last").click(function(){
+			//$("input:last").val("被我点击了...");
+			$(this).val("被我点击了...");
+		});
+    </script>
+</body>
+</html>

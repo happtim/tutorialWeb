@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17_复制DOM节点</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <p title="选择你最喜欢的水果." >你最喜欢的水果是?</p>
+    <ul>
+        <li title='苹果'>苹果</li>
+        <li title='橘子'>橘子</li>
+        <li title='菠萝'>菠萝</li>
+    </ul>
+
+    <script>
+        // 当点击苹果节点时,复制所有li元素,添加到ul上
+		/* DOM
+		var ping = document.getElementsByTagName("li")[0];
+		ping.onclick = function(){
+			var copy = ping.cloneNode(true);
+			var ul = document.getElementsByTagName("ul")[0];
+			ul.appendChild(copy);
+		}*/
+
+		/*
+		 * DOM - cloneNode(boolean)
+ 		    * boolean参数 - 表示是否复制后代节点
+ 	        * 默认为false,不复制
+   	     * jQuery - clone(boolean)
+ 	     	* boolean参数 - 表示是否复制事件	
+		*/
+		// jQuery
+		$("ul>li:first").click(function(){
+			var copy = $(this).clone(true);
+			$("ul").append(copy);
+		});
+    </script>
+</body>
+</html>

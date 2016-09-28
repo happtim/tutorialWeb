@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10_排队效果</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 60px
+        }
+
+        #panel {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #0050D0;
+            background: #96E555;
+            cursor: pointer
+        }
+    </style>
+</head>
+<body>
+    <div id="panel"></div>
+
+    <script>
+        $("#panel").click(function(){
+			$(this).animate({
+				left : 200
+			},3000).animate({
+				top : 200
+			},3000).animate({
+				width : 300
+			},3000).animate({
+				height : 300
+			},3000).fadeOut(3000);
+		});
+    </script>
+</body>
+</html>

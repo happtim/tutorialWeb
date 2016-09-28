@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>32_模拟事件</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <button id="btn">点击我</button>
+    <div id="test"></div>
+
+    <script>
+        // 点击button按钮,向div元素中写入文本内容
+		$("#btn").click(function(event,a,b){
+			$("#test").text("button被我点击了..."+a+" "+b);
+		}).trigger("click",["a","b"]);
+		// trigger()模拟用户点击button
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_validation基本示例</title>
+    <link rel="stylesheet" href="validation/css/screen.css">
+    <script src="jquery-1.11.3.js"></script>
+    <script src="validation/scripts/jquery.validate.js"></script>
+    <script src="validation/scripts/messages_zh.js"></script>
+    <style>
+        form {
+            width: 500px;
+        }
+        form label {
+            width: 250px;
+        }
+        form label.error, form input.submit {
+            margin-left: 253px;
+        }
+    </style>
+</head>
+<body>
+<h1 id="banner"><a href="http://jqueryvalidation.org/">jQuery Validation Plugin</a> Demo</h1>
+<div id="main">
+    <p>Take a look at the source to see how messages can be customized with metadata.</p>
+    <!-- Custom rules and messages via data- attributes -->
+    <form class="cmxform" id="commentForm" method="post" action="">
+        <fieldset>
+            <legend>Please enter your email address</legend>
+            <p>
+                <label for="cemail">E-Mail *</label>
+                <input id="cemail" name="email" 
+					   data-rule-required="true" 
+					   data-rule-email="true" />
+            </p>
+            <p>
+                <input class="submit" type="submit" value="Submit">
+            </p>
+        </fieldset>
+    </form>
+</div>
+<script>
+    $("#commentForm").validate();
+</script>
+</body>
+</html>

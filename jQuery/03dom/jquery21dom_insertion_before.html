@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12_外部插入节点</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <ul id="city">
+        <li>北京</li>
+        <li id="tj">天津</li>
+        <li>南京</li>
+    </ul>
+    <ul id="game">
+        <li>反恐</li>
+        <li id="ms">魔兽</li>
+        <li>星际</li>
+    </ul>
+
+    <script>
+		//插入在指定元素外(兄弟节点)
+        // before后面的节点插入到before前面的节点的前面
+		//$("#ms").before($("#tj"));
+		// after后面的节点插入到after前面的节点的后面
+		//$("#ms").after($("#tj"));
+		// insertBefore
+		$("#ms").insertBefore($("#tj"));
+		$("#ms").insertAfter($("#tj"));
+    </script>
+</body>
+</html>

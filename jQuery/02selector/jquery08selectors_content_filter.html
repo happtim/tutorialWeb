@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12_内容过滤选择器</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="demo.css" />
+</head>
+<body>
+    <h3>内容过滤选择器.</h3>
+    <!-- 控制按钮 -->
+    <input type="button" value="选取含有文本“di”的div元素." id="btn1"/>
+    <input type="button" value="选取不包含子元素(或者文本元素)的div空元素." id="btn2"/>
+    <input type="button" value="选取含有class为mini元素 的div元素." id="btn3"/>
+    <input type="button" value="选取含有子元素(或者文本元素)的div元素." id="btn4"/>
+    <br /><br />
+    <!-- 测试的元素 -->
+    <div class="one" id="one" >
+        id为one,class为one的div
+        <div class="mini">class为mini</div>
+    </div>
+
+    <div class="one"  id="two" title="test" >
+        id为two,class为one,title为test的div.
+        <div class="mini"  title="other">class为mini,title为other</div>
+        <div class="mini"  title="test">class为mini,title为test</div>
+    </div>
+
+    <div class="one">
+        <div class="mini">class为mini</div>
+        <div class="mini">class为mini</div>
+        <div class="mini">class为mini</div>
+        <div class="mini"></div>
+    </div>
+
+    <div class="one">
+        <div class="mini">class为mini</div>
+        <div class="mini">class为mini</div>
+        <div class="mini">class为mini</div>
+        <div class="mini"  title="tesst">class为mini,title为tesst</div>
+    </div>
+
+    <div style="display:none;"  class="none">style的display为"none"的div</div>
+
+    <div class="hide">class为"hide"的div</div>
+
+    <div>
+        包含input的type为"hidden"的div<input type="hidden" size="8"/>
+    </div>
+
+    <span id="mover">正在执行动画的span元素.</span>
+
+    <script>
+        $("#btn1").click(function(){
+			$("div:contains(di)").css("background","pink");
+		});
+		$("#btn2").click(function(){
+			// 空元素 - 既不包含子元素也不包含文本元素
+			$("div:empty").css("background","pink");
+		});
+		$("#btn3").click(function(){
+			// 含有class为mini元素的div父元素
+			$("div:has(.mini)").css("background","pink");
+		});
+		$("#btn4").click(function(){
+			// 不为空的元素
+			$("div:parent").css("background","pink");
+		});
+    </script>
+</body>
+</html>

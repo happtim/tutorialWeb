@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>31_工具提示框</title>
+    <script src="../../jquery-1.11.3.js"></script>
+    <script src="../jquery-ui.js"></script>
+    <link rel="stylesheet" href="../jquery-ui.css">
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+        }
+    </style>
+</head>
+<body>
+<p>
+    <label for="age">Your age:</label>
+    <input id="age" title="We ask for your age only for statistical purposes.">
+</p>
+<script>
+    // title属性 - 提示
+	$(document).tooltip();
+</script>
+</body>
+</html>

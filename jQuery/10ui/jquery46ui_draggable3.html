@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>17_鼠标移动元素的事件</title>
+    <script src="../jquery-1.11.3.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+        }
+
+        #draggable {
+            width: 16em;
+            padding: 0 1em;
+        }
+
+        #draggable ul li {
+            margin: 1em 0;
+            padding: 0.5em 0;
+        }
+
+        * html #draggable ul li {
+            height: 1%;
+        }
+
+        #draggable ul li span.ui-icon {
+            float: left;
+        }
+
+        #draggable ul li span.count {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id="draggable" class="ui-widget ui-widget-content">
+
+    <p>Drag me to trigger the chain of events.</p>
+
+    <ul class="ui-helper-reset">
+        <li id="event-start" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-play"></span>"start" invoked <span class="count">0</span>x</li>
+        <li id="event-drag" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-arrow-4"></span>"drag" invoked <span class="count">0</span>x</li>
+        <li id="event-stop" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-stop"></span>"stop" invoked <span class="count">0</span>x</li>
+    </ul>
+</div>
+
+<script>
+    var start = $("#event-start>span[class=count]").text();
+	var drag = $("#event-drag>span[class=count]").text();
+	var stop = $("#event-stop>span[class=count]").text();
+	$("#draggable").draggable({
+		start : function(){
+			start++;
+			$("#event-start>span[class=count]").text(start);
+		},
+		drag : function(){
+			drag++;
+			$("#event-drag>span[class=count]").text(drag);
+		},
+		stop : function(){
+			stop++;
+			$("#event-stop>span[class=count]").text(stop);
+		}
+	});
+</script>
+</body>
+</html>

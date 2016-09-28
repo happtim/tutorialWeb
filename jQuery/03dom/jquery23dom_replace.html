@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>16_替换DOM节点</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <p title="选择你最喜欢的水果." >你最喜欢的水果是?</p>
+    <ul>
+        <li title='苹果'>苹果</li>
+        <li title='橘子'>橘子</li>
+        <li title='菠萝'>菠萝</li>
+    </ul>
+
+    <script>
+        // 点击苹果节点时,将苹果节点替换为小米
+		$("ul>li:first").click(function(){
+			// replaceWith前面的元素是被替换元素
+			//$(this).replaceWith($("<li title='小米'>小米</li>"));
+			
+			//颠倒的replaceWith版本
+			$("<li title='小米'>小米</li>").replaceAll($(this));
+		});
+    </script>
+</body>
+</html>

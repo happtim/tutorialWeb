@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>24_解决冲突方式四</title>
+    <script src="../prototype-1.6.0.3.js"></script>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <p id="pp">test---prototype</p>
+    <p >test---jQuery</p>
+
+    <script type="text/javascript">
+		//运行这个函数将$变量的控制权让给第一个实现的它的那个库
+		//这有助于jquery不会和其他库的$发生冲突
+        jQuery.noConflict();
+		jQuery(function($){
+			console.log($("p").text());
+		});
+    </script>
+</body>
+</html>

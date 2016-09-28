@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04_属性操作</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+    <input type="button" value="设置<p>元素的属性'title'"/>
+    <input type="button" value="获取<p>元素的属性'title'"/>
+    <input type="button" value="删除<p>元素的属性'title'"/>
+
+
+    <p title="选择你最喜欢的水果." >你最喜欢的水果是?</p>
+    <ul>
+        <li title='苹果'>苹果</li>
+        <li title='橘子'>橘子</li>
+        <li title='菠萝'>菠萝</li>
+    </ul>
+
+    <script>
+        $("input:eq(0)").click(function(){
+			$("p").attr("title","被我点击了...");
+		});
+		$("input:eq(1)").click(function(){
+			console.log($("p").attr("title"));
+		});
+		$("input:eq(2)").click(function(){
+			$("p").removeAttr("title");
+		});
+    </script>
+</body>
+</html>
