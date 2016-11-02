@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>warp</title>
+	<script src="../jquery.min.js"></script>
+	<script>
+		$(function(){
+			//每个div都加p
+//			$("div").wrap("<p></p>");
+			
+			//给所有div加了一个p,但是层级破坏了
+//			$("div").wrapAll("<p></p>");
+			
+			//给所有div都加一个内部p
+			$("div").wrapInner("<p></p>");
+		})
+	</script>
+</head>
+<body>
+	<div>123</div>
+	<div>
+		<div>123</div>
+	</div>
+</body>
+</html>

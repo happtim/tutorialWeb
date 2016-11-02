@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>菜单缓冲效果</title>
+	<script src="../../jquery.min.js"></script>
+	<script>
+		$(function(){
+			$(".nav li").mouseover(function(){
+				var index = $(this).index("li");
+				
+				var length = 0;
+				$(".nav li:lt("+index+")").each(function(){
+					length += $(this).width();	
+				});
+				$(".nav .slide").stop().animate( {"left":length,"width":$(this).width()},500,"swing");
+			});
+			
+			$(".nav ul").mouseout(function(){
+				$(".nav .slide").stop().animate({"left":"0px"},500);
+			});
+		})
+	</script>
+</head>
+<body>
+	<div class="nav">
+		<ul>
+			<div class="slide"></div>
+			<li><a class="active" href="javascript:;">首页</a></li>
+			<li><a href="javascript:;">百家</a></li>
+			<li><a href="javascript:;">财经</a></li>
+			<li><a href="javascript:;">娱乐</a></li>
+			<li><a href="javascript:;">体育</a></li>
+			<li><a href="javascript:;">互联网</a></li>
+			<li><a href="javascript:;">时尚</a></li>
+			<li><a href="javascript:;">汽车</a></li>
+			<li><a href="javascript:;">国内</a></li>
+			<li><a href="javascript:;">国际</a></li>
+			<li><a href="javascript:;">军事</a></li>
+			<li><a href="javascript:;">社会</a></li>
+			<li><a href="javascript:;">视频</a></li>
+			<li><a href="javascript:;">传媒</a></li>
+			<li><a href="javascript:;">个性推荐</a></li>
+			<li><a href="javascript:;">房产</a></li>
+			<li><a href="javascript:;">名站</a></li>
+			<li><a href="javascript:;">更多</a></li>
+		</ul>
+	</div>
+</body>
+		<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+			font-family: "微软雅黑";
+		}
+		ul,li {
+			list-style-type: none;
+		}
+		a {
+			color:#fff;
+			text-decoration: none;
+		}
+
+		.nav {
+			height: 40px;
+			width: 100%;
+			margin-top: 100px;
+			background-color: #01204f;
+		}
+
+		.nav ul {
+			height: 40px;
+			width: 984px;
+			margin: 0px auto;
+			position: relative;
+		}
+
+		.nav ul li {
+			float: left;
+			z-index: 5;
+			position: relative;
+		}
+
+		.nav ul li a {
+			padding:0px 10px;	
+			display: block;
+			height: 100%;
+			line-height: 40px;
+			font-size: 14px;
+			font-weight: 700;
+			margin-right: 2px;
+		}
+
+		.nav ul li a.active {
+			background: #c00;
+		}
+
+		.nav .slide {
+			width: 50px;
+			height: 40px;
+			background: #c00;
+			position: absolute;
+			z-index:1;
+		}
+	</style>
+</html>

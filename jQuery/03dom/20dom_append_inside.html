@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>16_替换DOM节点</title>
+    <title>append</title>
     <script src="../jquery-1.11.3.js"></script>
 </head>
 <body>
@@ -14,14 +14,13 @@
     </ul>
 
     <script>
-        // 点击苹果节点时,将苹果节点替换为小米
-		$("ul>li:first").click(function(){
-			// replaceWith前面的元素是被替换元素
-			//$(this).replaceWith($("<li title='小米'>小米</li>"));
-			
-			//颠倒的replaceWith版本
-			$("<li title='小米'>小米</li>").replaceAll($(this));
-		});
+		$("ul").append($("<li title='香蕉'>香蕉</li>"));
+		$("<li title='百香果'>百香果</li>").appendTo("ul");
+		
+		var $li = $("<li></li>");
+		$li.text("木瓜");
+		$li.attr("title","木瓜");
+		$("ul").append($li);
     </script>
 </body>
 </html>

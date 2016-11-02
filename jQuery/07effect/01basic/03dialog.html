@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+		* {
+			margin:0;
+			padding:0;
+			list-style-type:none;
+			font-family:微软雅黑;
+			font-size:14px;
+		}
+		a {
+			text-decoration:none;
+			color:#ccc;
+		}
+		h3 {
+			font-size:1.2em;
+		}
+		#login {
+			width:600px;
+			height:400px;
+			border:1px solid #ccc;
+			background:#fff;
+			/*position:fixed;*/
+			position:absolute;
+			z-index:9999;
+			display:none;
+		}
+		#login .header {
+			height:40px;
+			border-bottom:1px solid #ccc;
+		}
+		#login .header  h3{
+			float:left;
+			margin:10px 0px 0px 10px;
+		}
+		#login .header .close {
+			float:right;
+			margin:10px 10px 0px 0px;
+			font-size:1.2em;
+		}
+		#login .body {
+			width:300px;
+			margin:80px auto;
+		}
+		#login .body h3 {
+			margin-bottom:20px;
+			text-align:center;
+		}
+		#login .body ul li {
+			margin:20px;
+		}
+		#login .body ul li span {
+			display:inline-block;
+			width:80px;
+			text-align:right;
+			padding-right:20px;
+		}
+		#login .body ul li.act {
+			text-align:center;
+		}
+		.btn {
+			background:#ff8800;
+			color:white;
+			border:none;
+			padding:5px 10px;
+		}
+		.mask {
+			width:100%;
+			height:100%;
+			position:fixed;
+			left:0px;
+			top:0px;
+			background:#000;
+			opacity:0.3;
+			filter:alpha(opacity:30);
+			z-index:9998;
+			display:none;
+		}
+		</style>
+		
+		<script src="../../jquery.min.js"></script>
+		<script>
+			$(function(){
+			$("#btn").click(function(){
+				$("#login").show();
+				$(".mask").show();
+
+				var $winWidth = $(window).width();
+				var $winHeight = $(window).height();
+
+				var $loginWidth = $("#login").width();
+				var $loginHeight = $("#login").height();
+
+				$("#login").css( {"left" : ($winWidth - $loginWidth) / 2 } );
+				$("#login").css( {"top" : ($winHeight - $loginHeight) / 2 } );
+
+			});
+
+			$(window).bind("scroll resize", function() {
+				var $winWidth = $(window).width();
+				var $winHeight = $(window).height();
+
+				var $loginWidth = $("#login").width();
+				var $loginHeight = $("#login").height();
+				var $scrollTop = $("body").scrollTop();
+
+				$("#login").css( {"left" : ($winWidth - $loginWidth) / 2 } );
+				$("#login").css( {"top" : ($winHeight - $loginHeight) / 2 + $scrollTop } );
+			});
+
+			$(".close").click(function(){
+				$("#login").hide();
+				$(".mask").hide();
+			});
+		});
+		</script>
+	</head>
+	<body style="height:2000px;">
+		<input type="button" id="btn" value="点击弹窗" /><br/>
+		<div id="login">
+			<div class="header">
+				<h3>用户登录窗口</h3>
+				<a href="javascript:;" class="close">X</a>
+			</div>
+			<div class="body">
+				<h3>购物之前必须先登录</h3>
+				<ul>
+					<li><span>用户名:</span><input type="text" name="user" /></li>
+					<li><span>密码:</span><input type="text" name="userPwd" /></li>
+					<li class="act"><input type="submit" value="登录" class="btn"/></li>
+				</ul>
+			</div>
+		</div>
+		<div class="mask"></div>
+	</body>
+</html>

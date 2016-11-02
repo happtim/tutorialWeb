@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>after</title>
+    <script src="../jquery-1.11.3.js"></script>
+</head>
+<body>
+   <p title="选择你最喜欢的水果." >你最喜欢的水果是?</p>
+    <ul>
+        <li title='苹果'>苹果</li>
+        <li title='橘子'>橘子</li>
+    </ul>
+
+    <script>
+		$("li:eq(0)").after("<li>葡萄after苹果</li>")
+		//insertAfter
+		$("li:eq(0)").before("<li>百香果before苹果</li>")
+		//insertBefore
+    </script> 
+</body>
+</html>

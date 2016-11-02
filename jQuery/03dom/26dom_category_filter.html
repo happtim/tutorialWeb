@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>实现商品多条件筛选</title>
+	<script type="text/javascript" src="./../jquery.min.js"></script>
+	
+	<style>
+		*{margin:0;padding:0;list-style-type:none;}
+		a,img{border:0;}
+		body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+		/* select */
+		.select{padding:5px 10px;border:#ddd 1px solid;border-radius:4px;width:60%;margin:5% auto;font-size:12px}
+		.select li{list-style:none;padding:10px 0 5px 100px}
+		.select .select-list{border-bottom:#eee 1px dashed}
+		.select dl{zoom:1;position:relative;line-height:24px;}
+		.select dl:after{content:" ";display:block;clear:both;height:0;overflow:hidden}
+		.select dt{width:100px;margin-bottom:5px;position:absolute;top:0;left:-100px;text-align:right;color:#666;height:24px;line-height:24px}
+		.select dd{float:left;display:inline;margin:0 0 5px 5px;}
+		.select a{display:inline-block;white-space:nowrap;height:24px;padding:0 10px;text-decoration:none;color:#039;border-radius:2px;}
+		.select a:hover{color:#f60;background-color:#f3edc2}
+		.select .selected a{color:#fff;background-color:#f60}
+		.select-result dt{font-weight:bold}
+		.select-no{color:#999}
+		.select .select-result a{padding-right:20px;background:#f60 url("./img/close.gif") right 9px no-repeat}
+		.select .select-result a:hover{background-position:right -15px}
+
+	</style>
+	
+	<script>
+			$(function(){
+	$("#select1 dd").click(function(){
+		$(this).addClass("selected").siblings("dd").removeClass("selected");
+		var $obj = $(this).clone();
+		if ( $(this).hasClass("select-all") ) {
+			$("#selectA").remove();
+		}else {
+			if ( $( ".select-result" ).find("#selectA").length > 0 ) {
+				$("#selectA a").html( $(this).text() );
+			}else {
+				$(".select-result dl").append( $obj.attr( "id", "selectA" ) );
+			}
+		}
+	});
+
+	$("#select2 dd").click(function(){
+		$(this).addClass("selected").siblings("dd").removeClass("selected");
+		var $obj = $(this).clone();
+		if ( $(this).hasClass("select-all") ) {
+			$("#selectB").remove();
+		}else {
+			if ( $( ".select-result" ).find("#selectB").length > 0 ) {
+				$("#selectB a").html( $(this).text() );
+			}else {
+				$(".select-result dl").append( $obj.attr( "id", "selectB" ) );
+			}
+		}
+	});
+
+	$("#select3 dd").click(function(){
+		$(this).addClass("selected").siblings("dd").removeClass("selected");
+		var $obj = $(this).clone();
+		if ( $(this).hasClass("select-all") ) {
+			$("#selectC").remove();
+		}else {
+			if ( $( ".select-result" ).find("#selectC").length > 0 ) {
+				$("#selectC a").html( $(this).text() );
+			}else {
+				$(".select-result dl").append( $obj.attr( "id", "selectC" ) );
+			}
+		}
+	});
+
+	$("#selectA").live( "click", function(){
+		$(this).remove();
+		$("#select1 .select-all").addClass("selected").siblings("dd").removeClass( "selected" );
+	} );
+
+	$("#selectB").live( "click", function(){
+		$(this).remove();
+		$("#select2 .select-all").addClass("selected").siblings("dd").removeClass( "selected" );
+	} );
+
+	$("#selectC").live( "click", function(){
+		$(this).remove();
+		$("#select3 .select-all").addClass("selected").siblings("dd").removeClass( "selected" );
+	} );
+
+	$(".select dd").live( "click", function(){
+		if ( $(".select-result dd").length > 1 ) {
+			$( ".select-no" ).hide();
+		}else {
+			$( ".select-no" ).show();
+		}
+	} );
+
+
+});
+	</script>
+	
+</head>
+
+<body>
+	<div id="main">
+		<div class="demo">
+			<ul class="select">
+				<li class="select-list">
+					<dl id="select1">
+						<dt>上装：</dt>
+						<dd class="select-all selected"><a href="#">全部</a></dd>
+						<dd><a href="#">针织衫</a></dd>
+						<dd><a href="#">毛呢外套</a></dd>
+						<dd><a href="#">T恤</a></dd>
+						<dd><a href="#">羽绒服</a></dd>
+						<dd><a href="#">棉衣</a></dd>
+						<dd><a href="#">卫衣</a></dd>
+						<dd><a href="#">风衣</a></dd>
+					</dl>
+				</li>
+				<li class="select-list">
+					<dl id="select2">
+						<dt>裤装：</dt>
+						<dd class="select-all selected"><a href="#">全部</a></dd>
+						<dd><a href="#">牛仔裤</a></dd>
+						<dd><a href="#">小脚/铅笔裤</a></dd>
+						<dd><a href="#">休闲裤</a></dd>
+						<dd><a href="#">打底裤</a></dd>
+						<dd><a href="#">哈伦裤</a></dd>
+					</dl>
+				</li>
+				<li class="select-list">
+					<dl id="select3">
+						<dt>裙装：</dt>
+						<dd class="select-all selected"><a href="#">全部</a></dd>
+						<dd><a href="#">连衣裙</a></dd>
+						<dd><a href="#">半身裙</a></dd>
+						<dd><a href="#">长袖连衣裙</a></dd>
+						<dd><a href="#">中长款连衣裙</a></dd>
+					</dl>
+				</li>
+				<li class="select-result">
+					<dl>
+						<dt>已选条件：</dt>
+						<dd class="select-no">暂时没有选择过滤条件</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

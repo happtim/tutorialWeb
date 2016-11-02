@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>牌组切换</title>
+	<script src="../../jquery.min.js"></script>	
+	<script>
+		$(function(){
+			$("input").click(function(){
+				$(".loadBox").show();
+				var windowWidth = $(window).width();
+				var windowHeight = $(window).height();
+				var showBgWidth = $(".sbox").width();
+				var showBgHeigth = $(".sbox").height();
+				$(".sbox").css({"left":(windowWidth -showBgWidth)/2, "top": (windowHeight-showBgHeigth)/2});
+			});
+			
+			$(".closeBox").click(function(){
+				$(".loadBox").hide();
+			});
+			
+			$(".r-arrow").click(function(){
+
+				var maxZ = Math.max.apply(null, $.map($('.pictures img'), function (e, n) {
+					return parseInt($(e).css('z-index')) ;
+				}));
+				console.log(maxZ);
+				
+				var $top = $(".pictures img[style*='z-index: "+maxZ+"']");
+				
+				$top.animate({"top" : "-300px"},1000,function(){
+					$(this).css({"zIndex":1}).siblings().css({"zIndex":function(){
+						var zindex = parseInt($(this).css("zIndex"))+1;
+						console.log(zindex);
+						return zindex;
+					}});
+				}).animate({"top":"0px"},1000);
+				
+			});
+		});
+	</script>
+</head>
+<body>
+	<input type="button" value="按钮">
+	
+	<div class="loadBox">
+		<div class="showBg"></div>
+		<div class="sbox">
+			<div class="pictures">
+				<img src="https://placehold.it/300x301" style="z-index: 4" alt="">
+				<img src="https://placehold.it/300x302" style="z-index: 3" alt="">
+				<img src="https://placehold.it/300x303" style="z-index: 2" alt="">
+				<img src="https://placehold.it/300x304" style="z-index: 1" alt="">
+			</div>
+			
+			<div class="l-arrow">
+				<a href="javascript:;">&lt;</a>
+			</div>
+			
+			<div class="r-arrow">
+				<a href="javascript:;">&gt;</a>
+			</div>
+			
+			<div class="closeBox">x</div>
+		</div>
+	</div>
+</body>
+<style>
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	.loadBox{
+		display: none;
+	}
+	.showBg{
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		background: black;
+		opacity: 0.24;
+		z-index: 0;
+	}
+	.sbox{
+		position: absolute;
+		height: 400px;
+		width: 600px;
+		z-index: 1;
+		border: 1px solid black;
+	}
+	.sbox img{
+		position:absolute;
+		left: 100px;
+		top: 50px;
+		transform:rotate(3deg);
+	}
+	.closeBox{
+		float: right;
+	}
+	
+	.l-arrow{
+		position: relative;
+		top:200px;
+		float: left;
+	}
+	.r-arrow{
+		position: relative;
+		top: 200px;
+		float: right;
+	}
+</style>
+</html>

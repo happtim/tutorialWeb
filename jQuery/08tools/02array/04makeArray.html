@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$.makeArray</title>
+	<meta name="description" content="将一个类数组对象转换为真正的数组对象,所谓'类数组对象'就是一个常规的Object对象，但它和数组对象非常相似：具备length属性，并以0、1、2、3……等数字作为属性名。不过它毕竟不是数组，没有从数组的原型对象上继承下来的内置方法(例如：push()、 sort()等)。"/>
+	<script src="../../jquery.min.js"></script>
+	<script>
+		$(function(){
+			//HtmlCollection
+			console.log(document.getElementsByTagName("div"));
+			var arr = jQuery.makeArray(document.getElementsByTagName("div"));
+			//Array
+			console.log(arr);
+			var reverse =  arr.reverse(); // 使用数组翻转函数
+			$("body").append(reverse);
+		})
+	</script>
+</head>
+<body>
+	<div>First</div><div>Second</div><div>Third</div><div>Fourth</div>
+</body>
+</html>

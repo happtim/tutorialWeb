@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>animate stop</title>
+	<script src="../../jquery-1.11.3.js"> </script>
+	<script>
+		$(function(){
+			$("div").hover(function(){
+				//停止当前的动画
+				//$(this).stop();
+				
+				//第一个参数停止队列,后面的也不执行了.意思是:如果stop,只是上个animate第一个动画失效,后面的还可以执行
+//				$(this).stop(true);
+				
+				//第二个参数,将没有完成的动画瞬间完成
+				$(this).stop(true,true);
+				$(this).animate({width:300},1000)
+					.animate({height:300},1000);
+			},function(){
+				$(this).stop(true,true);
+				$(this).animate({width:100},1000)
+					.animate({height:100},1000);
+			})
+		})
+	</script>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div>  </div>	
+</body>
+</html>

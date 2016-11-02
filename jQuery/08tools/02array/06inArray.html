@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$.inArray</title>
+	<script src="../../jquery.min.js"></script>
+	<script>
+		var arr = [ 4, "Pete", 8, "John" ];
+		console.log(jQuery.inArray("John", arr));  //3
+		console.log(jQuery.inArray(4, arr));  //0
+		console.log(jQuery.inArray("David", arr));  //-1
+		console.log(jQuery.inArray("Pete", arr, 2));  //-1
+	</script>
+	
+</head>
+<body>
+	
+</body>
+</html>

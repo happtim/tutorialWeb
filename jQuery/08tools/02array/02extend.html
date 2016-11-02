@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$.extend</title>
+	<script src="../../jquery.min.js"></script>
+	<script>
+		var settings = { validate: false, limit: 5, name: "foo" };
+		var options = { validate: true, name: "bar" };
+		settings = jQuery.extend(settings, options);
+		console.log(settings);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

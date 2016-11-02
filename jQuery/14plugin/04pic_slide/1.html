@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片切换(slide)特效</title>
+	<script src="../../jquery.min.js"></script>
+	<style>
+	* {
+		margin: 0px;
+		padding: 0px;
+	}
+	ul,li {
+		list-style-type: none;
+	}
+	a {
+		text-decoration: none;
+		color:#000;
+	}
+	img {
+		border: none;
+		display: none;
+	}
+	.container {
+		width: 980px;
+		margin: 20px auto;
+		position: relative;
+	}
+	.slide {
+		width: 960px;
+		height: 500px;
+	}
+	.icon {
+		position: absolute;
+		right: 50px;
+		bottom: 10px;
+	}
+	.icon li {
+		float: left;
+		margin-left: 20px;
+		background: green;
+		padding: 5px 10px;
+		cursor:pointer;
+	}
+	.icon li.active {
+		background: yellow;
+	}
+	</style>
+	<script>
+		$(function(){
+
+			var timer = null;
+			var Index = 0;
+			timer = setInterval(function(){
+				Index ++;
+				if(Index == $(".icon li").length )
+					Index = 0;
+				$(".slide img").eq(Index).show().siblings().hide();
+				$(".icon li").eq(Index).addClass("active").siblings().removeClass("active");
+			},1000);
+
+			$(".container").mouseover(function(){
+				clearInterval(timer)
+			}).mouseout(function(){
+				timer = setInterval(function(){
+					Index ++;
+					if(Index == $(".icon li").length )
+						Index = 0;
+					$(".slide img").eq(Index).show().siblings().hide();
+					$(".icon li").eq(Index).addClass("active").siblings().removeClass("active");
+				},1000);
+			})
+
+			slide();
+			function slide(){
+				$(".icon li").click(function(){
+					var index = $(this).index();
+					Index = index;
+					$(".slide img").eq(index).show().siblings().hide();
+					$(".icon li").eq(index).addClass("active").siblings().removeClass("active");
+				})
+			}
+		})
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="slide">
+			<img src="https://placehold.it/901x701" alt="" width="960" height="500" style="display:block;">
+			<img src="https://placehold.it/902x702" alt="" width="960" height="500">
+			<img src="https://placehold.it/903x703" alt="" width="960" height="500">
+			<img src="https://placehold.it/904x704" alt="" width="960" height="500">
+		</div>
+		<div class="icon">
+			<ul>
+				<li class="active"><a href="javascript:;">1</a></li>
+				<li><a href="javascript:;">2</a></li>
+				<li><a href="javascript:;">3</a></li>
+				<li><a href="javascript:;">4</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
