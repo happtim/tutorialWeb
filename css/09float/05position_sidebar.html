@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>侧边栏</title>
+	<script src="../jquery.min.js"></script>
+	<style>
+		div{
+			background: red;
+			
+			width:200px;
+			height: 300px;
+			
+			position: absolute;
+			top: 200px;
+			left: 0px;
+		}
+		
+		div span{
+			background: green;
+			
+			width: 28px;
+			height: 100px;
+			
+			position: absolute;
+			right: -28px;
+			top: 100px;
+		}
+	</style>
+	
+	<script>
+		$(function(){
+			$("#box span").toggle(function(){
+				$("#box").css({"left" : "-200px"});
+			},function(){
+				$("#box").css({"left" : "0px"});
+			});
+		})
+	</script>
+</head>
+<body>
+	<div id="box">
+		<span>分享到</span>
+	</div>
+</body>
+</html>
