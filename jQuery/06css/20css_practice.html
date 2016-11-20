@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        * {
+                margin: 0px;
+                padding: 0px;
+        }
+        div {
+                width: 200px;
+                height: 200px;
+                border: 1px solid red;
+                position: relative;
+                float: left;
+                margin-left: 20px;
+                position: relative;
+        }
+        div p {
+                width: 100px;
+                height: 100px;
+                border: 1px solid black;
+                position: absolute;
+                left: 50px;
+                top: 30px;
+                display: none;
+        }
+	</style>
+	<script src="../jquery.min.js"></script>
+	<script>
+		$(function(){
+			$("div").mousemove(function(e){
+				var x = e.pageX - $(this).offset().left;
+				var y = e.pageY - $(this).offset().top;
+				
+				$(this).find("p").show().css({"left": x+40 +"px","top" : y+"px"});
+					
+			}).mouseout(function(){
+				$(this).find("p").hide();
+			});
+		})
+	</script>
+</head>
+<body>
+	
+	<input type="text" name="" id="debug" style="position:fixed;top:0px;right:0px;">
+	<div>
+			<p>1</p>
+	</div>
+	<div>
+			<p>2</p>
+	</div>
+	<div>
+			<p>3</p>
+	</div>
+	<div>
+			<p>4</p>
+	</div>
+	<div>
+			<p>5</p>
+	</div>
+        
+</body>
+</html>

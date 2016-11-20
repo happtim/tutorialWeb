@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../jquery.min.js"></script>
+</head>
+<body>
+	
+	<ul>
+		<li>
+			<a href="www.google.com">Google</a>
+		</li>
+		<li>
+			<a href="www.baidu.com">百度</a>
+		</li>
+		<li>
+			<a href="www.taobao.com">淘宝</a>
+		</li>
+	</ul>
+	
+	<script>
+		
+		var Beautifier = function(ele,opt){
+			this.$element = ele;
+			this.defaults = {
+				"color" : "red",
+				"fontSize" : "12px",
+				"textDecoration" : "none",
+			}
+			this.options = $.extend({},this.defaults,opt);
+		}
+		
+		Beautifier.prototype = {
+			beautify : function(){
+				return this.$element.css({
+					"color" : this.options.color,
+					"fontSize" : this.options.fontSize,
+					"textDecoration" : this.options.textDecoration,
+				});	
+			}
+		};
+		
+		$.fn.changeColor = function(options){
+			var beautifier = new Beautifier(this,options);
+			return beautifier.beautify();
+		}
+		
+		$(function(){
+			$('a').changeColor({
+				'color': '#999999',
+				'fontSize' : '20px',
+			});
+		});
+	</script>
+</body>
+</html>

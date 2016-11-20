@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../jquery.min.js"></script>
+</head>
+<body>
+	
+	<ul>
+		<li>
+			<a href="www.google.com">Google</a>
+		</li>
+		<li>
+			<a href="www.baidu.com">百度</a>
+		</li>
+		<li>
+			<a href="www.taobao.com">淘宝</a>
+		</li>
+	</ul>
+	
+	<script>
+		$.fn.changeColor = function(options){
+			
+			var defaults = {
+				'color' : 'red',	
+				'fontSize' : '12px',
+			};
+			
+			var settings = $.extend({},defaults,options);
+			debugger;
+			
+			return this.css({
+				"color" : settings.color,
+				"fontSize" : settings.fontSize,
+			});
+		}
+		
+		$(function(){
+			$('a').changeColor({
+				'color': '#999999',
+				'fontSize' : '20px',
+			});
+		});
+	</script>
+</body>
+</html>

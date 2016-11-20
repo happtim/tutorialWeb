@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>京东首页楼层效果</title>
+		<script src="../jquery.min.js"></script>
+	<style>
+		* {
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+	}
+
+	body {
+			font-family: "微软雅黑";
+			font-size: 40px;
+			color:#ff8800;
+	}
+
+	a {
+			text-decoration: none;
+			color:#ff8800;
+	}
+
+
+	.header {
+			background: #ccc;
+			padding: 100px;
+	}
+
+	.banner {
+			background: #666;
+			width: 1200px;
+			margin:0px auto;
+			height: 400px;
+	}
+
+	.guess {
+			background: #999;
+			width: 1200px;
+			margin:0px auto;
+			height: 400px;
+	}
+
+	.floor:nth-child(odd) {
+			background: #333;
+			width: 1200px;
+			margin:0px auto;
+			height: 400px;
+			text-align: center;
+	}
+
+	.floor:nth-child(even) {
+			background: #666;
+			width: 1200px;
+			margin:0px auto;
+			height: 400px;
+			text-align: center;
+	}
+
+	.sidebar {
+			width: 28px;
+			padding: 5px;
+			position: fixed;
+			top:100px;
+			left: 300px;
+			display: none;
+	}
+
+	.sidebar li {
+			height: 26px;
+			border-bottom: 1px dashed #ccc;
+	}
+
+	.sidebar a {
+			font-size: 12px;
+			display: block;
+			float: left;
+			height: 26px;
+			width: 26px;
+			line-height: 24px;
+			text-align: center;
+	}
+	.sidebar a:hover {
+			background: red;
+			color:#fff !important;
+	}
+
+	</style>
+	<script>
+		$(function(){
+			$(".sidebar li").click(function(){
+				var index = $(this).index();
+				var $div = $(".floor").eq(index);
+				
+				$(this).children("a").text( $div.text() )
+					.end().siblings().each(function(index){
+					$(this).children("a").text( index+1 + "F")
+				});
+				
+				$("body").animate( {"scrollTop": $div.offset().top },1000);
+			});
+			
+			$(window).scroll(function(){
+				var scrollTop = $("body").scrollTop();
+				
+				if(scrollTop >= 900){
+					$(".sidebar").show();
+					
+					$(".floor").each(function(index){
+						if(scrollTop >= $(this).offset().top && scrollTop <= $(this).next().offset().top){
+							$(".sidebar li").eq(index).children("a").text($(this).text());
+						} 
+					});
+				}
+				else
+					$(".sidebar").hide();
+			});
+		});
+	</script>
+</head>
+<body>
+        <div class="header">头部</div>
+        <div class="banner">banner</div>
+        <div class="guess">猜你喜欢&品质生活</div>
+
+        <div class="floor">服饰</div>
+        <div class="floor">美妆</div>
+        <div class="floor">手机</div>
+        <div class="floor">家电</div>
+        <div class="floor">数码</div>
+        <div class="floor">运动</div>
+        <div class="floor">居家</div>
+        <div class="floor">母婴</div>
+        <div class="floor">食品</div>
+        <div class="floor">图书</div>
+        <div class="floor">车品</div>
+        <div class="floor">服务</div>
+
+        <div class="sidebar">
+                <ul>
+                        <li><a href="javascript:;">1F</a></li>
+                        <li><a href="javascript:;">2F</a></li>
+                        <li><a href="javascript:;">3F</a></li>
+                        <li><a href="javascript:;">4F</a></li>
+                        <li><a href="javascript:;">5F</a></li>
+                        <li><a href="javascript:;">6F</a></li>
+                        <li><a href="javascript:;">7F</a></li>
+                        <li><a href="javascript:;">8F</a></li>
+                        <li><a href="javascript:;">9F</a></li>
+                        <li><a href="javascript:;">10F</a></li>
+                        <li><a href="javascript:;">11F</a></li>
+                        <li><a href="javascript:;">12F</a></li>
+                </ul>
+        </div>
+</body>
+</html>

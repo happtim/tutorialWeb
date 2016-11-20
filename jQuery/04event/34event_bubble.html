@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>冒泡</title>
+	<script src="../jquery.min.js"></script>
+	<script>
+		$(function(){
+			$(".red").click(function(e){
+				console.log("red click");	
+				
+			});
+			$(".green").click(function(e){
+				console.log("green click");	
+				//阻止冒泡
+				e.stopPropagation();
+				//触发元素
+				console.log( "触发事件的元素为:" +e.target);
+				
+			});
+			$(".blue").click(function(e){
+				console.log("blue click");	
+				//currentTarge 当前元素
+				console.log( e.currentTarget == this);
+				
+				//鼠标的位置
+				console.log( "x:" +e.pageX + " y:"+e.pageY );
+			});
+		})
+	</script>
+	<style>
+		div{
+			padding: 100px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="red" style="background:red;">
+		<div class="green" style="background:green">
+			<div class="blue" style="background:blue"></div>
+		</div>
+	</div>
+</body>
+</html>
