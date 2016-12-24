@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fileupload plugin</title>
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+	<script src="http://cdn.bootcss.com/jqueryui/1.11.1/jquery-ui.js"></script>
+	<script src="http://cdn.bootcss.com/blueimp-file-upload/9.14.2/js/jquery.fileupload.js"></script>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
+	<style>
+		
+		.fileinput .fileinput-thumb{
+			border: 1px solid #e3e3e3;
+			padding:3px;
+			margin-bottom: 5px;
+			text-align: center;
+			vertical-align:middle;
+		}
+		
+		.btn-file{
+			overflow: hidden;
+			position: relative;
+		}
+
+		.fileinput input[type="file"] {
+			cursor:pointer;
+			opacity: 0;
+			position:absolute;
+			top: 0px;
+			right: 0px;
+			direction: ltr;
+		}
+		
+		.fileinput-exists .fileinput-new,.fileinput-new .fileinput-exists{
+			display: none;
+		}
+		
+	</style>
+</head>
+<body>
+	<form>
+			<div class="fileinput fileinput-new">
+				<div class="fileinput-thumb" style="width:206px;height:156px;">
+					<img style="max-width:200px;max-height:150px;" />
+				</div>
+				<div style="width:206px;text-align:center;">
+					<span class="btn btn-default btn-file">
+						<span class="fileinput-new">选择图片</span>
+						<span class="fileinput-exists">重新选择</span>
+						<input id="imageField" type="file" />
+						<input type="hidden" name="" />
+					</span>
+					<span class=" btn btn-default btn-delete fileinput-exists">删除</span>
+				</div>
+			</div>
+		
+		<div class="fileinput fileinput-new">
+				<div class="fileinput-thumb" style="width:206px;height:156px;">
+					<img style="max-width:200px;max-height:150px;" />
+				</div>
+				<div style="width:206px;text-align:center;">
+					<span class="btn btn-default btn-file">
+						<span class="fileinput-new">选择图片</span>
+						<span class="fileinput-exists">重新选择</span>
+						<input id="imageField" type="file" />
+						<input type="hidden" name="" />
+					</span>
+					<span class=" btn btn-default btn-delete fileinput-exists">删除</span>
+				</div>
+			</div>
+	</form>	
+
+	<script>
+	+ function () {
+		var Fileinput = function (element, options) {
+			this.$element = $(element);
+			this.listen();
+
+			this.$element.fileupload({
+				url: options.url,
+				paramName: options.fileName,
+				dataType: 'json',
+				done: $.proxy(this.done, this),
+				progress: function (e, data) {
+    				var progress = parseInt(data.loaded / data.total * 100, 10);
+					console.log(progress);
+				},
+				add: function(e,data){
+					$(element).find('img').attr('src','ellipsis.svg');
+					data.submit();
+				},
+			})
+		}
+
+		Fileinput.prototype.listen = function () {
+			this.$element.find('.btn-delete').on('click.gx.fileinput', $.proxy(this.clear, this));
+		}
+
+		Fileinput.prototype.clear = function () {
+			this.$element.find('img').attr('src', '');
+			this.$element.find('input[type="hidden"]').val('');
+			this.$element.removeClass('fileinput-exists').addClass('fileinput-new');
+		}
+
+		Fileinput.prototype.done = function (e, data) {
+			if (data.result.status == 'success') {
+				var imageUrl = data.result.result;
+				this.$element.find("img").attr('src', imageUrl);
+				this.$element.find("input[type='hidden']").val(imageUrl);
+				this.$element.addClass('fileinput-exists').removeClass('fileinput-new')
+			}
+		}
+
+		$.fn.fileinput = function (options) {
+			return this.each(function(){
+				var $this = $(this);
+				var data = $this.data('gx.fileinput');
+				if(!data){
+					data = new Fileinput(this,options);
+					$this.data('gx.fileinput',data);
+				}
+			});
+		}
+	}();
+</script>
+	<script>
+		$(function(){
+			$(".fileinput").fileinput({
+				'url' : 'http://localhost/cpspew/index.php/site/upload',
+				'fileName' : 'image',
+			});
+		});
+	</script>
+</body>
+</html>
