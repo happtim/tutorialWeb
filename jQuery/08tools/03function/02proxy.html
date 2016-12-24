@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>proxy 的使用</title>
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+	<style>
+		.aNewClass {
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="myElement" style="width:100px; height:100px; border:1px solid black;"></div>
+	<div id="myElement2" style="width:100px; height:100px; border:1px solid black;"></div>
+	<div id="myElement3" style="width:100px; height:100px; border:1px solid black;"></div>
+</body>
+<script>
+	$(function () {
+
+		//点一下就变红
+		$('#myElement').click(function () {
+			// In this function, "this" is our DOM element.
+			$(this).addClass('aNewClass');
+		});
+
+		//点一些延时1s变红,但是回调函数的this是window.失效了
+		$('#myElement2').click(function () {
+			setTimeout(function () {
+				// Problem! In this function "this" is not our element!
+				$(this).addClass('aNewClass');
+			}, 1000);
+		});
+
+		//解决方法,使用$.proxy包一下函数,this就是后面第二个参数了
+		$('#myElement3').click(function () {
+			// ------------------v--------give $.proxy our function,
+			setTimeout($.proxy(function () {
+				$(this).addClass('aNewClass'); // Now "this" is again our element
+			}, this), 1000);
+			// ---^--------------and tell it that we want our DOM element to be the
+			//                      value of "this" in the function
+		});
+
+		//原理
+		/*
+		function () {
+			// v--------func is the function we gave to $.proxy
+			func.apply(ctx);
+			// ----------^------ ctx is the value we wanted for "this" (our DOM element)
+		}
+		*/
+
+	});
+</script>
+
+</html>
