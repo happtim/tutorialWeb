@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>for...in</title>
+	<script>
+		//for ... in iterates a specified variable over all the enumerable properties of a object
+		
+		var car = {'make':'Ford',"model":"Mustang"};
+		
+		function dump_props(obj,obj_name){
+			var result = "";
+			for( var property in obj){
+				result += obj_name + "." + property  + 	" = " + obj[property] +"\n";
+			}
+			return result;
+		}
+		
+		console.log( dump_props(car,"car"));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

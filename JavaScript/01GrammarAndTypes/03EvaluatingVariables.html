@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算变量</title>
+	<script>
+		//undefined
+		var a;
+		console.log("The value of a is " + a);// The value of a is undefined
+//		console.log("The value of c is " + c); // Uncaught ReferenceError: c is not defined
+		
+		if(!a)
+			console.log('undefined can behaves as false');
+		
+		//undefined convert to NaN when used in numberic context
+		console.log((a+ 2));
+		
+		//null hehaves 0 in numberic context
+		var n =  null;
+		console.log(n*32);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

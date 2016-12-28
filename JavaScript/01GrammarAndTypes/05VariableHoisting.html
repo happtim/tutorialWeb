@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>变量提前</title>
+	<script>
+		///////////////variable hoisting/////////////////////////
+		//examples 1
+		//javascript 会吧声明都提前,但是赋值的值没有了返回undefined,let,const不会
+		console.log(x === undefined); //true
+		var x = 3;
+
+		//		same as 
+		var x;
+		console.log(x === undefined);
+		x = 3;
+
+		////////////////////////////////////////////
+
+		// examples 2, local variable 覆盖 global variable
+		var myvar = "my value";
+
+		(function () {
+			console.log(myvar); // undefined
+			var myvar = "local value";
+		})();
+		// will return a value of undefined
+
+		///////////////function hoisting/////////////////////////
+		foo(); //"bar"
+		function foo() {
+			console.log("bar");
+		}
+
+
+		/* Function expression */
+		baz(); // TypeError: baz is not a function
+
+		var baz = function () {
+			console.log("bar2");
+		};
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

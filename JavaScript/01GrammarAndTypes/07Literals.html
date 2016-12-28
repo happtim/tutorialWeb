@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Literals</title>
+	<script>
+		/*
+		1. array literals
+		2. boolean literals
+		3. floating 
+		4. integers
+		5. object
+		6. regExp
+		7. string 
+		*/
+		
+		/////////array//////////////
+		//array literals are Array Objects.
+		var coffees = ["French Roast", "Colombian", "Kona"];
+		
+		/////////boolean/////////////
+		true;
+		false;
+		
+		////////integers//////////////
+		1,117,-345; //10
+		015,0001;   //8
+		0x1123,0x000101;  // 16
+		0b11,0b0011;  //2
+		
+		///////float//////////////////
+		//[(+|-)][digits][.digits][(E|e)[(+|-)]digits]
+		3.1415926
+		-.123456789
+		-3.1E+12
+		.1e-23
+		
+		///////Object////////////////
+		//对象是0个或者多个,属性值的对用{}包裹
+		var sales = "Toyota";
+
+		function carTypes(name) {
+		  if (name === "Honda") {
+			return name;
+		  } else {
+			return "Sorry, we don't sell " + name + ".";
+		  }
+		}
+
+		var car = { myCar: "Saturn",
+				   getCar: carTypes("Honda"),
+				   special: sales,
+				   7: "Mazda"};
+
+		console.log(car["myCar"]);   // Saturn
+		console.log(car.getCar);  // Honda
+		console.log(car.special); // Toyota
+		console.log(car[7]);
+		
+		
+		//. and [] get value
+		var foo = {a: "alpha", 2: "two"};
+		console.log(foo.a);    // alpha
+		console.log(foo[2]);   // two
+		//console.log(foo.2);  // Error: missing ) after argument list
+		//console.log(foo[a]); // Error: a is not defined
+		console.log(foo["a"]); // alpha
+		console.log(foo["2"]); // two
+		
+		//////////////////RegExp//////////////
+		var re = /ab+c/;
+		
+		/////////////////String///////////////
+		"foo";
+		'bar';
+		"1234";
+		"one line \n another line";
+		"John's cat";
+		
+		
+			//javascript can automatically converts the string literal to String Object
+			console.log("John's cat".length) 
+
+			//string tempalte literals
+			// Basic literal string creation
+			console.log(`In JavaScript '\n' is a line-feed.`);
+
+			// Multiline strings
+			console.log(
+			`In JavaScript template strings can run
+			 over multiple lines, but double and single
+			 quoted strings cannot.`
+			);
+
+			// String interpolation
+			var name = "Bob", time = "today";
+			console.log( `Hello ${name}, how are you ${time}?` );
+		
+		
+			//escapting characters
+			var quote = "He read \"The Cremation of Sam McGee\" by R.W. Service.";
+			console.log(quote);
+		
+			var str = "this string \
+			is broken \
+			across multiple\
+			lines."
+			console.log(str);   // this string is broken across multiplelines.
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
