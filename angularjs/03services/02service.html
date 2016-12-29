@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>service 整个生命周期保存current_user</title>
+</head>
+<body ng-app="myApp">
+    
+    <div ng-controller="c1">
+        <input type="text" ng-model="user" ng-change="change()">
+        c1: {{user}}
+    </div>
+    <div ng-controller="c2">
+        user:{{user}}
+    </div>
+    
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('c1',function($scope,UserService){
+         $scope.user = UserService.getCurrentUser();
+            $scope.change=function(){
+                UserService.setCurrentUser($scope.user);
+            };
+        });
+        myApp.controller('c2',function($scope,UserService){
+            $scope.user = UserService.getCurrentUser();
+        });
+        myApp.factory('UserService',function(){
+           var current_user="timge";
+            //返回一个对象,有get,set方法
+            return {
+                getCurrentUser:function(){
+                    return current_user;
+                },
+                setCurrentUser:function(user){
+                    current_user = user;
+                }
+            };
+        });
+    </script>
+</body>
+</html>

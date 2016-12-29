@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>services</title>
+    <script>
+    // services 是可替换的对象使用di技术,他可以共享代码在app中.
+    // 延时加载,只有在依赖这个service的时候才会加载
+    // 单例的.service是通过service factory创建出来的.
+    </script>
+</head>
+<body ng-app="myServiceModule">
+   <div id="simple" ng-controller="MyController">
+       <input type="text" ng-init="message='test'" ng-model="message" >
+       <button ng-click="callNotify(message);">NOTIFY</button>
+       <p>(you have to click 3 times to see an alert)</p>
+    </div>
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+        var myApp = angular.module('myServiceModule',[]);
+        myApp.controller('MyController',function($scope,notify){
+            $scope.callNotify = function(msg){
+                notify(msg);
+            }
+        })
+        
+        myApp.factory('notify',function($window){
+            var msgs = [];
+            return function(msg){
+                msgs.push(msg);
+                if(msgs.length == 3){
+                    $window.alert(msgs.join("\n"));
+                    msgs = [];
+                }
+            };
+        })
+    </script>
+</body>
+</html>

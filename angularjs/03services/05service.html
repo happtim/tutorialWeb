@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>service</title>
+    <script>
+    //可以注册一个支持构造函数的服务
+    </script>
+</head>
+<body>
+    
+     <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+     <script>
+        var Ping = function($http){
+            this.$http = $http;
+        }
+        
+        Ping.$inject = ['$http'];
+         
+         Ping.prototype.send = function(){
+             return this.$http.get('/ping');
+         }
+         
+         var myApp = angular.module('myApp',[]);
+         myApp.service('ping',Ping);
+         myApp.controller('myController',function(ping){
+             ping.send();
+         })
+         
+    </script>
+</body>
+</html>

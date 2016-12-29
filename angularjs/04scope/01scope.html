@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scope as model</title>
+    <script>
+        //scope 作为一个应用的model,他是可以别expressions所执行的.
+        //scope 有以下基本功能
+        //1. 监视数据模型变化($watch)
+        //2. 可以将数据模型的变化通知整个应用($apply)
+        //3. 可以嵌套
+        //4. 可以给表达式提供运行的环境
+    </script>
+</head>
+<body ng-app="myApp">
+    
+    <div ng-controller="MyController">
+        Your name:
+        <input type="text" ng-model="username">
+        <button ng-click="sayHello()"> greet </button>
+        <hr>
+        {{greeting}}
+    </div>
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('MyController',function($scope){
+            $scope.username = "world";
+            $scope.sayHello = function(){ 
+                $scope.greeting = "Hello " + $scope.username + "!";
+            }
+        });
+    </script>
+</body>
+</html>

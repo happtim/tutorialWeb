@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>controller</title>
+    <script>
+    // 解释: 控制器ng-controller指令附着在一个DOM元素上,angular会使用指定的controller名字创建一个controller对象,
+    // 并且一个新的scope会随即创建出来
+        
+    // 解释: ng-controller 指令会附着一个class到一个view上
+        
+    // 作用: 控制器一般用来初始化$scope,给$scope加函数
+        
+    // 内存: 控制器只会在需要时实例化,不再需要的时候就会销毁,这样意味着每次切换路由后重新加载视图,当前控制器会被清理.
+    //      可以使用service解决内存问题
+    </script>
+</head>
+<body ng-app="myApp">
+    
+    <div ng-controller="GreetingController">
+        {{greeting}}
+    </div>
+    
+    <div ng-controller="DoubleController">
+        Two Times <input type="text" ng-model="num"> equals {{ double(num) }}
+    </div>
+    
+    
+     <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+     <script>
+        var myApp = angular.module('myApp',[]);
+         myApp.controller('GreetingController',function($scope){
+             $scope.greeting = 'Hola!';
+         });
+         
+         myApp.controller('DoubleController',function($scope){
+             $scope.double = function(value){
+                 return value*2;
+             };
+         })
+    </script>
+</body>
+</html>

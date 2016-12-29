@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>factory</title>
+    <script>
+    //最简单注册一个服务
+    </script>
+</head>
+<body ng-app="myApp">
+    
+    
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+        var myApp = angular.module("myApp",[]);
+        myApp.factory('ping',function($http){
+           return function ping(){
+              return $http.send('/ping'); 
+           } ;
+        });
+        
+        myApp.controller("myController",function(ping){
+            ping();
+        })
+    </script>
+</body>
+</html>

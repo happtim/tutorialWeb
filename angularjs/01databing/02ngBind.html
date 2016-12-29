@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>databing - ngBind</title>
+    <script>
+    // ng-app 用来启动ng应用,通常放在body或者html上面
+    //        只有ng-app属性包含的元素才受ng的影响
+    // ng-init 用来执行初始化的语句,通常用来赋值变量
+    // ng-bind 用来绑定scopt的变量到指定元算的html中,类似{{}} 单项的哦
+    </script>
+</head>
+<body ng-app>
+    
+    <p>{{3*5}}</p>
+    <h1 ng-init="list=[1,2,3,4]" ng-bind="list[0]"></h1>
+    ng-bing:<input type="text" name="name" ng-bind="name"> <br/>
+    ng-model:<input type="text" name="name" ng-model="name"> <br/>
+    绑定值:
+    <p>{{name}}</p>
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+</body>
+</html>

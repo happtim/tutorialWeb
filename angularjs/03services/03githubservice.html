@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>github service</title>
+    <script>
+    // 获取github 用户的事件流
+    </script>
+</head>
+<body ng-app="myApp">
+    
+    <div ng-controller="ServiceController">
+        <label for="username">
+            输入你github用户名
+        </label>
+        <input type="text" ng-model="username" placeholder="Enter a GitHub usrename"/>
+        
+        <ul>
+           <li ng-repeat="event in events">
+               
+               {{event.actor.login}} {{event.repo.name}}
+           </li> 
+        </ul>
+    </div>
+    
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+    var myApp = angular.module('myApp',[]);
+        myApp.controller('ServiceController',function($scope,$timeout,githubService){
+            var timeout;
+            $scope.$watch('username',function(newUsername){
+                
+                if(newUsername){
+                    if(timeout)
+                        $timeout.cancel(timeout);
+                    timeout = $timeout(function(){
+                        githubService.events(newUsername).then(function(data,status,headers){
+                            $scope.events = data.data.data;
+                        },function(){
+                            alert('error');
+                        })
+                    },350);
+                   
+                }
+                
+            });
+        });
+        myApp.factory('githubService',function($http,$sce){
+            var githubUrl = 'https://api.github.com';
+            
+            var runUserRequest = function(username,path){
+                return $http.jsonp($sce.trustAsResourceUrl(githubUrl + '/users/' + 
+                                                username +'/' + path ),{jsonpCallbackParam:'callback'}
+                );
+            };
+            
+            return {
+                events:function(username){
+                    return runUserRequest(username,'events');
+                }
+            };
+        });
+    </script>
+</body>
+</html>

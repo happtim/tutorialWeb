@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>provider</title>
+    <script>
+    // angular service被service factory创建出来, 这些工厂则被service provider创建出来
+    // service provider 是一个构造函数,他有个对象$get必须是service factory 的函数
+    </script>
+</head>
+<body>
+    
+     <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+     <script>
+    
+         var myApp = angular.module('myApp');
+         myApp.factory('myService',function(){
+             return{
+                 'username':'auser'
+             };
+         })
+         ///等同于上面
+         .provider('myService',{
+             $get:function(){
+                 return{
+                     'username':'auser',
+                 };
+             }
+         })
+         
+         
+         //是否可以使用.factory()替换.provider(). .config可以对provider经行扩展
+         
+         var myApp = 
+         angular.module('myApp',[]);
+         
+         myApp.provider('githubService',function($http){
+             var githubUrl = 'https://github.com';
+             
+             setGithubUrl :function(url){
+                 if(url)
+                     githubUrl = url;
+             },
+             method:JSONP,
+            $get:function($http){
+                self = this;
+                return $http({method:self.method,url:githubUrl+'/events'});
+            }
+         });
+         
+         myApp.config(function(githubServiceProvider){
+             githubServiceProvider.setGithubUrl("git@github.com");
+         })
+    </script>
+</body>
+</html>
