@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>directive wrap other elements</title>
+    <script>
+    //包裹一个元素的指令
+    </script>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="Controller">
+  <my-dialog>Check out the contents, {{name}}!</my-dialog>
+</div>
+     <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+     <script>
+        var myApp = angular.module("myApp",[]);
+         myApp.controller("Controller",function($scope){
+             $scope.name = "Tobias";
+         });
+         
+         myApp.directive("myDialog",function(){
+            return{
+                restrict:"E",
+                transclude:true,
+                scope:{},
+                templateUrl:"07my-dialog.html"
+            } 
+         });
+    </script>
+</body>
+</html>

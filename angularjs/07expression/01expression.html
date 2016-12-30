@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>expression</title>
+</head>
+<body ng-app>
+    <h2>Angular表达式</h2>
+		<p>1+2={{1+2}}</p>
+		<p>1-2={{1-2}}</p>
+		<p>1*2={{1*2}}</p>
+		<p>1/2={{1/2}}</p>
+		<p>1%2={{1%2}}</p>
+		
+		<p>++,--不能使用</p>
+		<p>{{++1}}</p>
+		<p>{{--1}}</p>
+		
+		<h2>比较运算符</h2>
+		<p>1>2={{1>2}}</p>
+		<p>1>=2={{1>=2}}</p>
+		<p>'2'==2={{'2'==2}}</p>
+		<p>'2'===2={{'2'===2}}</p>
+		<p>'2'!=2{{'2'!=2}}</p>
+		
+		<h2>逻辑运算</h2>
+		<p>true&&true={{true&&true}}</p>
+		<p>false||false={{false||false}}</p>
+		<p>!true={{!true}}</p>
+		
+		<h2>三目运算</h2>
+		<p>20>18?'青壮年':'青少年'={{20>18?'青壮年':'青少年'}}</p>
+		
+		<h2>特殊运算符</h2>
+	<!--<p>typeof: {{ typeof(age) }}</p>
+  		<p>typeof: {{ 'abc' instanceof String  }}</p>-->
+		
+		<h2>对象属性或方法</h2><span ng-init="name='timge'"></span>
+		<p>'Hello'.toUpperCase()={{'Hello'.toUpperCase()}}</p>
+		<p>name.substring(0,3)={{name.substring(0,3)}}</p>
+		
+		<h2>创建对象</h2>
+		<p>{'ename':'Tom'}.ename={{{'ename':'Tom'}.ename}}</p>
+<!--		<p>new调用构造方法{{new Date()}}</p>-->
+		
+		<h2>数组</h2>
+		<p>{{[10,20,30]}}</p>
+		<p>获取数组中指定元素</p>
+		<p>['Tom','Mary'][1]={{['Tom','Mary'][1]}}</p>
+<!--		<p>new Array:{{ new Array();}}</p>-->
+		
+		<h2>赋值运算</h2>
+		<span ng-init="age=20"></span>
+		<p>age={{age}}</p>
+		<p>直接赋值age={{age=30}}</p>
+<!--		<p>运算赋值age={{age+=30}}</p>-->
+
+
+     <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+</body>
+</html>

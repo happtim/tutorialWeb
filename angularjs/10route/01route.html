@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>route</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
+</head>
+<body ng-app="myApp">
+   
+    <div class="container" ng-controller="controller">
+		<h2>ngRoute模块</h2>
+		<div ng-view ></div>
+	</div>
+    
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular-route.js"></script>
+    <script>
+        angular.module('myApp',['ng','ngRoute']).
+			config(function($routeProvider){
+				$routeProvider.
+					when('/start',{templateUrl: 'tpl/start.html'}).
+					when('/main',{templateUrl: 'tpl/main.html'}).
+					when('/detail',{templateUrl: 'tpl/detail.html'}).
+					otherwise({redirectTo:'/start'});
+				
+			}).
+			controller('controller',function($scope){
+			
+		});
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    // module 可以是一个容器用来包含网站不同的部分 controller,service,filter,driective
+    </script>
+</head>
+<body ng-app="myApp">
+
+    <div>
+    {{ 'World' | greet }}
+    </div>
+    
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+        var myApp = angular.module("myApp",[]);
+        myApp.filter("greet",function(){
+            return function(name){
+                return "Hello," + name + "!";
+            };
+        })
+    </script>
+</body>
+</html>
