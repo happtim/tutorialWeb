@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>select2 </title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/2.3.2/css/bootstrap.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/select2/3.5.2/select2.css">
+</head>
+<body>
+    
+    <form action="">
+       <input type="hidden" class="bigdrop" id="select2" style="width: 600px; " value="3875153" tabindex="-1" title="">
+    </form>
+    <script src="http://cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
+    <script src="http://cdn.bootcss.com/select2/3.5.3/select2.js"></script>
+    <script src="http://cdn.bootcss.com/select2/3.5.2/select2_locale_zh-CN.js"></script>
+    <script>
+        $(function(){
+            
+            
+   function repoFormatResult(repo) {
+      var markup = '<div class="row-fluid">' +
+         '<div class="span2"><img src="' + repo.owner.avatar_url + '" /></div>' +
+         '<div class="span10">' +
+            '<div class="row-fluid">' +
+               '<div class="span6">' + repo.full_name + '</div>' +
+               '<div class="span3"><i class="fa fa-code-fork"></i> ' + repo.forks_count + '</div>' +
+               '<div class="span3"><i class="fa fa-star"></i> ' + repo.stargazers_count + '</div>' +
+            '</div>';
+
+      if (repo.description) {
+         markup += '<div>' + repo.description + '</div>';
+      }
+
+      markup += '</div></div>';
+
+      return markup;
+   }
+
+   function repoFormatSelection(repo) {
+      return repo.full_name;
+   }
+            
+            $("#select2").select2({
+                placeholder: "Search for a repository",
+                minimumInputLength: 1,
+                language:'zh-CN', //设置语言
+                id:function(repo){ //设置key的值
+				    return repo.id;
+				},
+                ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+                    url: "https://api.github.com/search/repositories",
+                    dataType: 'json',
+                    quietMillis: 250,
+                    data: function (term, page) { //指定搜索的q为搜索的参数,page为页数
+                        return {
+                            q: term, 
+                        };
+                    },
+                    results: function (data, page) { //返回的数据将数组返回回去
+                        return { results: data.items };
+                    },
+                    cache: true
+                },
+                initSelection: function(element, callback) { //初始化的数据,element为input的数据,饭后找个数据返回单个数据
+                var id = $(element).val();
+                    if (id !== "") {
+                        $.ajax("https://api.github.com/repositories/" + id, {
+                            dataType: "json"
+                        }).done(function(data) { callback(data); });
+                    }
+                },
+                formatResult: repoFormatResult, //数组的单个数据format格式
+                formatSelection: repoFormatSelection,  //选择的样式直接返回名字
+                dropdownCssClass: "bigdrop", 
+                escapeMarkup: function (m) { return m; } 
+            })
+        });
+    </script>
+</body>
+</html>
