@@ -3,11 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>nested functions</title>
-	<scritp>
-		function addSquares(a,b){
-			function
-		}	
-	</scritp>
+	<script>
+		//内部函数只能在外部函数的声明内使用
+		//内部函数形成闭包,内部函数能使用外部函数的变量,反之不行
+	</script>
+	<script>
+		function outside(x) {
+		  function inside(y) {
+			return x + y;
+		  }
+		  return inside;
+		}
+		fn_inside = outside(3); // Think of it like: give me a function that adds 3 to whatever you give it
+		result = fn_inside(5); // returns 8
+		console.log(result);
+
+		result1 = outside(3)(5); // returns 8
+		console.log(result1)
+	</script>
 </head>
 <body>
 	

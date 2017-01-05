@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>parameter</title>
+	<script>
+		//默认参数
+		function multiply(a, b = 1) {
+		  return a*b;
+		}
+
+		multiply(5); // 5
+	</script>
+	
+	
+	<script>
+		//剩余参数,将剩余的参数视为数组
+		function multiply(multiplier, ...theArgs) {
+		  return theArgs.map(x => multiplier * x);
+		}
+
+		var arr = multiply(2, 1, 2, 3);
+		console.log(arr); // [2, 4, 6]
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

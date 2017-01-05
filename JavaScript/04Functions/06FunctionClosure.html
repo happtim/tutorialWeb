@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Closure</title>
+	<script>
+		//内部的函数可以访问外部函数的变量,而外部函数不行,可以保护变量的作用域,返回一个函数访问,其他不能访问
+		//内部函数也可以延长外部函数变量的生命周期,当外部函数调用完之后,还不能释放内存
+	</script>
+	<script>
+		var pet = function(name) {   // The outer function defines a variable called "name"
+			var getName = function() {
+				return name;             // The inner function has access to the "name" variable of the outer function
+			}
+			return getName;            // Return the inner function, thereby exposing it to outer scopes
+		}
+		myPet = pet("Vivie");
+
+		myPet();                     // Returns "Vivie"
+	</script>
+	
+	<script>
+		//外部函数不能访问内部的变量,只有返回内部的object才能使用外部函数的变量和参数
+		var createPet = function(name) {
+			var sex;
+			return {
+				setName: function(newName) {
+			  		name = newName;
+				},
+
+				getName: function() {
+			  		return name;
+				},
+
+				getSex: function() {
+			  		return sex;
+				},
+
+				setSex: function(newSex) {
+			  		if(typeof newSex === "string" && (newSex.toLowerCase() === "male" || newSex.toLowerCase() === "female")) {
+					sex = newSex;
+			 	}
+			}
+		  }
+		}
+
+		var pet = createPet("Vivie");
+		pet.getName();                  // Vivie
+
+		pet.setName("Oliver");
+		pet.setSex("male");
+		pet.getSex();                   // male
+		pet.getName();                  // Oliver
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
