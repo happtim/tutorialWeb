@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>string method</title>
+	<script>
+		//charAt 返回索引的字符
+		console.log("abc".charAt(1));//b
+		
+		//indexof 返回子字符串位置
+		console.log("abcdefg".indexOf("cde"));//2
+		
+		//startWith 返回是否字符串包含子字符串
+		console.log("abcdefg".startsWith("ab"));//true
+		
+		//concat 拼接字符串
+		console.log("abc".concat("def"));//abcdef
+		
+		//fromCharCode string的构造函数
+		console.log(String.fromCharCode(65, 66, 67));  // "ABC");
+		
+		//split 分割字符串
+		console.log("a,b,c".split(","))// array(a,b,c)
+		
+		//slice(begin,end) 提取字符串一部分,返回新的字符串
+		//begin 字符串的开始截取位置, 如果begin为负数,开始位置为length+begin.例如10-3
+		//end 字符串的结束位置,如果忽略就为末尾.如果负数,结束位置为length+end.例如10-3
+		var str1 = 'The morning is upon us.', // the length of str1 is 23.
+		str2 = str1.slice(1, 8),
+		str3 = str1.slice(4, -2),
+		str4 = str1.slice(12),
+		str5 = str1.slice(30);
+		console.log(str2); // OUTPUT: he morn
+		console.log(str3); // OUTPUT: morning is upon u
+		console.log(str4); // OUTPUT: is upon us.
+		console.log(str5); // OUTPUT: ""
+		
+		console.log(str1.slice(-3));    // returns 'us.'
+		console.log(str1.slice(-3, -1)); // returns 'us'
+		console.log(str1.slice(0, -1));  // returns 'The morning is upon us'	
+		
+		//substring(indexStart,indexEnd)
+		console.log("Mozilla".substring(0,3));//Moz
+		
+		//substr(start,length)
+		console.log("Mozilla".substr(0,3));//Moz
+		
+		//regular match,replace,search
+		
+		//toLowerCase,toUpperCase
+		console.log("abc".toUpperCase());//ABC
+		console.log("ABC".toLowerCase());//abc
+		
+		//repeat 字符串重复几次
+		console.log("abc".repeat(2));//abcabc
+		
+		//trim 去除首尾空格
+		console.log(" 	abc ".trim());//abc
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
