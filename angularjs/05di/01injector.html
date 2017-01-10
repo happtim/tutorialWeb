@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>injector</title>
+    <script>
+    //
+    </script>
+</head>
+<body ng-app="myApp">
+   
+   <div ng-controller="MyController">
+       <button ng-click="sayHello()">Hello</button>
+   </div>
+    
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+    var myApp = angular.module('myApp',[]);
+        myApp.factory("greeter",function(){
+            return{
+                greet:function(msg){alert(msg);}
+            };
+        });
+        myApp.controller("MyController",function($scope,greeter){
+           $scope.sayHello = function(){
+               greeter.greet("Hello!");
+           } 
+        });
+    </script>
+    <script>
+    // 实际上处理如下
+        //使用注入器加载应用
+        var injector = angular.injector(['ng','myApp']);
+        
+        var scope = injector.get('$rootScope').$new();
+        //使用注入器加载controller
+        var $controller = injector.get("$controller");
+        var myController = $controller('MyController',{$scope:scope});
+    </script>
+</body>
+</html>

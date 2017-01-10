@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>isollate scope</title>
+    <script>
+    // scope options 有一个属性用来绑定每个isolate scope
+    // Its name (customerInfo) corresponds to the directive's isolate scope property, customerInfo.
+    // Its value (=info) tells $compile to bind to the info attribute
+    </script>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="Controller">
+      <my-customer info="naomi"></my-customer>
+      <hr>
+      <my-customer info="igor"></my-customer>
+    </div>
+
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+        var myApp = angular.module("myApp",[]);
+        myApp.controller("Controller",function($scope){
+            $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+            $scope.igor = { name: 'Igor', address: '123 Somewhere' };
+        });
+        
+        myApp.directive("myCustomer",function(){
+           return{
+               restrict:"E",
+               scope:{
+                   customerInfo:"=info"
+               },
+               templateUrl:"05my-customer-iso.html"
+           }; 
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>warp 2</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
+    <script>
+    // scope{ "close":"&onClose" } &attr 可以让指令触发一个表达式,这个表达式是一个函数
+    // 当x 被点击,ng-clock 会调用close 在isolated scope 的表达式 hideDialog(message)
+    </script>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="Controller">
+      {{message}}
+      <my-dialog ng-hide="dialogIsHidden" on-close="hideDialog(message)">
+        Check out the contents, {{name}}!
+      </my-dialog>
+    </div>
+    
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+        var myApp = angular.module("myApp",[]);
+        myApp.controller("Controller",function($scope,$timeout){
+            $scope.name = "Tobias";
+            $scope.message = "";
+            $scope.hideDialog = function(message){
+              $scope.message = message;
+              $scope.dialogIsHidden  = true;
+              $timeout(function(){
+                $scope.message = "";
+                $scope.dialogIsHidden = false;
+             },2000);
+            };
+        });
+        
+        myApp.directive("myDialog",function(){
+           return{
+             restrict:"E",
+             transclude:true,
+             scope:{
+                 "close":"&onClose"
+             },
+             templateUrl:"08my-dialog-close.html"
+           };
+        });
+    </script>
+</body>
+</html>

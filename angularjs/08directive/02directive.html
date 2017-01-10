@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>directive</title>
+    <script>
+        
+    </script>
+</head>
+<body ng-app="myApp">
+    
+    <div ng-controller="Controller">
+         <div my-customer3 type="name"></div>
+          <div my-customer3 type="address"></div>
+    </div>
+    
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+    var myApp = angular.module("myApp",[]);
+        myApp.controller("Controller",function($scope){
+            $scope.customer = {
+                name:"Naomi",
+                address:"1600 Amphitheatre"
+            };
+        });
+        myApp.directive("myCustomer3",function(){
+            return{
+                templateUrl:function(elem,attr){
+                    return "02customer-" + attr.type + ".html";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
