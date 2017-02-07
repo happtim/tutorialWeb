@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+	<script>
+		//javascript 中没有面向对象语言的类,而是使用原型链这种方式
+		
+		//每个函数都有一个属性那就是prototype,这个属性就是这个类的共有属性
+		function DOG(name){
+			this.name = name;
+		}
+		
+		//prototype 有个属性constructor这个属性指向类的构造
+		console.log(DOG.prototype);//
+		
+		//每个对象都有一个__proto__这个属性,他是一个指针,指向这个类的prototype属性,而prototype又有constructor属性又是构造函数
+		var dogA = new DOG('大毛');
+		console.log(dogA);
+		
+		console.log(dogA.__proto__ === DOG.prototype);//true
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

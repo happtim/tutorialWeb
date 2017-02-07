@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Number Object</title>
+	<script>
+		n = 123;
+		f = 123.123456789
+		//property
+		console.log(Number.MAX_VALUE);
+		console.log(Number.MIN_VALUE);
+		console.log(Number.NaN);
+		console.log(Number.NEGATIVE_INFINITY);
+		console.log(Number.POSITIVE_INFINITY);
+		console.log(Number.EPSILON);
+		console.log(Number.MAX_SAFE_INTEGER);
+		console.log(Number.MIN_SAFE_INTEGER);
+		
+		//method
+		Number.parseFloat("1.1111");
+		Number.parseInt("123111");
+		Number.isFinite("123");
+		Number.isInteger("123");
+		Number.isNaN(Number.NaN);
+		Number.isSafeInteger("123");
+		
+		//prototype
+		console.log(f.toFixed(5));      //小数有几位 123.12345
+		console.log(f.toExponential()); //指数形式
+		console.log(f.toPrecision(5)); //精度       123.12
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

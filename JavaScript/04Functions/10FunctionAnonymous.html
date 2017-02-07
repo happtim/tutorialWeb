@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>匿名函数</title>
+	<script>
+		var n = 10;
+		(function(n){
+			n--;
+			console.log(n); //9
+		})(n);
+		console.log(n);//10
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

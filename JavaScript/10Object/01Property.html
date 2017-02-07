@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性</title>
+	<script>
+		// javascript 提供了一种简单的对象,一个对象是一个属性的集合,一个属性就是一个key,value对.
+		
+		//objectName.propertyName 
+		var myCar = new Object();
+		myCar.make = "Ford";
+		myCar.model = "Mustang";
+		myCar.year = 1969;
+		console.log(myCar);
+		
+		//bracket notation
+		myCar["make"] = "Ford";
+		myCar["model"] = "Mustang";
+		myCar["year"] = 1969;
+		console.log(myCar);
+		
+		//对象的key可以是任意可以转换为string
+		var myObj = new Object(),
+		str = "myString",
+		rand = Math.random(),
+		obj = new Object();
+
+		myObj.type              = "Dot syntax";
+		myObj["date created"]   = "String with space";
+		myObj[str]              = "String value";
+		myObj[rand]             = "Random Number";
+		myObj[obj]              = "Object";
+		myObj[""]               = "Even an empty string";
+		myObj[1]				= "number";
+//		myObj.3a				= "invalid property";
+//		myObj[3a]				= "invalid propery";
+
+		console.log(myObj);
+		
+		
+		//遍历元素属性
+		function showProps(obj, objName) {
+		  var result = "";
+		  for (var i in obj) {
+			// obj.hasOwnProperty() is used to filter out properties from the object's prototype chain
+			if (obj.hasOwnProperty(i)) {
+			  result += objName + "." + i + " = " + obj[i] + "\n";
+			}
+		  }
+		  return result;
+		}
+		
+		console.log(showProps(myCar, "myCar"));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

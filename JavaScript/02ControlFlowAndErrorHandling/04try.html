@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>try</title>
+	<script>
+		console.log("-----try---catch----");
+		var n = 345.678;
+		var d = -1;
+		try{
+			console.log(n.toFixed(d));
+		}catch(err){
+			console.log(err.message);
+		}finally{
+			console.log("释放资源");
+		}
+
+		console.log("-------finally-------");
+		try{
+			var a = new XMLHttpRequest();
+			console.log("support");
+		}catch(err){
+			console.log(err.message);
+		}finally{
+			a = null;
+		}
+
+
+		function fun(){
+			try{
+				n=1;
+				console.log(m);
+				return n;
+			}catch(err){
+				n = 2;
+				return n;
+			}finally{
+				n = 3;
+			//	return n;
+			}
+		}
+
+		//如果没有异常,先返回1然后值改成3
+		console.log(fun());
+		console.log(n);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

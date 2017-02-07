@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hash Array</title>
+	<script>
+		var ym=[];
+		ym["sname"]="杨幂";
+		ym["shx"]=81;
+		console.log(ym);//array(0)数组为空的,shx当做属性给了ym的数组了
+		console.log(ym.length);//0
+
+		var ym={"sname":"杨幂","shx":81,"yw":53};//创建object对象
+		console.log(ym);
+		for(var key in ym)//for...in 遍历object属性
+			console.log(key+":"+ym[key]);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

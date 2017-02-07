@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>显示类型转化</title>
+	<script>
+		
+		var n=100;
+		console.log(typeof n.toString());//string
+
+		var m ;
+		//undefined 没有toString方法.
+		//m.toString();
+
+		//String是万能的.
+		console.log(String(m));//undefined
+
+		console.log(Number(true));//1
+		
+		console.log(Number("3a"));//NaN
+
+		var width = "60px";
+		console.log(parseInt(width)+10+"px");//70px
+		console.log(Number.parseInt("123x"));//123
+		console.log(Number.parseInt("x123x"));//NaN
+
+		console.log(parseInt(String(true)));//NaN
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

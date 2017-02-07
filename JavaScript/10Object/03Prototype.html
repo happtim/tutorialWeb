@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			function Student(name,age){
+				this.name = name;
+				this.age = age;
+				/*每个对象都有自己intro函数,浪费空间
+				this.intro = function(){
+				console.log("I'm "+this.name+",I'm"+this.age);
+				}
+				*/
+			}
+			Student.prototype.intro=function(){
+				console.log("I'm "+this.name+",I'm"+this.age);
+			}
+			
+			var lilei = new Student("Li Lei",18);
+			var hmm = new Student("Han Meimei",19)
+			
+			lilei.intro();
+			hmm.intro();
+			
+			console.log(lilei.__proto__);
+			
+			console.log("------in--------");
+			console.log("intro" in lilei);//true
+			console.log("intro" in hmm);//true
+			
+			function fun(){
+				//检测argumnets有数组的方法
+				console.log("sort" in arguments);
+			}
+			fun();
+			
+			console.log("---hasOwnProperty-判断自有----");
+			hmm.money = 5;
+			console.log(hmm.hasOwnProperty("money"));//true
+			console.log(lilei.hasOwnProperty("money"));//false
+			
+			console.log("-------判断共有属性-----------");
+			console.log(!hmm.hasOwnProperty("intro") && "intro" in hmm );//true
+			console.log(!hmm.hasOwnProperty("name") && "name" in hmm );//false
+			
+			console.log("--getPrototypeOf---获取__proto__");
+			console.log( Object.getPrototypeOf(hmm) == Object.getPrototypeOf(lilei) );//true
+			
+			console.log("-------isPrototypeOf-------");
+			function func(){}
+			console.log( Function.prototype.isPrototypeOf(func) );//true
+			
+			console.log("-------delete------");
+			delete hmm.money;
+			console.log(hmm.hasOwnProperty("money"));//false
+			
+			console.log("-----函数浏览器兼容-------");
+			/*当前浏览器中String类型的原型对象是否包含trim方法*/
+			if( !("trim" in String.prototype)){
+				String.prototype.trim=function(){
+					return this.replace(/^\s+|\s+$/g,"");
+				}
+			}
+			
+			var str = "\t hello world \t";
+			console.log(str.trim());
+			
+			
+		if(Array.prototype.indexOf === undefined){
+		//if(!Array.prototype.indexOf){
+			Array.prototype.indexOf=function(kword,fromi){
+				fromi === undefined && (fromi=0);		
+				for(;fromi<this.length;fromi++){
+					if(this[fromi]==kword)
+						return fromi;
+				}
+				return -1;
+			}	
+		}
+			var arr = ["no","zuo","no","die"];
+			console.log(arr.indexOf("no",1));
+			
+			
+		</script>
+	</head>
+	<body></body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			function Student(name,age){
+				this.name = name;
+				this.age = age;
+			}	
+			Student.prototype.toString=function(){
+				return "I'm "+this.name+",I'm "+this.age;
+			}
+			
+			var lilei = new Student("Li Lei",18);
+			console.log(lilei.toString());
+		</script>
+	</head>
+	<body></body>
+</html>

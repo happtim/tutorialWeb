@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			console.log("----regexp--exec----");
+			var data = "Microsoft is a big Company,microsoft's color is red and has MICROSOFT logo like microsoft";
+			
+			var reg = /microsoft/g;
+			var arr=null;
+			while( (arr=reg.exec(data)) != null){
+				console.log("index:"+arr.index + 
+							"发现匹配"+arr[0]);
+				console.log("下次从 "+reg.lastIndex+"开始");
+			}
+			
+			//常用语验证,需要家^$
+			console.log("--regexp---test----");
+			var reg = /microsoft/;
+			if(reg.test(data))
+				console.log("找到了");
+		</script>
+	</head>
+	<body></body>
+</html>

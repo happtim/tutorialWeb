@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大小关系</title>
+	<script>
+		console.log("-------基本类型--------");
+		console.log("3">2);//true
+		console.log("2">true);//true
+		console.log("3a">2);//false;Number(3a) NaN
+
+		console.log("--------NaN-----------");
+		console.log(NaN>=NaN);//false
+		console.log(NaN<=NaN);//false
+		console.log(NaN==NaN);//false
+		console.log(NaN!=NaN);//true
+
+		console.log("--------判断数字---------");
+		//isNaN用来判断是否是数字
+		console.log(!isNaN("hello"));//false
+		console.log(!isNaN(123));//true
+
+		console.log("---undefined-and-null---");
+		var n;//undefined;
+		var m = null;
+		console.log(m==n);//true
+		console.log(n==null);//true
+		console.log(m==null);//true
+		console.log(m===n);//false
+
+		var input = prompt("请输入一个字符:");
+		console.log(
+			!isNaN(input)?"数字":
+			input>="\u4e00"&&input<="\u9fa5"?"汉字":
+			(input>="A" && input<="Z")||
+			(input>="a"&&input<="z")?"字母":"其他字符"
+		);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

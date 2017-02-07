@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			function Student(name,age){
+				this.name = name;
+				this.age = age;
+			}	
+			Student.prototype.toString=function(){
+				return "I'm "+this.name+",I'm "+this.age;
+			}
+			Student.prototype.clone=function(){
+				var newObj;
+				
+				/*克隆原始类型包装类*/
+				if(!(this instanceof Number)
+					&&!(this instanceof String)
+					&&!(this instanceof Boolean)){
+					//如果不是包装类型
+					newObj=new this.constructor();
+				}else{//否则，必须向构造函数中传值
+					newObj=new this.constructor(this.valueOf());
+				}
+				for(var prop in this){
+					if(this.hasOwnProperty(prop)){
+						newObj[prop] = this[prop];	
+					}
+				}	
+				return newObj;
+			}
+			
+			var lilei = new Student("Li Lei",18);
+			var duoli = lilei.clone();
+			console.log(duoli == lilei);
+			
+			
+		</script>
+	</head>
+	<body></body>
+</html>

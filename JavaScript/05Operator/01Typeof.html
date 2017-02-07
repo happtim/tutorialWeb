@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var myFun = new Function("5 + 2");
+		var shape = "round";
+		var size = 1;
+		var foo = ["Apple", "Mango", "Orange"];
+		var today = new Date();
+		
+		typeof myFun;       // returns "function"
+		typeof shape;       // returns "string"
+		typeof size;        // returns "number"
+		typeof foo;         // returns "object"
+		typeof today;       // returns "object"
+		typeof doesntExist; // returns "undefined"
+		
+		typeof true; // returns "boolean"
+		typeof null; // returns "object"
+		
+		//for number or string 
+		typeof 62;            // returns "number"
+		typeof 'Hello world'; // returns "string"
+		
+		//for property
+		typeof document.lastModified; // returns "string"
+		typeof window.length;         // returns "number"
+		typeof Math.LN2;              // returns "number"
+		
+		//for methods
+		typeof blur;        // returns "function"
+		typeof eval;        // returns "function"
+		typeof parseInt;    // returns "function"
+		typeof shape.split; // returns "function"
+		
+		//for predefined objects
+		typeof Date;     // returns "function"
+		typeof Function; // returns "function"
+		typeof Math;     // returns "object"
+		typeof Option;   // returns "function"
+		typeof String;   // returns "function"
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

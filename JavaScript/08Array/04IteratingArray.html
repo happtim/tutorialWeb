@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>遍历数组</title>
+	<script>
+		var colors = ['red', 'green', 'blue'];
+		for (var i = 0; i < colors.length; i++) {
+		  console.log(colors[i]);
+		}
+		
+		colors.forEach(function(color){
+			console.log(color);
+		});
+		
+		
+		//错误遍历,for...in 针对 对象
+		for(color in colors){
+			console.log(color);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

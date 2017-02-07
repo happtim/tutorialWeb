@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>类数组对象</title>
+	<script>
+		//NodeList document.getelementsByTagName();
+		//arguments 这些对象很像一个数组有长度属性,但是没有任何数组方法
+		
+		function printArguments() {
+		console.log(arguments);
+		  Array.prototype.forEach.call(arguments, function(item) {
+			console.log(item);
+		  });
+		}
+		
+		printArguments(1,2,3,4,5);
+		
+		
+		Array.prototype.forEach.call("a string", function(chr) {
+		  console.log(chr);
+		});
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

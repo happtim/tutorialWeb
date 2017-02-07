@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>赋值 an array</title>
+	<script>
+		var emp = [];
+		emp[0] = "葛翔";
+		emp[1] = "劳福和";
+		emp[2] = "杨鑫";
+		
+		//如果给一个非整数做为索引,就会当成属性
+		var arr = [];
+		arr[4] = "4";
+		arr[3.4]  = "3.4";
+		console.log(arr.length);//5
+		console.log(arr.hasOwnProperty(3.4));//true
+		
+		
+		//创建时赋值
+		var myArray = new Array("Hello", 12, 3.14159);
+		var myArray = ["Mango", "Apple", "Orange"];
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

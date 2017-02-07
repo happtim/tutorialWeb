@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组 函数</title>
+	<script>
+		//concat 拼接数组
+		var arr = new Array(1,2,3);
+		console.log(arr.concat(4,5,6));//1,2,3,4,5,6
+		console.log(arr.concat([4,5,6]));//1,2,3,4,5,6
+		
+		//join 数组转字符串
+		console.log(arr.join("-"));//1-2-3
+		
+		//push 末尾加元素返回新的数组长度
+		console.log(arr.push(4,5));//5
+		
+		//pop 移除末尾元素,返回那个元素
+		var arr = [1,2,3];
+		console.log(arr.pop());//3
+		
+		//shift() 移除第一个元素,返回那个元素
+		console.log(arr.shift());//1
+		
+		//unshift 添加一个或者多个元素,返回数组元素长度
+		var arr = [1,2,3];
+		console.log(arr.unshift(-1,0));//5
+		
+		//slice(start_index,end_index) 截取数组
+		var arr = [1,2,3,4,5,6,7];
+		console.log(arr.slice(1,4));//2,3,4 不包含end_index
+		console.log(arr.slice(3));//4,5,6,7
+		
+		//splice(index,count_to_remove,e1,e2,...) 移除元素,如果有替换元素则替换,返回被移除的元素
+		console.log(arr.splice(0,2,8,8,8));//1,2
+		console.log(arr);//8,8,8,3,4,5,6,7
+		
+		//reverse 反转数组 1,2,3
+		var arr = [1,2,3];
+		console.log(arr.reverse());//3,2,1
+		
+		//sort 给数组排序
+		arr = [1,2,3];
+		console.log(arr.sort(function(a,b){
+			return a<b;
+		}));//3,2,1
+		
+		//indexOf(searchElement[,formIndex]) 找一个元素在数组返回索引
+		//lashIndexOf(searchElement[,formIndex])
+		console.log(arr.indexOf(2));//1
+		
+		//forEach(callback[,thisObject]) 执行一个回调函数对每个元素
+		console.log(arr.forEach(function(e){
+			console.log(e);
+		}));//1,2,3
+		
+		//map(callback[,thisObject]) 执行一个回调函数并返回一个新的数组
+		arr = [1,2,3];
+		console.log(arr.map(function(e){
+			return e+1;
+		}));//2,3,4
+		
+		//filter(callback[,thisObject]) 回调返回true才会返回元素
+		console.log(arr.filter(function(e){
+			return e>2;
+		}));//3
+		
+		//every(callback[,thisObject]) 返回true,如果每个元素都为true
+		console.log(arr.every(function(e){
+			return e<10;
+		}));//true
+		
+		//some(callback[,thisObject]) 返回true,如果至少一个元素返回true
+		console.log(arr.some(function(e){
+			return e == 1;
+		}));//true
+		
+		//reduce(callback[,initialValue]) 执行callback(firstValue,secondValue) 减少数组到一个元素
+		//reduceRight 同上从右开始
+		console.log(arr.reduce(function(e1,e2){
+			return e1+e2;
+		}));//1+2+3 = 6
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

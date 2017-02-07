@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>变量的作用域</title>
+	<script>
+		//只有函数内有作用域,其他的代码块不会形成作用域
+		
+		if(true){
+			var count = 10;
+		}
+
+		function fun1(count){
+			count--;
+			console.log("fun1:"+count);
+		}
+
+		function fun2(){
+			count--;
+			console.log("fun2:"+count);
+		}
+
+		console.log("global:"+count);//10
+		fun1(5);//4
+		console.log("global:"+count);//10
+		fun2();//9
+		console.log("global:"+count);//9
+		
+	</script>
+	
+</head>
+<body>
+	
+</body>
+</html>

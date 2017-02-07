@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			/*判断一个对象和数组方法*/
+			var arr = [1,2,3];
+			var obj = {};
+			var fun = function(){};
+			
+			console.log("-----typeof-------");
+			console.log(typeof arr);//object fail
+			console.log(typeof obj);//object
+			console.log(typeof fun);//function
+			
+			
+			console.log("-----isPrototypeOf------");
+			console.log(
+				Array.prototype.isPrototypeOf(arr);//true
+			);
+			console.log(
+				Array.prototype.isPrototypeOf(obj);//false
+			);
+			console.log(
+				Array.prototype.isPrototypeOf(fun);//false
+			);
+			
+			console.log("-----instanceof----------");
+			console.log(arr instanceof Array);//true
+			console.log(arr instanceof Object);//true
+			console.log(obj instanceof Object);//true
+			console.log(fun instanceof Function);//true
+			
+			console.log("-----getPrototypeOf-----");
+			console.log(Object.getPrototypeOf(arr)== Array.prototype);//true
+			
+			console.log("--------toString--------");
+			console.log(arr.toString());//1,2,3
+			console.log(obj.toString());//[object Object]
+			console.log(fun.toString());//function(){}
+			
+			console.log("------call-and-apply-------");
+			console.log(Object.prototype.toString.call(arr));//[object Array]
+			console.log(Object.prototype.toString.call(obj));//[object Object]
+			console.log(Object.prototype.toString.call(fun));//[object Function]
+			
+			console.log("------isArray-----------");
+			console.log(Array.isArray(arr));//true
+			
+		</script>
+	</head>
+	<body></body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			//判断有没有,只找第一个,返回下标.如果没找到返回-1
+			console.log("-----search()-查找----");
+			var data = "Microsoft is a big Company,microsoft's color is red and has MICROSOFT logo like microsoft";
+			
+			console.log(data.search("microsoft"));
+			console.log(data.search(/microsoft/));
+			console.log(data.search(/microsoft/i));
+			console.log(data.search(/microsoft/g));//忽略g
+			
+			//获得所有关键词的内容和个数(结尾+g),不能告诉匹配位置
+			//如果reg结尾看+g,表示查找全部匹配关键字
+			//否则只第一个匹配关键字
+			//如果没有找到返回null
+			console.log("-----match-匹配----");
+			console.log(data.match("microsoft"));
+			console.log(data.match(/microsoft/));
+			console.log(data.match(/microsoft/i));
+			console.log(data.match(/microsoft/g));
+			console.log(data.match(/microsoft/ig));
+			
+			
+			console.log("----replace--替换--------");
+			console.log(data.replace("microsoft","oracle"));
+			console.log(data.replace(/microsoft/,"oracle"));
+			console.log(data.replace(/microsoft/i,"oracle"));
+			console.log(data.replace(/microsoft/g,"oracle"));
+			console.log(data.replace(/microsoft/ig,"oracle"));
+			
+		</script>
+	</head>
+	<body></body>
+</html>

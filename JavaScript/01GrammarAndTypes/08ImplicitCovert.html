@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>隐式类型转换</title>
+	<script>
+		var str = "a";
+		var num = 1;
+		var bool1 = true;
+		var bool2 = false;
+
+		console.log(str + num);//a1
+		
+		console.log(str + bool1); //atrue
+		
+		console.log(num + bool1); //2
+		
+		console.log(bool1 + bool2); //1
+
+		console.log("a"*1); //NaN 转化数字失败
+		
+		console.log(NaN+1);// Nan 参与的运算都是NaN
+		
+		var one;
+		console.log("2"-one);//NaN "2"-undefined => 2-NaN
+		
+		console.log("2"+one);//2undefined
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

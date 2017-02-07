@@ -14,6 +14,32 @@
 		var x = 42; //可以在local 和 global 中使用
 		x = 42; // global 变量
 		let y  = 42; //block 变量
+		
+	</script>
+	
+	<script>
+		//声明提前
+		console.log(z);//undefined 不会抛出异常说明声明已经提前了
+		var z;
+		
+		//第一次声明fun函数
+		function fun(){
+			console.log("first fun()");
+		}
+		fun();
+
+		//函数声明提前,将前面的fun函数覆盖了
+		function fun(){
+			console.log("second fun()");
+		}
+		fun();
+
+		//变量声明提前到第二个函数后,赋值操作在本地.
+		//前面已经有了对函数的fun的声明,变量声明无效,执行代码的
+		//时候将变量函数变为int100
+		//调用函数的时候,fun已经变成了整数,调用失败.
+		var fun =100;
+		fun();
 	</script>
 </head>
 <body>

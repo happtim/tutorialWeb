@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组的引用</title>
+	<script>
+		var my = ['1','2','3','4','5'];
+		var lp = my;//my将保存的数组地址复制给了lp
+		lp[0] = "";
+		console.log(my);//第一个空了
+		lp=null;//lp释放了对象的引用
+		console.log(my);//数组
+		console.log(lp);//null
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

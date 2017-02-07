@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建对象</title>
+	<script>
+		//有三种创建对象的方式
+		//1. object intializer
+		//2. constructor function
+		//3. object.create
+		
+		//1. 对象初始化
+		/*
+			语法: 
+			var obj = { 
+				property_1:   value_1,   // property_# may be an identifier...
+				2:            value_2,   // or a number... 
+				// ..., 
+				"property n": value_n 
+			}; // or a string
+		*/
+		
+		var myHonda = {color: "red", wheels: 4, engine: {cylinders: 4, size: 2.2}};
+		console.log(myHonda);
+		
+		//2. 使用初始化函数
+		/*
+			语法:
+				1. 创建一个构造函数
+				2. 使用new创建对象
+		*/
+		
+		function Car(make, model, year) {
+		  this.make = make;
+		  this.model = model;
+		  this.year = year;
+		}
+		
+		var mycar = new Car("Eagle", "Talon TSi", 1993);
+		console.log(mycar);
+		
+		
+		//3. Object.create 方法
+		var Animal = {
+		  type: "Invertebrates", // Default value of properties
+		  displayType : function() {  // Method which will display type of Animal
+			console.log(this.type);
+		  }
+		}
+
+		// Create new animal type called animal1 
+		var animal1 = Object.create(Animal);
+		animal1.displayType(); // Output:Invertebrates
+
+		// Create new animal type called Fishes
+		var fish = Object.create(Animal);
+		fish.type = "Fishes";
+		fish.displayType(); // Output:Fishes
+		
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
