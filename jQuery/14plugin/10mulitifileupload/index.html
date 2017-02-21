@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+	<script src="http://cdn.bootcss.com/jqueryui/1.11.1/jquery-ui.js"></script>
+	<script src="http://cdn.bootcss.com/blueimp-file-upload/9.14.2/js/jquery.fileupload.js"></script>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
+	<style>
+		
+        .multi-fileinput>div{
+            float: left;
+        }
+        
+		.fileinput .fileinput-thumb{
+			border: 1px solid #e3e3e3;
+			padding:3px;
+			margin-bottom: 5px;
+			text-align: center;
+			vertical-align:middle;
+            position: relative;
+		}
+		
+		.btn-file{
+			overflow: hidden;
+			position: relative;
+		}
+
+		.fileinput input[type="file"] {
+			cursor:pointer;
+			opacity: 0;
+			position:absolute;
+			top: 0px;
+			right: 0px;
+			direction: ltr;
+		}
+		
+		.fileinput-exists .fileinput-new,.fileinput-new .fileinput-exists{
+			display: none;
+		}
+        
+        .fileinput .fileinput-remove{
+            position: absolute;
+            background-color: black;
+            color: aliceblue;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            text-align: right;
+            opacity: 0.6;
+            display: none;
+        }
+        .fileinput .fileinput-remove span{
+            cursor: pointer;
+        }
+        
+        .multi-fileinput .fileinput-more{
+            height:126px;
+            width:126px;
+            margin:15px 15px;
+            border:1px solid #e3e3e3;
+            border-radius: 10px;
+            position: relative;
+        }
+        .multi-fileinput .row_div{
+            width:80px;
+            height: 10px;
+            background-color:#e3e3e3;
+            border-radius: 2px;
+            position: absolute;
+            top:43%;
+            left: 15%;
+        }
+        .multi-fileinput .clo_div{
+            width: 10px;
+            height: 80px;
+            border-radius:2px;
+            background-color: #e3e3e3;
+            position: absolute;
+            left:45%;
+            top:15%;
+            
+        }
+		
+	</style>
+</head>
+<body>
+    <form action="">
+       
+       <div class="multi-fileinput">
+           
+            <div class="fileinput fileinput-new">
+                <div class="fileinput-thumb" style="width:206px;height:156px;">
+                    <img style="max-width:200px;max-height:150px;" />
+                    <div class="fileinput-remove">
+                        <span>x&nbsp;</span>
+                    </div>
+                </div>
+                
+                <div style="width:206px;text-align:center;">
+                    <span class="btn btn-default btn-file">
+                        <span class="fileinput-new">选择图片</span>
+                        <span class="fileinput-exists">重新选择</span>
+                        <input class="imageField" type="file" />
+                        <input type="hidden" name="multi[]" />
+                    </span>
+                    <span class=" btn btn-default fileinput-delete fileinput-exists">删除</span>
+                </div>
+            </div>
+            <div class="fileinput-more" >
+                <div class="row_div"></div>
+                <div class="clo_div"></div>
+            </div>
+        
+        </div>
+        
+    </form>
+			
+</body>
+<script>
+	+ function () {
+		var MultiFileinput = function (element, options) {
+			this.$element = $(element);
+			this.listen();
+
+			this.$element.fileupload({
+				url: options.url,
+				paramName: options.fileName,
+				dataType: 'json',
+				done: $.proxy(this.done, this),
+				progress: function (e, data) {
+    				var progress = parseInt(data.loaded / data.total * 100, 10);
+					console.log(progress);
+				},
+				add: function(e,data){
+                    data.fileInputClone.parents(".fileinput").find("img").attr('src','ellipsis.svg');
+					data.submit();
+				},
+			})
+		}
+
+		MultiFileinput.prototype.listen = function () {
+			this.$element.find('.fileinput-delete').on('click.gx.fileinput', $.proxy(this.clear, this));
+            this.$element.find('.fileinput-more').on('click.gx.fileinput', $.proxy(this.add, this));
+            this.$element.find('.fileinput-remove').on('click.gx.fileinput', $.proxy(this.remove, this));
+            this.$element.find('.fileinput-thumb').on('mouseover.gx.fileinput', $.proxy(this.over, this));
+            this.$element.find('.fileinput-thumb').on('mouseout.gx.fileinput', $.proxy(this.out, this));
+		}
+
+		MultiFileinput.prototype.clear = function (e) {
+			$(e.currentTarget).parents(".fileinput").find('img').attr('src', '');
+			$(e.currentTarget).parents(".fileinput").find('input[type="hidden"]').val('');
+			$(e.currentTarget).parents(".fileinput").removeClass('fileinput-exists').addClass('fileinput-new');
+		}
+        
+        MultiFileinput.prototype.remove = function(e){
+            $(e.currentTarget).parents(".fileinput").remove();
+        }
+        
+        MultiFileinput.prototype.add = function(e){
+            var $first = this.$element.find(".fileinput").first().clone(true);
+            $(e.currentTarget).before($first);
+            $first.find(".fileinput-delete").trigger("click");
+        }
+        
+        MultiFileinput.prototype.over = function(e){
+            var size = this.$element.find('.fileinput').size();
+            if(size > 1)
+                $(e.currentTarget).find(".fileinput-remove").show();
+        }
+        
+        MultiFileinput.prototype.out = function(e){
+            $(e.currentTarget).find(".fileinput-remove").hide();
+        }
+
+		MultiFileinput.prototype.done = function (e, data) {
+			if (data.result.status == 'success') {
+				var imageUrl = data.result.result;
+				data.fileInputClone.parents(".fileinput").find("img").attr('src', imageUrl);
+				data.fileInputClone.parents(".fileinput").find("input[type='hidden']").val(imageUrl);
+				data.fileInputClone.parents(".fileinput").addClass('fileinput-exists').removeClass('fileinput-new')
+			}
+		}
+
+		$.fn.multifileinput = function (options) {
+			return this.each(function(){
+				var $this = $(this);
+				var data = $this.data('gx.multi-fileinput');
+				if(!data){
+					data = new MultiFileinput(this,options);
+					$this.data('gx.multi-fileinput',data);
+				}
+			});
+		}
+	}();
+</script>
+<script>
+    $(function(){
+			$(".multi-fileinput").multifileinput({
+				'url' : 'http://localhost/cpspew/index.php/site/upload',
+				'fileName' : 'image',
+			});
+		});
+    </script>
+</html>
