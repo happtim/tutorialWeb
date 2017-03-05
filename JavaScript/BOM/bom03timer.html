@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>倒计时</title>
+  <meta charset="utf-8"/>
+	 <script>
+		 var timer = null;
+		 window.onload = function(){
+		 	timer =  setInterval(calc,1000); 
+		 }
+		 
+		 function calc(){
+		 	 var now = new Date();
+		 	 var over = new Date(now.toLocaleDateString()+" 18:00:00");
+		 	 var ms = over - now;
+			 var s = ms /1000;
+			 
+			 var h = Math.floor(s/3600);
+			 if(h<10)
+				 h = "0"+h;
+			 var m = Math.floor(s%3600/60)
+			 if(m<10)
+				 m = "0"+m;
+			 var s = Math.floor(s%3600%60);
+			 if(s<10)
+				 s = "0"+s;
+			 
+			 
+			 var span =  document.getElementById("timer");
+			 span.innerHTML = h+":"+m+":"+s;
+		 }
+		 
+		 function stop(btn){
+			 if(timer){
+				 clearInterval(timer);
+				 timer = null;
+				 btn.innerHTML = "启动倒计时";
+			 }else{
+				 timer =  setInterval(calc,1000);
+				 btn.innerHTML = "停止倒计时";
+			 }
+		 }
+		 
+	 </script>
+ </head>
+
+ <body>
+	<h1>距离放学还有<span id="timer"></span></h1>
+	<button onclick="stop(this)">停止倒计时</button>
+ </body>
+</html>

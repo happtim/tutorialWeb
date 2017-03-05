@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>根据页面滚动位置显示浮动框</title>
+	 <style>
+		body{
+			height:2000px;
+		 }
+		#toTop
+		{
+			position:fixed;
+			bottom:100px;
+			right:0;
+			display:none;
+		}
+	 </style>
+	<script>
+		window.onscroll=function(){
+			//获得已滚动的top距离，保存在top中
+			var top=document.documentElement.scrollTop
+                    ||document.body.scrollTop;
+			//找到id为toTop的div，保存在toTop中
+			var toTop=document.getElementById("toTop");
+			if(top>=300){//判断top>=300
+				//将toTop显示出来
+				toTop.style.display="block";
+			}else{//否则
+				toTop.style.display="none";//将toTop隐藏
+			}
+		}
+	</script>
+ </head>
+ <body>
+	<div id="toTop">
+		<a href="#">返回顶部</a>
+	</div>
+ </body>
+</html>

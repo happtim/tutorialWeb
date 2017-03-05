@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			if(navigator.cookieEnabled){
+				document.write("已启用cookie，请妥善保存个人信息");
+			}else{
+				document.write("cookie已禁用，自动登录功能无法使用");
+			}
+			document.write("<br>");
+			
+			document.write(navigator.userAgent);
+			document.write("<br>");
+			
+			var ua=navigator.userAgent;
+			var browser="unknown";
+			if(ua.indexOf("MSIE")!=-1){
+				browser="MSIE";
+			}else if(ua.indexOf("Firefox")!=-1){
+				browser="Firefox";
+			}else if(ua.indexOf("OPR")!=-1){
+				browser="OPERA";
+			}else if(ua.indexOf("Chrome")!=-1){
+				browser="Chrome";
+			}else if(ua.indexOf("Safari")!=-1){
+				browser="Safari";
+			}else if(ua.indexOf("Trident")!=-1){
+				browser="IE 11";
+			}
+			
+			var ver="";
+			if(browser=="unknow"){
+				alert("不支持");
+			}else if(browser=="OPERA"){
+				var i=ua.indexOf("OPR");
+				i+=4;
+				ver=parseFloat(ua.slice(i,i+4));
+			}else if(browser=="IE 11"){
+				ver="11";
+			}else{
+				var i=ua.indexOf(browser);
+				i+=browser.length+1;
+				ver=parseFloat(ua.slice(i,i+4));
+			}
+			alert(browser+" "+ver);
+			
+			var ps=navigator.plugins;
+			for(var i=0;i<ps.length;i++){
+				if(ps[i].name=="QQMusic"){
+					alert("支持QQMusic");
+					break;
+				}
+			}
+		</script>
+	</head>
+	<body></body>
+</html>

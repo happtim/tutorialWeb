@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>表单提交验证</title>
+<meta charset="utf-8" />
+	<style>
+		.hintText{color: #aaaaaa; font-style: italic; }
+		.normalText { color: #000000;}
+	</style>
+	<script>
+		window.onload = function(){
+			var form = document.forms[0];
+			
+			var txtName = form.elements["userName"];
+			
+			txtName.onfocus = function(){
+				//如果txtName的内容是空字符或"请输入您的姓名"
+				var reg=/^(\s*|请输入您的姓名)$/;
+				if(reg.test(txtName.value)){
+					txtName.value="";//清空txtName中的内容
+					txtName.className="";//移除txtName上的class属性
+				}
+			}
+			
+			txtName.onblur = function(){
+				var reg=/^(\s*|请输入您的姓名)$/;
+				if(reg.test(txtName.value)){
+					//将value重置为默认值
+					txtName.value="请输入您的姓名";
+					//设置txtName的class属性为hintText
+					txtName.className="hintText";
+				}
+			}
+			
+			var txtContent=form.elements["content"];
+			
+			txtContent.onfocus=function(){
+				var reg=/^(\s*|请输入留言内容)$/;
+				if(reg.test(txtContent.value)){
+					txtContent.value="";
+					txtContent.className="";
+				}
+			}
+			
+			txtContent.onblur=function(){
+				var reg=/^(\s*|请输入留言内容)$/;
+				if(reg.test(txtContent.value)){
+					txtContent.value="请输入留言内容";
+					txtContent.className="hintText";
+				}
+			}
+			
+			var chb = form.querySelector('input[type="checkbox"]');
+			var btnSubmit = form.querySelector('input[type="button"]');
+			
+			chb.onclick = function(){
+				btnSubmit.disabled = !chb.checked;
+			}
+			
+			btnSubmit.onclick = function(){
+				if(/^(\s*|请输入您的姓名)$/.test(txtName.value)){
+					txtName.focus();//让txtName获得焦点
+				}else if(/^(\s*|请输入留言内容)$/.test(txtContent.value)){
+					txtContent.focus();//让txtContent获得焦点
+				}else{
+					form.submit();
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<h2>发表留言</h2>
+<form name="msgForm">
+	姓名：<input name="userName" class="hintText" 
+				value="请输入您的姓名"/><br />
+	内容：<textarea name="content" class="hintText" 
+					style="resize:none"
+					rows="5" cols="30">请输入留言内容</textarea><br />
+	<label><input type="checkbox"/>我已阅读了《常见问题列表》</label><br/>
+	<input type="button" value="提交" disabled />
+</form>
+</body>
+</html>

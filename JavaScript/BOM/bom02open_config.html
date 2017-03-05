@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>小游戏：点不到的小窗口</title>
+	 	<meta charset="utf-8"/>
+		<script>
+			var game = {
+				width:50,//小窗口宽度
+				height:50, //小窗口高度
+				taskH:30, //任务栏高度
+				maxTop:null,//最大top值
+				maxLeft:null,//最大left值
+				pop:null,//游戏中弹出的小窗口
+				start:function(){
+					this.maxTop = screen.height - this.height -this.taskH;
+					this.maxLeft = screen.width - this.width;
+					
+					var wTop = parseInt(Math.random()*(this.maxTop+1));
+					var wLeft= parseInt(Math.random()*(this.maxLeft+1));
+					
+					var config = "top="+wTop+",left="+wLeft+
+						",width="+this.width+",height="+this.height+
+						",resizable=yes|no,location=no";
+					
+					this.pop = open("about:blank","pop",config);
+					this.pop.document.write("<img style'width:80px'"+
+											" src='' onclick='alert(\"约吗\")'");
+					
+					this.pop.onmouseover  = function(){
+						
+						//获取事件对象e
+						var e = window.event || arguments[0];
+						var x = e.screenX;
+						var y = e.screenY;
+						
+						while(true){
+							var nextX = parseInt(Math.random()*(game.maxLeft+1));
+							var nextY = parseInt(Math.random()*(game.maxTop+1));
+							
+							if( !((x>=nextX && x<=nextX+game.width) &&
+							   	(y>=nextY && y<=nextY+game.height))
+							  ){
+								this.moveTo(nextX,nextY);
+								break;
+							}
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<button onclick="game.start()">开始游戏</button>
+	</body>
+</html>
