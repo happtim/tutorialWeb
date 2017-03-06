@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>二级联动列表</title>
+	<meta charset="utf-8" />
+	<style>
+		.hide{ display: none; }
+	</style>
+	
+	<script>
+		var cities=[
+			[],		/*0号下标没有元素*/
+			[{"name":'东城区',"value":101},
+			 {"name":'西城区',"value":102},
+			 {"name":'海淀区',"value":103},
+			 {"name":'朝阳区',"value":104}],
+			[{"name":'河东区',"value":201},
+			 {"name":'河西区',"value":202},
+			 {"name":'南开区',"value":303}],
+			[{"name":'石家庄市',"value":301},
+			 {"name":'廊坊市',"value":302},
+			 {"name":'保定市',"value":303},
+			 {"name":'唐山市',"value":304},
+			 {"name":'秦皇岛市',"value":304}]
+		];
+		
+		function getCities(selProvs){
+			var selCities = 
+				document.querySelector("select[name='cities']");
+			
+			if(cities[selProvs.selectedIndex].length == 0){
+				selCities.className = "hide";
+			}else{
+				selCities.className = "";
+				selCities.innerHTML = "";
+				selCities.add(new Option("-请选择-",-1));
+				
+				var currCities = cities[selProvs.selectedIndex];
+				
+				for( var i = 0; i< currCities.length ;i++){
+					selCities.add(
+						new Option(currCities[i].name,
+								  currCities[i].value)	
+					);
+				}
+				
+			}
+		}
+	</script>
+
+</head>
+<body>               
+	<!--当选中项发生改变时触发-->
+	<select name="provs" onchange="getCities(this)">
+		<option>—请选择—</option><!--当前选中项的下标-->
+		<option>北京市</option>  <!--sel.selectedIndex-->
+		<option>天津市</option>
+		<option>河北省</option>
+	</select>
+	
+	<select name="cities" class="hide"></select>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Js版带表盘的时钟</title>
+  <meta charset="utf-8"/>
+	 <style>
+		 #clock{width:100px; height:100px;
+			border-radius:50%;
+			border:2px solid black;
+			position:relative;
+		}
+		#s{width:2px; height:55px;
+			position:absolute; top:5px; left:49px;
+			background-color:red;
+			transform-origin:50% 45px;
+		}
+		#m{width:4px; height:50px;
+			position:absolute; top:10px; left:48px;
+			background-color:black;
+			transform-origin:50% 40px;
+		}
+		#h{width:6px; height:45px;
+			position:absolute; top:15px; left:47px;
+			background-color:black;
+			transform-origin:50% 35px;
+		}
+		div[id^="a"]{position:absolute;
+			font-size:.5em; text-align:center;
+			width:7px; height:5px;
+			top:0; left: 46.5px;
+			transform-origin:50% 50px;
+		}
+		#a4,#a8{font-size:.4em; font-weight:bold}
+		#a1{transform:rotate(30deg)}
+		#a2{transform:rotate(60deg)}
+		#a3{transform:rotate(90deg)}
+		#a4{transform:rotate(120deg)}
+		#a5{transform:rotate(150deg)}
+		#a6{transform:rotate(180deg)}
+		#a7{transform:rotate(210deg)}
+		#a8{transform:rotate(240deg)}
+		#a9{transform:rotate(270deg)}
+		#a10{transform:rotate(300deg)}
+		#a11{transform:rotate(330deg)}
+	 </style>
+	 <script>
+		 window.onload = function(){
+			 setInterval(function(){
+				 var now = new Date();
+				 var divH = document.getElementById("h");
+				 var divM = document.getElementById("m");
+				 var divS = document.getElementById("s");
+				 
+				 var h = now.getHours();
+				 h>12 && (h-=12);
+				 var m = now.getMinutes();
+				 var s = now.getSeconds();
+				 
+				 var sDeg = s/60*360;
+				 var mDeg = (m*60+s)/3600*360;
+				 var hDeg = (h*3600+m*60+s) /(3600*12) *360;
+				 
+				 divH.style.transform="rotate("+hDeg+"deg)";
+				 divM.style.transform="rotate("+mDeg+"deg)";
+				 divS.style.transform="rotate("+sDeg+"deg)";
+			 },1000);
+		 }
+	 </script>
+ </head>
+ <body>
+  <div id="clock">
+	<div id="h"></div>
+	<div id="m"></div>
+	<div id="s"></div>
+	<div id="a1">I</div>
+	<div id="a2">II</div>
+	<div id="a3">III</div>
+	<div id="a4">IIII</div>
+	<div id="a5">V</div>
+	<div id="a6">VI</div>
+	<div id="a7">VII</div>
+	<div id="a8">VIII</div>
+	<div id="a9">IX</div>
+	<div id="a10">X</div>
+	<div id="a11">XI</div>
+	<div id="a12">XII</div>
+  </div>
+ </body>
+</html>

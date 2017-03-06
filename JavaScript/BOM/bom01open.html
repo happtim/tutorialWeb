@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>打开新链接方式总结</title>
+		<script>
+			/*打开新链接方式总结：
+			1. 在当前窗口打开，可后退
+			2. 在当前窗口打开，不可后退
+			3. 在新窗口打开，可打开多个
+			4. 在新窗口打开，不可打开多个*/
+			function openUrl1(){
+				window.open("http://tmooc.cn","_self");
+				                            //target
+			}
+			function openUrl2(){
+				location.replace("http://tmooc.cn");
+			}
+			function openUrl3(){
+			window.open("http://tmooc.cn"/*,"_blank"*/);
+				                            //target
+			}
+			function openUrl4(){
+			window.open("http://tmooc.cn","tmooc");
+				                         //target
+			}
+		</script>
+	</head>
+	<body>
+		<a href="http://tmooc.cn">HTML中当前打开,可后退</a><br/>
+		<a href="javascript:openUrl1()">在当前窗口打开，可后退</a><br>
+		<a href="javascript:openUrl2()">在当前窗口打开，不可后退</a><br>
+		<a href="http://tmooc.cn" target="_blank" >HTML在新窗口打开,可打开多个</a><br/>
+		<a href="javascript:openUrl3()">在新窗口打开，可打开多个</a><br>
+		<a href="http://tmooc.cn" target="tmooc">HTML新窗口打开,不能打开多个</a><br/>
+		<a href="javascript:openUrl4()">在新窗口打开，不可打开多个</a><br>
+	</body>
+</html>

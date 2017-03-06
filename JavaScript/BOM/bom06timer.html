@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>倒计时自动关闭/跳转页面</title>
+<meta charset="utf-8" />
+<script>
+	function calc(){
+		//找到id为msg的span
+		var span=document.getElementById("msg");
+		//将span中的数字部分，转为整数，保存在n中
+		var n=parseInt(span.innerHTML);
+		//将n先递减1，再比较
+		if(--n>0){//如果n>0
+			//将n拼接上span内容中剩余部分，放回span中
+			span.innerHTML=n+"秒钟后自动关闭";
+			timer=setTimeout(calc,1000);
+		}else{
+			window.close();
+		}//关闭当前窗口 
+	}
+	var timer=null;
+	window.onload=function(){
+		timer=setTimeout(calc,1000);
+	}
+</script>
+</head>
+<body>
+	<span id="msg">5秒钟后自动关闭</span><br>
+	<a href="javascript:clearTimeout(timer)">留在本页</a>
+</body>
+</html>

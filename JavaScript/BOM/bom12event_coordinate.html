@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>在当前显示区范围内实现点不到的小方块</title>
+	<style>
+		div{position:fixed;width:50px;height:50px;
+			background-color:pink;
+		}
+	</style>
+	 <script>
+		 var game = {
+			 maxLeft : 0,//div最大宽度
+			 maxTop : 0,//div最大高度
+			 div : null,//div对象
+			 WIDTH : 0,//宽度
+			 HEIGHT : 0,//高度
+			 
+			 init:function(){
+				 var self = this;//留住this
+				 self.div = document.getElementById("pop");
+				 var style = null;
+				 
+				 if(getComputedStyle){
+					 style = getComputedStyle(self.div);
+				 }else{
+					 style = self.div.currentStyle;
+				 }
+				 
+				 self.WIDTH = parseFloat(style.width);
+				 self.HEIGHT = parseFloat(style.height);
+				 self.maxLeft = window.innerWidth-self.WIDTH;
+				 self.maxTop  =window.innerHeight-self.HEIGHT -30;
+			 },
+			 
+			 start:function(){
+				 var self = this;
+				 var l = Math.floor(Math.random()*(self.maxLeft+1));
+				 var t = Math.floor(Math.random()*(self.maxTop+1));
+				 
+				 self.div.style.left = l + "px";
+				 self.div.style.top  = t + "px";
+				 
+				 self.div.onmouseover = function(){
+					while(true){
+						var l = Math.floor(Math.random()*(self.maxLeft+1));
+						var t = Math.floor(Math.random()*(self.maxTop+1));
+						
+						var e = window.event || arguments[0];
+						
+						var x = e.clientX || e.x;
+						var y = e.clientX || e.y;
+						
+						console.log(x + "," + y);
+						
+						if( !( x>=l && x<=l+self.WIDTH && y>=t && y<= t+self.HEIGHT) ){
+							self.div.style.left = l + "px";
+							self.div.style.top  = t + "px";
+							break;
+						}
+					} 
+				 }
+		 	}
+		 };
+		 
+		 window.onload = function(){
+			 game.init(); 
+			 game.start();
+		 }
+	 </script>
+ </head>
+ <body>
+	<div id="pop" onclick="alert('约吗')"></div>
+ </body>
+</html>

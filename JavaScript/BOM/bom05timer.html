@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>窗口右下角消息弹出框</title>
+  <meta charset="utf-8"/>
+	 <style>
+		 *{
+			 margin:0px;
+			 padding:0px;
+		 }
+		 #msg{
+			width:200px;
+			height:200px;
+			position:fixed;
+			right:30px;
+			bottom:-200px;
+			background-color:LightBlue;
+		}
+		#msg>a{
+			float:right;
+			padding:5px 10px;
+			border:1px solid black;
+			cursor:pointer;
+		}
+	 </style>
+	 <script>
+		 var adv = {
+			 duration:1000,//时长1s
+			 interval:30,//间隔30s
+			 div:null,//div对象
+			 height:0,//div的总高度
+			 init : function (){
+				 this.div = document.getElementById("msg");
+				 var style = getComputedStyle(this.div);
+				 this.height = parseFloat(style.height);
+			 },
+			 
+			 moveUpStep:function(){
+				 var self = this;
+				 var style = getComputedStyle(self.div);
+				 var bottom = parseFloat(style.bottom);
+				 bottom += self.height * self.interval / self.duration;
+				 
+				 self.div.style.bottom = bottom + "px";
+				 
+				 if(bottom<=0){
+					 setTimeout(function(){ self.moveUpStep() },self.interval);
+				 }
+			 },
+			 
+			 startMoveUp:function(){
+				 var self = this;
+				 setTimeout(function(){ self.moveUpStep() },self.interval);
+			 },
+			 
+			 moveDownStep:function(){
+				 var self = this;
+				 var style = getComputedStyle(self.div);
+				 var bottom  = parseFloat(style.bottom);
+				 
+				 bottom -=self.height * self.interval/self.duration;
+				 self.div.style.bottom = bottom + "px";
+				 if(bottom >= -self.height){
+					 setTimeout(function(){self.moveDownStep()},self.interval);
+				 }else{
+					 setTimeout(function(){self.moveUpStep()},5000);
+				 }
+			 },
+			 startMoveDown:function(){
+				 var self = this;
+				 setTimeout(function(){ self.moveDownStep() },self.interval);
+			 }
+		 }
+		 
+		 window.onload = function(){
+			 adv.init();
+			 adv.startMoveUp();
+			 document.querySelector("#msg>a").onclick = function(){
+				 adv.startMoveDown();
+			 }
+		 }
+	 </script>
+ </head>
+ <body>
+  <div id="msg">
+	<a>X</a>
+  </div>
+ </body>
+</html>

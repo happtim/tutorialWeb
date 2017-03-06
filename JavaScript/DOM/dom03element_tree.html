@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>使用DOM方法递归遍历节点树</title>
+		<meta charset="utf-8"/>
+		<script>
+			window.onload=function(){
+				var tabs=[];
+				//匿名函数版本
+				(function(curr){
+					console.log(tabs.join("")+curr.nodeName);
+					var children = curr.children;
+					if(children){
+						tabs.push("\t");
+						//动态数,所以先提出来,效率高
+						var len = children.length;
+						for(var i=0;i<len;i++)
+							arguments.callee(children[i]);
+						tabs.pop();
+					}
+			})(document);
+				
+			}
+		</script>
+	</head>
+	<body>
+		<span class="msg">Hello World!</span>
+		<ul>
+			<li>电影</li>
+			<li>综艺
+				<ul>
+					<li>跑男</li>
+					<li>爸爸</li>
+					<li>真男</li>
+				</ul>
+			</li>
+			<li>剧集</li>
+		</ul>	
+	</body>
+</html>

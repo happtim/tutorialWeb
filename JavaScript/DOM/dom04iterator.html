@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>示例1-使用遍历API遍历节点或元素树</title>
+		<meta charset="utf-8"/>
+		<script>
+			window.onload=function(){
+				var iterator = document.createNodeIterator(
+					document,
+					NodeFilter.SHOW_ALL,
+					null,
+					false
+				);
+				var tabs=[];
+				var node = null;
+				while((node = iterator.nextNode()) != null){
+					console.log(
+						tabs.join("")+(
+						node.nodeType !=1 &&
+						node.nodeType !=9 &&
+						node.nodeType !=10 ?
+						node.nodeValue :
+						node.nodeName)
+						
+					);
+					
+					//如果有子节点,就push空白
+					if(node.childNodes.length !=0)
+						tabs.push("\t");
+					
+					else{
+						var next = iterator.nextNode();
+						//如果最有一次取出来是Null,break循环
+						if(next == null)
+							break;
+						//如果有兄弟节点不pop空白
+						if(node.nextSibling != next){
+							tabs.pop();
+						}
+						iterator.previousNode();
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<span class="msg">Hello World !</span>
+		<ul>
+			<li>综艺</li>
+			<li>电影
+				<ul>
+					<li>捉妖记</li>
+					<li>煎饼侠</li>
+					<li>道士下山</li>
+				</ul>
+			</li>
+			<li>剧集</li>
+		</ul>	
+	</body>
+</html>

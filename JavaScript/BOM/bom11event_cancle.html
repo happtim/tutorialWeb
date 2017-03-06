@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+ <head>
+	<meta charset="UTF-8">
+	<title>阻止自动表单提交</title>
+	 <style>
+		 table{width:700px}
+		/*父元素下的第1个，第n个，最后一个td子元素*/
+		td:first-child{width:60px}
+		/*IE不支持nth-child*/
+		td:nth-child(2){width:200px}
+		/*IE*/
+		td:first-child+td{width:200px}
+		/*IE不支持--可以靠总宽度来调节
+		td:last-child{width:340px}*/
+		td span{color:red}
+
+		.vali_Info{/* 页面初始，验证消息不显示 */
+			display:none;
+		}
+		.txt_focus{
+			border-top:2px solid black;
+			border-left:2px solid black;
+		}
+
+		.vali_success,.vali_fail{
+			background-repeat:no-repeat;
+			background-position:left center;
+			display:block;
+		}
+		/* 验证消息：验证通过时的样式 */
+		.vali_success{
+			background-image:url("../images/ok.png");
+			padding-left:20px;
+			width:0px;height:20px;
+			overflow:hidden;
+		}
+		/* 验证消息：验证失败时的样式 */
+		.vali_fail{
+			background-image:url("../images/warning.png");
+			border:1px solid red;
+			background-color:#ddd;
+			color:Red;
+			padding-left:30px;
+		}
+	 </style>
+	 <script>
+		 function getFocus(txt){
+			txt.setAttribute("class","txt_focus");
+			//txt.className="txt_focus";
+			//找到旁边td中的div，设置移除class属性
+			txt.parentNode
+				.parentNode
+				.querySelector("div")
+				.removeAttribute("class");
+		}
+		function valiName(txtName){
+			txtName.removeAttribute("class");
+			//txtName.className="";
+			var div=txtName.parentNode
+						.parentNode
+						.querySelector("div");
+			//如果姓名文本框格式正确，则为div穿vali_success
+			if(/^\w{1,10}$/.test(txtName.value)){
+				div.setAttribute("class","vali_success");
+				return true;
+			}else{//否则为div穿vali_fall
+				div.setAttribute("class","vali_fail");
+				return false;
+			}
+		}
+		function valiPwd(txtPwd){
+			txtPwd.removeAttribute("class");
+			//先查找txtPwd旁边的div，保存在变量div中
+			var div=txtPwd.parentNode
+						.parentNode
+						.querySelector("div");
+			//如果密码文本框格式正确，则为div穿vali_success
+			if(/^\d{6}$/.test(txtPwd.value)){
+				div.setAttribute("class","vali_success");
+				return true;
+			}else{//否则为div穿vali_fall
+				div.setAttribute("class","vali_fail");
+				return false;
+			}
+		}
+		function valiAll(e){
+			var rname=valiName(document.forms[0].elements["name"]);
+			var rpwd=valiPwd(document.forms[0].elements["pwd"]);
+			if(!(rname&&rpwd)){
+				if(e.preventDefault){
+					e.preventDefault();//DOM
+				}else{
+					e.returnValue=false;//IE
+				}
+			}
+		}
+	 </script>
+ </head>
+ <body>
+	<!--1. 使用HTML绑定事件处理函数时
+	<form onsubmit="return valiAll()">-->
+	<form onsubmit="valiAll(event)">
+		<h2>增加管理员</h2>
+		<table>
+			<tr>
+				<td>姓名：</td><td>
+<input name="name" onfocus="getFocus(this)" onblur="valiName(this)"/>
+					<span>*</span>
+				</td>
+				<td>
+					<div class="vali_Info">
+						10个字符以内的字母、数字和下划线的组合
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td>
+<input type="password" name="pwd"  onfocus="getFocus(this)" onblur="valiPwd(this)"/>
+					<span>*</span>
+				</td>
+				<td>
+					<div class="vali_Info">6位数字</div>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2">
+<!--取消事件，2个return-->
+<input type="submit" value="保存"/>
+<input type="reset" value="重填"/>
+				</td>
+			</tr>				
+	    </table>
+	</form>
+ </body>
+</html>

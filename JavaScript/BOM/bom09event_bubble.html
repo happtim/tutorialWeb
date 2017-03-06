@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>事件处理</title>
+		<meta charset="utf-8"/>
+		<style>
+			.d1 .d2 .d3{cursor:pointer}
+			.d1 {
+			  background-color: green;
+			  position: relative;
+			  width: 150px;
+			  height: 150px;
+			  text-align: center;
+			  cursor: pointer;
+			}
+
+			.d2 {
+			  background-color: blue;
+			  position: absolute;
+			  top: 25px;
+			  left: 25px;
+			  width: 100px;
+			  height: 100px;
+			}
+
+			.d3 {
+			  background-color: red;
+			  position: absolute;
+			  top: 25px;
+			  left: 25px;
+			  width: 50px;
+			  height: 50px;
+			  line-height: 50px;
+			}
+		</style>
+		
+		<script>
+			/*1. 体验事件冒泡*/
+			function fun(){//js动态绑定，this-->元素对象
+				
+				this.style.backgroundColor="yellow";
+				console.log("this.className="+this.className);
+				this.style.backgroundColor="";
+				
+				var e=window.event||arguments[0];
+				console.log(e);
+				var target=e.srcElement||e.target;
+				console.log("target.className="+target.className);
+				
+				//取消冒泡
+				/*if(e.stopPropagation){
+					e.stopPropagation();
+                }else{
+ 					e.cancelBubble=true;
+                }*/
+			}
+			window.onload=function(){
+				var divs=document.querySelectorAll("div");
+				divs[0].addEventListener( "click",fun,false);
+				//divs[0].onclick = fun;
+				divs[1].addEventListener( "click",fun,false);//true在捕获阶段触发
+				divs[2].addEventListener( "click",fun,false);
+			}
+		</script>
+	</head>
+	<body>
+		<div class="d1"><!--onclick="fun()"-->
+			<div class="d2"><!--onclick="fun()"-->
+				<div class="d3"><!--onclick="fun()"-->
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
