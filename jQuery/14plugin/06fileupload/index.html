@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
 	<style>
 		
-		.fileinput .fileinput-thumb{
+		.imageinput .imageinput-thumb{
 			border: 1px solid #e3e3e3;
 			padding:3px;
 			margin-bottom: 5px;
@@ -17,12 +17,12 @@
 			vertical-align:middle;
 		}
 		
-		.btn-file{
+		.imageinput-file{
 			overflow: hidden;
 			position: relative;
 		}
 
-		.fileinput input[type="file"] {
+		.imageinput input[type="file"] {
 			cursor:pointer;
 			opacity: 0;
 			position:absolute;
@@ -31,7 +31,7 @@
 			direction: ltr;
 		}
 		
-		.fileinput-exists .fileinput-new,.fileinput-new .fileinput-exists{
+		.imageinput-exists .imageinput-new,.imageinput-new .imageinput-exists{
 			display: none;
 		}
 		
@@ -39,40 +39,26 @@
 </head>
 <body>
 	<form>
-			<div class="fileinput fileinput-new">
-				<div class="fileinput-thumb" style="width:206px;height:156px;">
+			<div class="imageinput imageinput-new">
+				<div class="imageinput-thumb" style="width:206px;height:156px;">
 					<img style="max-width:200px;max-height:150px;" />
 				</div>
 				<div style="width:206px;text-align:center;">
-					<span class="btn btn-default btn-file">
-						<span class="fileinput-new">选择图片</span>
-						<span class="fileinput-exists">重新选择</span>
+					<span class="btn btn-default imageinput-file">
+						<span class="imageinput-new">选择图片</span>
+						<span class="imageinput-exists">重新选择</span>
 						<input id="imageField" type="file" />
 						<input type="hidden" name="" />
 					</span>
-					<span class=" btn btn-default btn-delete fileinput-exists">删除</span>
+					<span class=" btn btn-default imageinput-delete imageinput-exists">删除</span>
 				</div>
 			</div>
-		
-		<div class="fileinput fileinput-new">
-				<div class="fileinput-thumb" style="width:206px;height:156px;">
-					<img style="max-width:200px;max-height:150px;" />
-				</div>
-				<div style="width:206px;text-align:center;">
-					<span class="btn btn-default btn-file">
-						<span class="fileinput-new">选择图片</span>
-						<span class="fileinput-exists">重新选择</span>
-						<input id="imageField" type="file" />
-						<input type="hidden" name="" />
-					</span>
-					<span class=" btn btn-default btn-delete fileinput-exists">删除</span>
-				</div>
-			</div>
+			
 	</form>	
 
 	<script>
 	+ function () {
-		var Fileinput = function (element, options) {
+		var Imageinput = function (element, options) {
 			this.$element = $(element);
 			this.listen();
 
@@ -92,32 +78,32 @@
 			})
 		}
 
-		Fileinput.prototype.listen = function () {
-			this.$element.find('.btn-delete').on('click.gx.fileinput', $.proxy(this.clear, this));
+		Imageinput.prototype.listen = function () {
+			this.$element.find('.imageinput-delete').on('click.gx.imageinput', $.proxy(this.clear, this));
 		}
 
-		Fileinput.prototype.clear = function () {
+		Imageinput.prototype.clear = function () {
 			this.$element.find('img').attr('src', '');
 			this.$element.find('input[type="hidden"]').val('');
-			this.$element.removeClass('fileinput-exists').addClass('fileinput-new');
+			this.$element.removeClass('imageinput-exists').addClass('imageinput-new');
 		}
 
-		Fileinput.prototype.done = function (e, data) {
+		Imageinput.prototype.done = function (e, data) {
 			if (data.result.status == 'success') {
 				var imageUrl = data.result.result;
 				this.$element.find("img").attr('src', imageUrl);
 				this.$element.find("input[type='hidden']").val(imageUrl);
-				this.$element.addClass('fileinput-exists').removeClass('fileinput-new')
+				this.$element.addClass('imageinput-exists').removeClass('imageinput-new')
 			}
 		}
 
-		$.fn.fileinput = function (options) {
+		$.fn.imageinput = function (options) {
 			return this.each(function(){
 				var $this = $(this);
-				var data = $this.data('gx.fileinput');
+				var data = $this.data('gx.imageinput');
 				if(!data){
-					data = new Fileinput(this,options);
-					$this.data('gx.fileinput',data);
+					data = new Imageinput(this,options);
+					$this.data('gx.imageinput',data);
 				}
 			});
 		}
@@ -125,7 +111,7 @@
 </script>
 	<script>
 		$(function(){
-			$(".fileinput").fileinput({
+			$(".imageinput").imageinput({
 				'url' : 'http://localhost/cpspew/index.php/site/upload',
 				'fileName' : 'image',
 			});
