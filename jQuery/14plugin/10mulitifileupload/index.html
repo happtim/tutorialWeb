@@ -121,7 +121,7 @@
 </body>
 <script>
 	+ function () {
-		var MultiFileinput = function (element, options) {
+		var MultiImageinput = function (element, options) {
 			this.$element = $(element);
 			this.listen();
 
@@ -142,7 +142,7 @@
 			})
 		}
 
-		MultiFileinput.prototype.listen = function () {
+		MultiImageinput.prototype.listen = function () {
 			this.$element.find('.sigleimage-delete').on('click.gx.sigleimage', $.proxy(this.clear, this));
             this.$element.find('.sigleimage-more').on('click.gx.sigleimage', $.proxy(this.add, this));
             this.$element.find('.sigleimage-remove').on('click.gx.sigleimage', $.proxy(this.remove, this));
@@ -150,33 +150,33 @@
             this.$element.find('.sigleimage-thumb').on('mouseout.gx.sigleimage', $.proxy(this.out, this));
 		}
 
-		MultiFileinput.prototype.clear = function (e) {
+		MultiImageinput.prototype.clear = function (e) {
 			$(e.currentTarget).parents(".sigleimage").find('img').attr('src', '');
 			$(e.currentTarget).parents(".sigleimage").find('input[type="hidden"]').val('');
 			$(e.currentTarget).parents(".sigleimage").removeClass('sigleimage-exists').addClass('sigleimage-new');
 		}
         
-        MultiFileinput.prototype.remove = function(e){
+        MultiImageinput.prototype.remove = function(e){
             $(e.currentTarget).parents(".sigleimage").remove();
         }
         
-        MultiFileinput.prototype.add = function(e){
+        MultiImageinput.prototype.add = function(e){
             var $first = this.$element.find(".sigleimage").first().clone(true);
             $(e.currentTarget).before($first);
             $first.find(".sigleimage-delete").trigger("click");
         }
         
-        MultiFileinput.prototype.over = function(e){
+        MultiImageinput.prototype.over = function(e){
             var size = this.$element.find('.sigleimage').size();
             if(size > 1)
                 $(e.currentTarget).find(".sigleimage-remove").show();
         }
         
-        MultiFileinput.prototype.out = function(e){
+        MultiImageinput.prototype.out = function(e){
             $(e.currentTarget).find(".sigleimage-remove").hide();
         }
 
-		MultiFileinput.prototype.done = function (e, data) {
+		MultiImageinput.prototype.done = function (e, data) {
 			if (data.result.status == 'success') {
 				var imageUrl = data.result.result;
 				data.fileInputClone.parents(".sigleimage").find("img").attr('src', imageUrl);
@@ -185,13 +185,13 @@
 			}
 		}
 
-		$.fn.multifileinput = function (options) {
+		$.fn.multiimageinput = function (options) {
 			return this.each(function(){
 				var $this = $(this);
-				var data = $this.data('gx.multi-fileinput');
+				var data = $this.data('gx.multi-imageinput');
 				if(!data){
-					data = new MultiFileinput(this,options);
-					$this.data('gx.multi-fileinput',data);
+					data = new MultiImageinput(this,options);
+					$this.data('gx.multi-imageinput',data);
 				}
 			});
 		}
@@ -199,7 +199,7 @@
 </script>
 <script>
     $(function(){
-			$(".multi-imageinput").multifileinput({
+			$(".multi-imageinput").multiimageinput({
 				'url' : 'http://localhost/cpspew/index.php/site/upload',
 				'fileName' : 'image',
 			});
