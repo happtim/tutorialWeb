@@ -3,8 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
     <script>
-    // module 可以是一个容器用来包含网站不同的部分 controller,service,filter,driective
+    /*  
+     *  angularjs.module是一个全局创建,注册,获取modules的函数.
+     *  模块是一个容器用来包含网站不同的部分 controller,service,filters,driectives
+     *  
+     *  关键数据结构:
+     *      var invodeQueue = [];   全局
+     *      var runBlocks = [];     全局
+     *      var config = 配置,$injector,invoke 添加到invokeQueue 
+     *      var moduleInstance  = {
+     *          _invokeQueue: invodeQueue,  局部
+     *          _runBlocks : runBlocks,     局部
+     *          requires : requires, 模块需要那些模块
+     *          name : name, 模块名
+     *          provider : $provide.provider, provider的构造函数,$provide,provider添加到invokeQueue,
+     *          factory : $provide.factory,   factory的构造函数,$provide,factory 添加到invokeQueue,
+     *          service : $provide.service    service的构造函数,$provide,service 添加到invokeQueue,
+     *          ...
+     *          filter : $filterProvider.register filter的构造函数,$filterProvider,register 添加到invokeQueue
+     *          controller: $controllerProvider.register controller的构造函数,$controllerProvider,register 添加到invokeQueue
+     *          directive: $compileProvider.directive directvie的构造函数,$compileProvider,directive 添加到invokeQueue
+     * 
+     *      }
+     * 
+     *  函数定义:
+     *      return function module(name, requires, configFn) {}
+     * 
+     *  创建:
+     *      var myModule  = angular.module('myModule',[]);
+     * 
+     *  获取:
+     *      var myModule = angular.module('myModule');
+     * 
+     *  配置:
+     *      var myModule = angular.module('myModule',['$locationProvider',function($locationProvider){
+     *          $locationProvider.hashPrefix('!');
+     *      }]);
+     *  方法二: 
+     *      angular.module('myModule').config(['$locationProvider',function($locationProvider){
+     *          $locationProvider.hashPrefix('!');
+     *      }]);
+     *
+     */ 
     </script>
 </head>
 <body ng-app="myApp">
@@ -12,8 +54,7 @@
     <div>
     {{ 'World' | greet }}
     </div>
-    
-    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+
     <script>
         var myApp = angular.module("myApp",[]);
         myApp.filter("greet",function(){
