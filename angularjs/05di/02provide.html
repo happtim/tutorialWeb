@@ -20,23 +20,22 @@
          *      providerCache = {
          *          $provider: {
          *              provider:provider,
+         *                  一个构造函数,提供service的factory方法
+         *                  service provider的名字是xxxProvider
+         *                  $get方法可以配置provider
          *              factory:factory,
+         *                  注册一个service factory,调用会返回service instance
          *              service:service,
+         *                  注册一个service constructor,他会被new出来
          *              value:value,
+         *                  注册一个value servie,key是一个变量,不能被module configuration 注入,可以被重写
          *              constant:constant,
+         *                  注册一个constant service,值是一个变量,能被module configuration 注入,不可以被重写
          *              decorator:decorator,
+         *                  
          *          }
          *               
-         *      }
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
+         *      };
          **/
     </script>
 </head>
