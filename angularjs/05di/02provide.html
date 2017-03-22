@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script>
+        /**
+         *  $provide 提供了一些方法注册组件用来被$injector来生成.
+         *  service 是一个单例 被 service factory创建出来, service factory 是被service provider创建出来的.
+         *  service provider 是一个构造函数必须有一个方法$.get保存service factory
+         * 
+         *  当你请求一个service,$injector负责找见对应的service provider,实例化他并且调用$get方法获取service实例
+         *  
+         *  如果service没有过多的配置项,service provider仅仅是一个有$get属性的构造函数,在这种情况下,有了factory,service,等等帮助方法
+         *  
+         *  关键数据结构:
+         *      providerCache = {
+         *          $provider: {
+         *              provider:provider,
+         *              factory:factory,
+         *              service:service,
+         *              value:value,
+         *              constant:constant,
+         *              decorator:decorator,
+         *          }
+         *               
+         *      }
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         **/
+    </script>
+</head>
+<body ng-app="myApp">
+    
+</body>
+</html>

@@ -4,7 +4,33 @@
     <meta charset="UTF-8">
     <title>injector</title>
     <script>
-    //
+    /**
+     *  $injector 注入器用来实例化$provide.provider内对象,实例化对象(instantiate),调用方法(invoke),加载模块(get)
+     *  
+     *  注入函数的注释:
+     *      推导式: 用于没有压缩代码的情况,使用toString()方法获取参数
+     *          $injector.invoke(function(serviceA){});
+     *      注解式:
+     *          function explicit(serviceA) {};
+     *          explicit.$inject = ['serviceA'];
+     *          $injector.invoke(explicit);
+     *      行内式:
+     *          $injector.invoke(['serviceA', function(serviceA){}]);
+     * 
+     *  数据结构:
+     *      return {
+     *          invoke: invoke, 调用函数,解析注释
+     *          instantiate: instantiate, 实例化并调用函数
+     *          get: getService, 获取一个cache中保存service.
+     *                          providerInjector从providerCache中获取
+     *                          instanceCache从 serviceProvider中获取$.get方法    
+     *          annotate: annotate, 注解解析
+     *          has: function(name) {
+     *              return providerCache.hasOwnProperty(name + providerSuffix) || cache.hasOwnProperty(name);
+     *          }
+     *      };
+     * 
+     * */
     </script>
 </head>
 <body ng-app="myApp">
