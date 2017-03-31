@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="newController"></div>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.controller('newController',function($rootScope,$scope){
+            console.log($rootScope.$$childTail === $scope); //true
+            var child = $rootScope.$new();
+
+            //双向列表
+            console.log($rootScope.$$childTail === child);//true
+            console.log($scope.$$nextSibling === child); //true
+            console.log(child.$$prevSibling === $scope); //true
+
+            var subchild = child.$new();
+            var subchild2 = child.$new();
+
+            console.log(subchild.$parent === child);
+
+            console.log(subchild === subchild2.$$prevSibling);//true
+            console.log(subchild2 === subchild.$$nextSibling);//true
+
+        })
+    </script>
+</body>
+</html>

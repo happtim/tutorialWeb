@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    
+</head>
+<body ng-app="myApp">
+</body>
+    <script>
+        var myApp = angular.module('myApp',[]);
+        myApp.run(function($rootScope){
+            $scope = $rootScope.$new();
+            $scope.name ="egg";
+            $scope.$watch('name',function($new,$old){
+                console.log("new :"+$new + " old:" + $old);
+            });
+            $scope.$digest();
+            $scope.$digest();
+            $scope.name = "chick";
+            $scope.$digest();
+        });
+    </script>
+</html>
